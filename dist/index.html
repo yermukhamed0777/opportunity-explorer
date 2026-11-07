@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#173f34" />
+    <title>Opportunity Explorer — Scholarships, Research & Competitions</title>
+    <meta
+      name="description"
+      content="Find and compare scholarships, research programs, hackathons and olympiads. Clear eligibility, funding, deadlines and automatically collected source updates."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Opportunity Explorer — Your next opportunity"
+    />
+    <meta
+      property="og:description"
+      content="Scholarships, research and competitions with clear requirements, source links and fresh announcements."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231d5948'/%3E%3Cpath d='M26 12l-4 12-12 4 4-12z' fill='%23d7e9a5'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="data.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#results">Skip to opportunities</a>
+    <aside class="sidebar">
+      <a href="#" class="brand" aria-label="Opportunity Explorer home"
+        ><span class="brand-mark"
+          ><svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="12" />
+            <path d="m21 10-3 9-9 3 3-9z" /></svg></span
+        ><span>opportunity<span class="brand-light">explorer</span></span></a
+      >
+      <div class="workspace-label">FIND YOUR NEXT STEP</div>
+      <nav class="main-nav" aria-label="Workspace">
+        <button data-view="explore" class="nav-item active">
+          <i data-icon="compass"></i><span>Explore & compare</span
+          ><span id="nav-total" class="nav-count">23</span>
+        </button>
+        <button data-view="latest" class="nav-item">
+          <i data-icon="spark"></i><span>Latest updates</span
+          ><span id="feed-count" class="nav-count">…</span>
+        </button>
+        <button data-view="saved" class="nav-item">
+          <i data-icon="bookmark"></i><span>Application tracker</span
+          ><span id="saved-count" class="nav-count">0</span>
+        </button>
+        <button data-view="deadlines" class="nav-item">
+          <i data-icon="calendar"></i><span>Deadline view</span>
+        </button>
+        <button data-view="sources" class="nav-item">
+          <i data-icon="globe"></i><span>Sources & updates</span>
+        </button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="small-spark">✧</span
+        ><strong>Choose work that matters to you.</strong>
+        <p>
+          Find the right fit, understand the requirements, and take the next
+          step with confidence.
+        </p>
+      </div>
+      <div class="sidebar-bottom">
+        <button class="nav-item" id="guide-btn">
+          <i data-icon="info"></i>How this works
+        </button>
+        <div class="local-note">
+          <i data-icon="bookmark"></i
+          ><span
+            >Your shortlist stays private<small
+              >Saved in this browser only</small
+            ></span
+          >
+        </div>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          Opportunity Explorer <span>/</span
+          ><strong id="breadcrumb-title">Explore</strong>
+        </div>
+        <span class="public-pill"
+          ><span class="online-dot"></span>Open to everyone</span
+        >
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">A LITTLE CURIOSITY GOES A LONG WAY</div>
+            <h1 id="page-title">
+              Find opportunities.<br /><em>Know what matters.</em>
+            </h1>
+            <p id="page-intro">
+              Scholarships, research, and competitions — with the eligibility,
+              funding, and deadlines you need to make a decision.
+            </p>
+            <div class="hero-stats">
+              <span
+                ><strong id="catalog-count">23</strong> curated listings</span
+              ><span>High school · Undergraduate · Master’s</span>
+            </div>
+          </div>
+          <div class="radar">
+            <div class="radar-kicker">
+              <i data-icon="calendar"></i>UPCOMING DEADLINE
+            </div>
+            <div class="radar-body">
+              <div class="radar-date">NOV<strong>20</strong></div>
+              <div>
+                <strong>Next opportunity</strong>
+                <p>Check the current source before applying.</p>
+              </div>
+            </div>
+            <button>Read the requirements <span>↗</span></button>
+          </div>
+        </section>
+        <section class="collection-bar">
+          <div>
+            <i data-icon="check"></i
+            ><span id="collection-date"
+              >Curated collection reviewed 6 Nov 2026</span
+            >
+          </div>
+          <button data-view="latest">
+            See automatic source updates <span>→</span>
+          </button>
+        </section>
+        <div class="search-row">
+          <div class="search-wrap">
+            <i data-icon="search"></i
+            ><input
+              id="search"
+              type="search"
+              placeholder="Search a program, scholarship, subject, or location…"
+              aria-label="Search opportunities"
+            /><kbd>/</kbd>
+          </div>
+          <button class="filter-toggle" id="filter-toggle">
+            <i data-icon="sliders"></i>Filters
+          </button>
+        </div>
+        <div class="type-tabs" role="group" aria-label="Opportunity type">
+          <button data-type="" class="active">
+            All opportunities <span id="type-all-count">23</span></button
+          ><button data-type="Scholarship">Scholarships</button
+          ><button data-type="Research">Research</button
+          ><button data-type="Hackathon">Hackathons</button
+          ><button data-type="Olympiad">Olympiads</button
+          ><button data-type="Research challenge">Research challenges</button>
+        </div>
+        <div class="explore-layout">
+          <aside class="filters" id="filters" aria-label="Filter opportunities">
+            <div class="filters-heading">
+              <h2>Refine your search</h2>
+              <button id="reset">Reset</button>
+            </div>
+            <div id="curated-filters">
+              <label class="filter-label" for="stage">Who is applying?</label
+              ><select id="stage">
+                <option value="">All student stages</option>
+                <option>High school junior</option>
+                <option>Other high school</option>
+                <option>Pre-university gap year</option>
+                <option>Undergraduate applicant</option>
+                <option>University student</option>
+                <option>Master’s applicant</option>
+              </select>
+              <p class="filter-help">
+                Check the full eligibility text: age, nationality,
+                qualifications and school rules may also apply.
+              </p>
+              <label class="filter-label" for="field">Field of interest</label
+              ><select id="field">
+                <option value="">All fields</option>
+              </select>
+              <label class="filter-label" for="location">Where?</label
+              ><select id="location">
+                <option value="">Anywhere</option>
+              </select>
+              <fieldset>
+                <legend>Format</legend>
+                <label class="check-label"
+                  ><input type="checkbox" name="format" value="Online" />Online
+                  available</label
+                ><label class="check-label"
+                  ><input type="checkbox" name="format" value="In person" />In
+                  person</label
+                >
+              </fieldset>
+              <label class="filter-label" for="cost">Cost & funding</label
+              ><select id="cost">
+                <option value="">Any cost or funding</option>
+                <option value="Funded">Scholarships / funded study</option>
+                <option value="Free">Free program / entry</option>
+                <option value="Aid">Financial aid available</option>
+                <option value="Paid">Paid participation</option>
+                <option value="Unknown">Unverified / varies</option>
+              </select>
+              <p class="filter-help">
+                A free place may still involve travel or application costs.
+              </p>
+              <label class="filter-label" for="access">Entry route</label
+              ><select id="access">
+                <option value="">All entry routes</option>
+                <option>International</option>
+                <option>Country selection</option>
+                <option>Qualifying route</option>
+                <option>Hong Kong schools</option>
+                <option>Local requirements</option>
+                <option>Institution nomination</option>
+                <option>Offer-holder application</option>
+              </select>
+              <fieldset class="date-fieldset">
+                <legend>Deadline window</legend>
+                <label for="date-from">From</label
+                ><input type="date" id="date-from" /><label for="date-to"
+                  >Through</label
+                ><input type="date" id="date-to" /><label class="check-label"
+                  ><input id="include-unknown" type="checkbox" checked />Include
+                  unknown dates</label
+                >
+              </fieldset>
+              <label class="check-label"
+                ><input id="include-closed" type="checkbox" />Show closed
+                opportunities</label
+              ><label class="check-label confirmed-only"
+                ><input id="confirmed-only" type="checkbox" />Confirmed deadline
+                only</label
+              >
+            </div>
+            <div id="feed-filters" hidden>
+              <label class="filter-label" for="feed-source">Source</label
+              ><select id="feed-source">
+                <option value="">All sources</option>
+                <option value="studyqa">StudyQA / Стадика</option>
+                <option value="noborders">No Borders Abroad</option>
+                <option value="scholars4dev">Scholars4Dev</option>
+                <option value="opportunitydesk">Opportunity Desk</option>
+              </select>
+              <p class="filter-help">
+                These are automatically collected announcements. Use the source
+                and provider links to verify the actual requirements.
+              </p>
+              <div class="filter-source-links">
+                <a
+                  href="https://t.me/studyqa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >StudyQA on Telegram ↗</a
+                ><a
+                  href="https://t.me/noborders_abroad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >No Borders Abroad ↗</a
+                >
+              </div>
+            </div>
+          </aside>
+          <section id="results" class="results" tabindex="-1">
+            <div class="results-toolbar">
+              <div>
+                <h2 id="results-count" aria-live="polite">23 opportunities</h2>
+                <p id="results-context">
+                  Compare the requirements before choosing where to apply.
+                </p>
+              </div>
+              <label class="sort-label"
+                >Sort
+                <select id="sort">
+                  <option value="curated">Curated order</option>
+                  <option value="deadline">Soonest deadline</option>
+                  <option value="name">Name A–Z</option>
+                  <option value="cost">Funding / free first</option>
+                </select></label
+              >
+            </div>
+            <section
+              id="tracker-tools"
+              class="tracker-tools"
+              aria-label="Your tracker tools"
+              hidden
+            >
+              <div class="tracker-heading">
+                <div>
+                  <h2>Your application workspace</h2>
+                  <p>
+                    Stored in this browser. Export a private backup to keep or
+                    move your notes.
+                  </p>
+                </div>
+                <div class="backup-actions">
+                  <button id="backup-export" class="secondary">
+                    Export backup</button
+                  ><label class="secondary import-button"
+                    >Restore backup<input
+                      id="backup-import"
+                      type="file"
+                      accept="application/json,.json"
+                  /></label>
+                </div>
+              </div>
+              <div id="tracker-summary" class="tracker-summary"></div>
+              <label class="tracker-filter" for="tracker-status"
+                >Show stage
+                <select id="tracker-status">
+                  <option value="">All stages</option>
+                  <option>Interested</option>
+                  <option>Preparing</option>
+                  <option>Applied</option>
+                  <option>Accepted</option>
+                  <option>Declined</option>
+                </select></label
+              >
+              <p class="backup-help">
+                Restoring merges saved items and replaces notes for matching
+                opportunities. Backups contain your notes: keep them private.
+              </p>
+            </section>
+            <div id="feed-notice" class="feed-notice" hidden></div>
+            <div id="active-filters"></div>
+            <div id="card-grid" class="card-grid"></div>
+            <div id="empty" class="empty" hidden>
+              <i data-icon="search"></i>
+              <h2>No matching opportunities</h2>
+              <p id="empty-text">Try a broader filter or another search.</p>
+              <button class="primary" id="empty-reset">Clear filters</button>
+            </div>
+          </section>
+        </div>
+        <footer>
+          <span>Clear requirements. Real sources. Your next possibility.</span
+          ><button id="footer-guide">
+            How dates, funding and updates work ↗
+          </button>
+          <p id="snapshot-note">
+            Curated listings retain their review dates. Automatic source updates
+            are collected separately.
+          </p>
+        </footer>
+      </main>
+    </div>
+    <div id="compare-tray" class="compare-tray" hidden>
+      <div>
+        <i data-icon="columns"></i><strong id="compare-count">1 selected</strong
+        ><span id="compare-names"></span>
+      </div>
+      <div>
+        <button id="clear-compare">Clear</button
+        ><button class="primary" id="compare-btn">Compare options ↗</button>
+      </div>
+    </div>
+    <dialog id="detail-dialog" aria-labelledby="detail-title">
+      <button class="dialog-close" aria-label="Close details">×</button>
+      <div id="detail-content"></div>
+    </dialog>
+    <dialog
+      id="compare-dialog"
+      class="wide-dialog"
+      aria-labelledby="compare-title"
+    >
+      <button class="dialog-close" aria-label="Close comparison">×</button>
+      <div class="dialog-eyebrow">SIDE BY SIDE</div>
+      <h2 id="compare-title">Which option fits you?</h2>
+      <p>
+        Compare eligibility, funding, deadlines and anything that still needs
+        checking.
+      </p>
+      <div id="compare-content"></div>
+    </dialog>
+    <dialog id="guide-dialog" aria-labelledby="guide-title">
+      <button class="dialog-close" aria-label="Close guide">×</button>
+      <div class="dialog-eyebrow">HOW THIS WORKS</div>
+      <h2 id="guide-title">Know what has been checked.</h2>
+      <h3>The curated collection</h3>
+      <p>
+        These listings were researched using organizer, university and
+        government sources. Each shows its own last-reviewed date. An exact
+        deadline can be confirmed while another detail remains uncertain. An
+        anticipated month is never presented as a confirmed day.
+      </p>
+      <h3>Automatic source updates</h3>
+      <p>
+        The Latest updates page collects public announcements from StudyQA, No
+        Borders Abroad, Scholars4Dev and Opportunity Desk. These sources are
+        checked automatically on Monday mornings in Hong Kong time. The updater
+        runs independently on the hosting service.
+      </p>
+      <p>
+        Incoming posts are discovery leads. Their eligibility, funding and
+        deadlines have not been independently checked. The source status and
+        last successful collection time are shown. If a source is unavailable,
+        previously saved announcements can remain visible with a warning.
+      </p>
+      <h3>Eligibility and funding</h3>
+      <p>
+        Always check the linked provider’s requirements. Nationality, residency,
+        age, qualifications, school nomination and degree choice can affect
+        eligibility. A tuition waiver does not necessarily pay for living costs,
+        travel or admission fees.
+      </p>
+      <h3>Dates and your shortlist</h3>
+      <p>
+        Known final deadlines hide closed opportunities from the main list. You
+        can still see them through the filter and in your shortlist. Your
+        tracker, stages and notes are stored only in this browser. Export a
+        backup before clearing browser data, and restore it to move your tracker
+        to another device. Share links and calendar files exclude your notes.
+        Calendar exports are all-day date reminders, not exact cut-offs or
+        guaranteed alerts. This website does not submit applications or send
+        messages on your behalf.
+      </p>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

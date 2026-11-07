@@ -1,0 +1,1415 @@
+window.EXPLORER_CATALOG = {
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-06T13:11:10Z",
+  "refresh": {
+    "enabled": true,
+    "cadence": "weekly",
+    "timezone": "Asia/Shanghai",
+    "description": "Monday mornings, Hong Kong time",
+    "engine": "Vercel scheduled source feeds",
+    "mode": "independent-source-discovery",
+    "telegramChannels": [
+      "https://t.me/studyqa",
+      "https://t.me/noborders_abroad"
+    ],
+    "note": "Automatic feeds collect source announcements; curated eligibility and deadline checks retain their own dates."
+  },
+  "opportunities": [
+    {
+      "id": "rsi",
+      "name": "Research Science Institute",
+      "short": "RSI",
+      "org": "Center for Excellence in Education",
+      "cycle": "Summer 2027",
+      "type": "Research",
+      "fields": [
+        "Physics",
+        "Engineering",
+        "Biology",
+        "Computer science",
+        "Mathematics"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "United States"
+      ],
+      "location": "MIT / Stanford, United States",
+      "eligibilityTags": [
+        "High school junior"
+      ],
+      "access": "Country selection",
+      "eligibility": "High school juniors; seniors and sophomores excluded. International applicants use a country-specific selection route.",
+      "costGroup": "Free",
+      "aid": false,
+      "cost": "No program tuition",
+      "costNote": "Program attendance is cost-free. Application and travel costs are separate; confirm international arrangements.",
+      "deadlineStart": "2026-12-11",
+      "deadlineEnd": "2026-12-11",
+      "deadline": "11 Dec 2026",
+      "deadlineDetail": "11:59 pm US Eastern (12 Dec, 12:59 pm Hong Kong). This is the CEE deadline; international country deadlines may differ.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "schedule": "MIT: 20 Jun–31 Jul 2027; Stanford: 27 Jun–7 Aug 2027.",
+      "description": "Six weeks of scientific coursework and mentored original research, ending in a written report and presentation.",
+      "output": "A mentored research project, scientific report and oral presentation.",
+      "effort": "6 weeks, residential",
+      "team": "Individual application",
+      "caution": "Confirm whether your country participates before using the US application timeline.",
+      "next": "Check your national selection route and ask teachers about recommendations.",
+      "sources": [
+        [
+          "2027 announcement & dates",
+          "https://www.cee.org/newsevents/press-releases/applications-being-accepted-2027-research-science-institute"
+        ],
+        [
+          "Eligibility & international route",
+          "https://www.cee.org/programs/apply-rsi"
+        ]
+      ],
+      "deadlineConfirmed": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2026-12-11",
+      "archived": false
+    },
+    {
+      "id": "ssp",
+      "name": "Summer Science Program",
+      "short": "SSP",
+      "org": "SSP International",
+      "cycle": "Summer 2027",
+      "type": "Research",
+      "fields": [
+        "Physics",
+        "Biology",
+        "Chemistry"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "United States"
+      ],
+      "location": "US host campuses; verify 2027 allocation",
+      "eligibilityTags": [
+        "High school junior"
+      ],
+      "access": "International",
+      "eligibility": "Current high school juniors, ages 15–18 during the program, with track-specific credited coursework. Seniors are not eligible.",
+      "costGroup": "Paid",
+      "aid": true,
+      "cost": "2027 fee not yet confirmed",
+      "costNote": "Application is free. Need-based aid is available; request the 2027 program fee and travel budget.",
+      "deadlineStart": "2027-01-01",
+      "deadlineEnd": "2027-01-31",
+      "deadline": "Jan 2027 · tentative",
+      "deadlineDetail": "Organizer anticipates January for international applicants and February for domestic applicants. Exact days and cut-off times are unannounced.",
+      "dateStatus": "Tentative window",
+      "status": "tentative",
+      "schedule": "Applications open December 2026; programs begin mid-June 2027.",
+      "description": "Collaborative research in astrophysics, biochemistry, genomics or cell biology, with a demanding residential schedule.",
+      "output": "A collaborative scientific investigation and experience working with real research data.",
+      "effort": "Intensive summer residential program",
+      "team": "Individual application; collaborative research",
+      "caution": "Domestic means US citizen/permanent resident AND attending school in the US. Everyone else uses the international timeline.",
+      "next": "Check prerequisites and return when the December application opens.",
+      "sources": [
+        [
+          "2027 timeline & financial aid",
+          "https://ssp.org/application/"
+        ],
+        [
+          "Eligibility & prerequisites",
+          "https://ssp.org/getting-started/"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": null,
+      "archived": false
+    },
+    {
+      "id": "promys",
+      "name": "PROMYS",
+      "short": "π",
+      "org": "Boston University · PROMYS",
+      "cycle": "Summer 2027",
+      "type": "Research",
+      "fields": [
+        "Mathematics"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "United States"
+      ],
+      "location": "Boston University, United States",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school",
+        "Pre-university gap year"
+      ],
+      "access": "International",
+      "eligibility": "Ages 14–18, completed grade 9, and not already enrolled at university. The summer before college and gap years can qualify.",
+      "costGroup": "Paid",
+      "aid": true,
+      "cost": "2027 fee unannounced",
+      "costNote": "2026 reference only: up to US$8,000. International aid is case-by-case. Do not treat the old fee as a 2027 quote.",
+      "deadlineStart": "2027-02-01",
+      "deadlineEnd": "2027-02-28",
+      "deadline": "Late Feb 2027 · tentative",
+      "deadlineDetail": "Organizer says end of February, date TBD. Application expected to launch in January 2027.",
+      "dateStatus": "Tentative window",
+      "status": "tentative",
+      "schedule": "27 Jun–7 Aug 2027 (confirmed program dates).",
+      "description": "A six-week immersion in mathematical exploration, proof and number theory, built around challenging problem sets.",
+      "output": "Sustained proof-based mathematical work and, where offered, exploratory projects.",
+      "effort": "6 weeks, residential",
+      "team": "Individual application",
+      "caution": "This is a mathematics immersion rather than a guaranteed individual research placement. Application solutions must be your own; AI use is prohibited.",
+      "next": "Work independently on proofs and prepare for the application problem set.",
+      "sources": [
+        [
+          "2027 dates, cost reference & eligibility",
+          "https://promys.org/programs/promys/for-students/"
+        ],
+        [
+          "Application requirements",
+          "https://promys.org/programs/promys/for-students/application/"
+        ],
+        [
+          "International applicants & aid",
+          "https://promys.org/programs/promys/for-students/for-international-students/"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": null,
+      "archived": false
+    },
+    {
+      "id": "lumiere",
+      "name": "Lumiere Research Scholar",
+      "short": "Lu",
+      "org": "Lumiere Education",
+      "cycle": "Winter 2026",
+      "type": "Research",
+      "fields": [
+        "Physics",
+        "Engineering",
+        "Biology",
+        "Computer science",
+        "Mathematics",
+        "Social sciences"
+      ],
+      "formats": [
+        "Online"
+      ],
+      "locations": [
+        "Online / worldwide"
+      ],
+      "location": "Online · worldwide",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school",
+        "University student"
+      ],
+      "access": "International",
+      "eligibility": "High school students in grades 9–12 and university students worldwide may apply; beginners are welcome.",
+      "costGroup": "Paid",
+      "aid": true,
+      "cost": "Paid · request current quote",
+      "costNote": "Tuition varies by track; a current fee was not verified. Separate need-based support exists through the Lumiere Foundation.",
+      "deadlineStart": "2026-11-22",
+      "deadlineEnd": "2026-11-22",
+      "deadline": "22 Nov 2026",
+      "deadlineDetail": "Regular winter deadline: 22 November. Priority deadline: 8 November. Organizer does not specify a cut-off time or timezone on the cohort table.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "schedule": "Winter cohort begins 7 Dec 2026; core Individual track lasts 12 weeks.",
+      "description": "Online one-to-one research mentorship with a researcher, with a paper as the goal of the core track.",
+      "output": "A guided independent research paper; publication is not guaranteed.",
+      "effort": "12 weeks for the core track",
+      "team": "Individual mentorship",
+      "caution": "A paid provider, not a university admission award. Evaluate mentor fit, total tuition and expected work before paying.",
+      "next": "Compare the current fee, mentor match and aid options before applying.",
+      "sources": [
+        [
+          "Winter dates & program structure",
+          "https://www.lumiere-education.com/lumiere-programs"
+        ],
+        [
+          "Worldwide student eligibility",
+          "https://www.lumiere-education.com/faqs"
+        ],
+        [
+          "Financial support eligibility",
+          "https://lumiere.foundation/application"
+        ]
+      ],
+      "deadlineConfirmed": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2026-11-22",
+      "archived": false
+    },
+    {
+      "id": "nasa",
+      "name": "NASA Space Apps Challenge",
+      "short": "✦",
+      "org": "NASA Space Apps",
+      "cycle": "14–15 Nov 2026",
+      "type": "Hackathon",
+      "fields": [
+        "Computer science",
+        "Engineering",
+        "Physics",
+        "Environment"
+      ],
+      "formats": [
+        "Online",
+        "In person"
+      ],
+      "locations": [
+        "Online / worldwide",
+        "Worldwide local events"
+      ],
+      "location": "Worldwide · virtual or local event",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school",
+        "Pre-university gap year",
+        "University student"
+      ],
+      "access": "International",
+      "eligibility": "All ages and backgrounds. Under-18s must be registered by a parent/guardian and accompanied throughout, per the participant terms.",
+      "costGroup": "Unknown",
+      "aid": false,
+      "cost": "Fee not verified",
+      "costNote": "No universal participation fee was verified in the checked pages. Check your local event and any travel costs.",
+      "deadlineStart": "2026-11-14",
+      "deadlineEnd": "2026-11-14",
+      "deadline": "Before event starts · verify",
+      "deadlineDetail": "Terms require registration before the start (14 Nov). The event page allows registration through 15 Nov. Use the earlier requirement and check your local organizer.",
+      "dateStatus": "Source conflict",
+      "status": "caution",
+      "schedule": "14–15 Nov 2026. Project submission closes 15 Nov at 11:59 pm local time.",
+      "description": "Build a solution to a real-world space or science challenge using open data, with a global community of makers.",
+      "output": "A working prototype, project page and a clearly explained team contribution.",
+      "effort": "One weekend",
+      "team": "Teams of up to 6",
+      "caution": "Registration timing differs between official pages. Under-18 guardian requirements also apply online; verify your local arrangements.",
+      "next": "Pick a local or virtual event, check guardian requirements and find a team.",
+      "sources": [
+        [
+          "2026 event & submission timeline",
+          "https://www.spaceappschallenge.org/2026/"
+        ],
+        [
+          "2026 participant terms",
+          "https://www.spaceappschallenge.org/legal/"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2026-11-15",
+      "archived": false
+    },
+    {
+      "id": "haven",
+      "name": "Haven · Hack Club Game Jam",
+      "short": "H",
+      "org": "Hack Club",
+      "cycle": "14–15 Nov 2026",
+      "type": "Hackathon",
+      "fields": [
+        "Computer science",
+        "Game development"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "Hong Kong",
+        "Worldwide local events"
+      ],
+      "location": "200+ cities, including Hong Kong & Astana",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school",
+        "Pre-university gap year",
+        "University student"
+      ],
+      "access": "International",
+      "eligibility": "Ages 13–18, with no prior coding experience required. Age is the stated criterion; confirm your local event details.",
+      "costGroup": "Free",
+      "aid": false,
+      "cost": "Free participation",
+      "costNote": "Organizer confirms no participation cost. Travel to the local event is separate.",
+      "deadlineStart": null,
+      "deadlineEnd": null,
+      "deadline": "Local registration · check",
+      "deadlineDetail": "No universal registration cut-off was verified. Event dates are confirmed; local places and sign-up timing vary.",
+      "dateStatus": "Event confirmed",
+      "status": "partial",
+      "schedule": "14–15 Nov 2026; see the city page for the local schedule.",
+      "description": "A beginner-friendly weekend of game making, workshops and collaboration at a local teen-run event.",
+      "output": "A playable game and a documented build process.",
+      "effort": "One weekend",
+      "team": "Local teams; check city arrangements",
+      "caution": "This is a game jam, not an olympiad. City-specific logistics may still be incomplete.",
+      "next": "Find the nearest city page and confirm the venue and available places.",
+      "sources": [
+        [
+          "Dates, age eligibility, costs & city list",
+          "https://haven.hackclub.com/"
+        ],
+        [
+          "Hack Club program directory",
+          "https://hackclub.com/programs"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2026-11-15",
+      "archived": false
+    },
+    {
+      "id": "hackbi",
+      "name": "HackBI X",
+      "short": "BI",
+      "org": "Bishop Ireton High School",
+      "cycle": "16–17 Jan 2027",
+      "type": "Hackathon",
+      "fields": [
+        "Computer science",
+        "Engineering"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "United States"
+      ],
+      "location": "Alexandria, Virginia, United States",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school"
+      ],
+      "access": "Local requirements",
+      "eligibility": "Middle and high school students. The full 24-hour format is for high schoolers; confirm travel and minor permissions with the host.",
+      "costGroup": "Free",
+      "aid": false,
+      "cost": "Free participation",
+      "costNote": "Host says attendance is free. Travel and accommodation outside the event are not included in that claim.",
+      "deadlineStart": null,
+      "deadlineEnd": null,
+      "deadline": "Registration open · cut-off unannounced",
+      "deadlineDetail": "The host confirms registration is open for 16–17 January 2027. No final registration cut-off or timezone is stated; register through the host link and confirm local arrangements.",
+      "dateStatus": "Event confirmed · registration open",
+      "status": "partial",
+      "schedule": "16–17 January 2027, confirmed on the host website. Registration is open.",
+      "description": "A student-run hackathon with workshops, coding and a project showcase, suitable for first-time hackers.",
+      "output": "A prototype or programming project with a team demo.",
+      "effort": "24 hours for high school participants",
+      "team": "Individuals or teams of up to 4",
+      "caution": "The host now confirms the exact event dates. Travel, accommodation outside the event, and permissions for minors still need checking; free attendance does not cover those costs.",
+      "next": "Read the host FAQ and registration page, then check transport and any minor consent requirements.",
+      "sources": [
+        [
+          "Host FAQ & 2027 announcement",
+          "https://hackbi.org/"
+        ],
+        [
+          "MLH 2027 season listing",
+          "https://www.mlh.com/seasons/2027/events/"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": null,
+      "archived": false
+    },
+    {
+      "id": "usaco",
+      "name": "USACO Online Contests",
+      "short": "{ }",
+      "org": "USA Computing Olympiad",
+      "cycle": "Next season · watchlist",
+      "type": "Olympiad",
+      "fields": [
+        "Computer science",
+        "Mathematics"
+      ],
+      "formats": [
+        "Online"
+      ],
+      "locations": [
+        "Online / worldwide"
+      ],
+      "location": "Online · worldwide participation",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school",
+        "Pre-university gap year",
+        "University student"
+      ],
+      "access": "International",
+      "eligibility": "Online contests and training are open to everyone. US team/camp selection is restricted to eligible pre-college students in the USA.",
+      "costGroup": "Free",
+      "aid": false,
+      "cost": "Free",
+      "costNote": "The official rules state there is never a participation fee.",
+      "deadlineStart": null,
+      "deadlineEnd": null,
+      "deadline": "2026–27 schedule unannounced",
+      "deadlineDetail": "The checked homepage still lists 2025–26 dates. Those dates are not reused for the next season. Training remains available.",
+      "dateStatus": "Next cycle unannounced",
+      "status": "unannounced",
+      "schedule": "Next contest dates not verified as of 6 Nov 2026; archived training is available now.",
+      "description": "Algorithmic programming contests with Bronze, Silver, Gold and Platinum divisions and an extensive training archive.",
+      "output": "A contest score, division progress and demonstrable algorithmic skill.",
+      "effort": "Typically 4–5 continuous hours per contest",
+      "team": "Individual",
+      "caution": "Worldwide participation does not confer eligibility for the US national team. Future contest rules may change.",
+      "next": "Start Bronze-level training and watch the official season schedule.",
+      "sources": [
+        [
+          "Official schedule",
+          "https://usaco.org/"
+        ],
+        [
+          "Eligibility, fees & format",
+          "https://usaco.org/index.php?page=instructions"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": null,
+      "archived": false
+    },
+    {
+      "id": "kangaroo",
+      "name": "Math Kangaroo USA",
+      "short": "∑",
+      "org": "Math Kangaroo USA",
+      "cycle": "2027 competition",
+      "type": "Olympiad",
+      "fields": [
+        "Mathematics"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "United States"
+      ],
+      "location": "Participating US centers",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school"
+      ],
+      "access": "Local requirements",
+      "eligibility": "Grades K–12. Center-specific location rules apply; do not assume an international or online entry route.",
+      "costGroup": "Paid",
+      "aid": true,
+      "cost": "US$20 regular / US$35 late",
+      "costNote": "Regular enrollment through 31 Dec; late enrollment 1 Jan–1 Feb. Financial support may be available; ask the office.",
+      "deadlineStart": "2026-12-31",
+      "deadlineEnd": "2026-12-31",
+      "deadline": "31 Dec 2026 · regular",
+      "deadlineDetail": "Late enrollment closes 1 Feb 2027 at a higher fee. Universal cut-off timezone was not verified.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "schedule": "Competition: 18 Mar 2027. Verify your selected center’s session details.",
+      "description": "An individual mathematical problem-solving competition for school students at participating centers.",
+      "output": "An individual problem-solving result and ranking in the relevant level.",
+      "effort": "Single competition session",
+      "team": "Individual",
+      "caution": "This record covers the USA organizer only. Other countries run separate Kangaroo competitions with different terms.",
+      "next": "Check the center eligibility and location before paying the registration fee.",
+      "sources": [
+        [
+          "2027 dates & official fees",
+          "https://mathkangaroo.org/mks/resources/how-to-start-math-kangaroo-center/"
+        ],
+        [
+          "USA organizer",
+          "https://mathkangaroo.org/mks/"
+        ]
+      ],
+      "deadlineConfirmed": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2027-02-01",
+      "archived": false
+    },
+    {
+      "id": "bl4s",
+      "name": "Beamline for Schools",
+      "short": "↗",
+      "org": "CERN · DESY · University of Bonn",
+      "cycle": "2027 competition",
+      "type": "Research challenge",
+      "fields": [
+        "Physics",
+        "Engineering"
+      ],
+      "formats": [
+        "Online",
+        "In person"
+      ],
+      "locations": [
+        "Online / worldwide",
+        "Europe"
+      ],
+      "location": "Online proposal · winning teams travel to Europe",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school"
+      ],
+      "access": "International",
+      "eligibility": "2027 terms specify secondary/high school students aged 16–19. FAQ wording is broader for younger/gap-year entrants; resolve exceptions with the organizer.",
+      "costGroup": "Free",
+      "aid": false,
+      "cost": "Free · winners’ travel covered",
+      "costNote": "No entry fee. Travel, accommodation and meals are covered for invited winning teams.",
+      "deadlineStart": "2027-03-12",
+      "deadlineEnd": "2027-03-12",
+      "deadline": "12 Mar 2027",
+      "deadlineDetail": "23:59 CET (Geneva), equivalent to 13 Mar, 06:59 Hong Kong. Proposals open December 2026.",
+      "dateStatus": "Eligibility conflict",
+      "status": "caution",
+      "schedule": "Online information events from Nov 2026; winners conduct experiments in late Sep 2027.",
+      "description": "Design a particle-beam experiment and compete for the chance to carry it out at a major physics laboratory.",
+      "output": "A research proposal and experimental design; selected winners conduct the experiment.",
+      "effort": "Several months of proposal preparation",
+      "team": "At least 5 students + adult coach for lab-visit eligibility",
+      "caution": "Terms and FAQ differ on age and gap-year eligibility. Use the stricter 2027 terms until the organizer confirms an exception.",
+      "next": "Form a team, find a teacher coach and read the 2027 proposal guidance.",
+      "sources": [
+        [
+          "2027 deadline & participation terms",
+          "https://beamlineforschools.cern/terms-and-conditions/"
+        ],
+        [
+          "Team rules, fees & FAQ",
+          "https://beamlineforschools.cern/faqs/"
+        ],
+        [
+          "2027 prizes & covered expenses",
+          "https://beamlineforschools.cern/prizes/"
+        ]
+      ],
+      "deadlineConfirmed": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2027-03-12",
+      "archived": false
+    },
+    {
+      "id": "isef",
+      "name": "Regeneron ISEF",
+      "short": "IS",
+      "org": "Society for Science",
+      "cycle": "2027 qualifying route",
+      "type": "Research challenge",
+      "fields": [
+        "Physics",
+        "Engineering",
+        "Biology",
+        "Computer science",
+        "Chemistry",
+        "Environment"
+      ],
+      "formats": [
+        "In person"
+      ],
+      "locations": [
+        "United States",
+        "Worldwide qualifying fairs"
+      ],
+      "location": "Affiliated fairs worldwide → Los Angeles, US",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school"
+      ],
+      "access": "Qualifying route",
+      "eligibility": "Grades 9–12 or equivalent; qualification through a Society-affiliated science fair is required. No direct individual entry to ISEF.",
+      "costGroup": "Unknown",
+      "aid": false,
+      "cost": "Varies by fair & travel",
+      "costNote": "No single total cost applies to the qualifying route. Ask the affiliated fair about fees, funding and finalist travel.",
+      "deadlineStart": null,
+      "deadlineEnd": null,
+      "deadline": "Local qualifying fair deadline",
+      "deadlineDetail": "Your fair sets the entry deadline. Final affiliated fairs must be held by 12 Apr 2027; that is NOT a student application deadline.",
+      "dateStatus": "Local deadline varies",
+      "status": "partial",
+      "schedule": "May 2027, Los Angeles. Official pages show May 8–14 and May 9–14; verify your finalist itinerary.",
+      "description": "A global research competition reached through affiliated fairs, with independent student projects across science and engineering.",
+      "output": "An original research project, documented methods and a judged scientific presentation.",
+      "effort": "Months of research; approvals may be needed before experiments",
+      "team": "Individual or eligible team project; see current rules",
+      "caution": "Locate your affiliated fair first. Some research needs prior approvals; confirm rules before starting experiments.",
+      "next": "Find the fair serving your school or location and read its 2027 rules.",
+      "sources": [
+        [
+          "Eligibility & qualification route",
+          "https://www.societyforscience.org/isef/faq/"
+        ],
+        [
+          "2027 fair calendar",
+          "https://www.societyforscience.org/isef/affiliated-fair-network/"
+        ],
+        [
+          "Current rules",
+          "https://www.societyforscience.org/isef/international-rules/"
+        ],
+        [
+          "Alternate official event date",
+          "https://www.societyforscience.org/isef-college-fair/"
+        ]
+      ],
+      "deadlineConfirmed": false,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": null,
+      "archived": false
+    },
+    {
+      "id": "hkypt",
+      "name": "Hong Kong Young Physicists’ Tournament",
+      "short": "HK",
+      "org": "Hong Kong Academy for Gifted Education",
+      "cycle": "HKYPT 2027",
+      "type": "Research challenge",
+      "fields": [
+        "Physics",
+        "Engineering"
+      ],
+      "formats": [
+        "Online",
+        "In person"
+      ],
+      "locations": [
+        "Hong Kong"
+      ],
+      "location": "Hong Kong · school nomination",
+      "eligibilityTags": [
+        "High school junior",
+        "Other high school"
+      ],
+      "access": "Hong Kong schools",
+      "eligibility": "Secondary 1–5 at eligible Hong Kong registered secondary schools only. Teams of 2–5, nominated by a Teacher Coordinator; maximum two teams per school.",
+      "costGroup": "Unknown",
+      "aid": false,
+      "cost": "Not stated in checked page",
+      "costNote": "Confirm any entry fee, materials costs and travel with your school coordinator.",
+      "deadlineStart": "2026-11-20",
+      "deadlineEnd": "2026-11-20",
+      "deadline": "20 Nov 2026",
+      "deadlineDetail": "School registration closes 12:00 noon Hong Kong (UTC+8). Preliminary application and work are due 18 Dec 2026 at noon.",
+      "dateStatus": "Final date inconsistent",
+      "status": "caution",
+      "schedule": "Preliminary submission: 18 Dec 2026; finalists announced 15 Jan 2027. Final date requires correction by organizer.",
+      "description": "Investigate open-ended physics problems and defend the results through team presentations and physics discussion.",
+      "output": "Experimental investigations, slides and a scientific defence of your findings.",
+      "effort": "Research preparation across several months",
+      "team": "2–5 students + Teacher Coordinator",
+      "caution": "The organizer’s final-round table says 21 Feb 2026 within the 2027 cycle. No corrected final date is assumed here. University students are outside the stated eligibility.",
+      "next": "Ask your secondary school coordinator about nomination before 20 November.",
+      "sources": [
+        [
+          "2027 eligibility, registration & date table",
+          "https://www.hkage.edu.hk/en-us/article/2332"
+        ]
+      ],
+      "deadlineConfirmed": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "finalDeadline": "2026-11-20",
+      "archived": false
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "id": "kaist-undergrad-2027",
+      "name": "KAIST International Undergraduate Scholarship",
+      "short": "K",
+      "org": "KAIST",
+      "cycle": "Fall 2027 regular admission",
+      "fields": [
+        "Physics",
+        "Engineering",
+        "Biology",
+        "Computer science",
+        "Mathematics",
+        "Chemistry"
+      ],
+      "locations": [
+        "South Korea"
+      ],
+      "location": "Daejeon, South Korea",
+      "eligibilityTags": [
+        "Undergraduate applicant",
+        "Other high school",
+        "Pre-university gap year"
+      ],
+      "eligibilitySummary": "Undergraduate applicants · nationality rules",
+      "eligibility": "International freshman applicants graduating secondary school by 31 Aug 2027. Korean citizenship and parental-citizenship rules apply; international transfers are not offered.",
+      "cost": "Full tuition + KRW350,000/month",
+      "costNote": "Eight semesters of tuition, a monthly stipend and health insurance. An admission application fee and other living costs may remain; GPA conditions apply after freshman year.",
+      "deadlineStart": "2027-01-14",
+      "deadlineEnd": "2027-01-14",
+      "deadline": "14 Jan 2027",
+      "deadlineDetail": "Regular application deadline: 18:00 KST (17:00 Hong Kong). The timeline lists 21 Jan for references, but also has a general note about all documents being due by the deadline; confirm reference timing.",
+      "dateStatus": "Confirmed application deadline",
+      "status": "confirmed",
+      "deadlineConfirmed": true,
+      "finalDeadline": "2027-01-14",
+      "schedule": "Regular applications: 10 Nov 2026–14 Jan 2027; fall enrollment starts late Aug 2027.",
+      "description": "Undergraduate funding linked to international freshman admission at KAIST, across its science and engineering programs.",
+      "output": "An undergraduate degree with scholarship support if admitted and award conditions are maintained.",
+      "effort": "Four-year undergraduate degree",
+      "team": "Individual admission application",
+      "caution": "Check the scholarship box in the admission financial-resources section. Apply as a freshman; do not assume transfer eligibility or that the stipend covers every expense.",
+      "next": "Read the 2027 admission guide and scholarship conditions before preparing documents.",
+      "sources": [
+        [
+          "Scholarship coverage and renewal",
+          "https://admission.kaist.ac.kr/intl-undergraduate/support/scholarships/kaist/"
+        ],
+        [
+          "2027 application timeline",
+          "https://admission.kaist.ac.kr/intl-undergraduate/application/ApplicationGuide/ApplicationTimeline"
+        ],
+        [
+          "International eligibility",
+          "https://admission.kaist.ac.kr/intl-undergraduate/before/sub02"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "Institution nomination",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "id": "hk-belt-road-undergrad",
+      "name": "Hong Kong Belt and Road Scholarship",
+      "short": "HK",
+      "org": "HKSAR Government · participating universities",
+      "cycle": "Next undergraduate intake · institution route",
+      "fields": [
+        "All subjects"
+      ],
+      "locations": [
+        "Hong Kong"
+      ],
+      "location": "Publicly funded universities, Hong Kong",
+      "eligibilityTags": [
+        "Undergraduate applicant",
+        "Other high school",
+        "Pre-university gap year"
+      ],
+      "eligibilitySummary": "First-year non-local undergraduates",
+      "eligibility": "First-year non-local students from eligible Belt and Road countries. Designated-country schemes include Kazakhstan, Indonesia, Malaysia, Thailand, Myanmar and Mongolia; institutions administer selection.",
+      "cost": "Full tuition scholarship",
+      "costNote": "The award covers tuition for the normal program duration, with renewal subject to satisfactory performance. Living expenses and travel are not promised by this scheme.",
+      "deadlineStart": null,
+      "deadlineEnd": null,
+      "deadline": "University deadline · verify intake",
+      "deadlineDetail": "No common 2027 student deadline was verified. Ask the admitting university about its current nomination and admission timetable.",
+      "dateStatus": "Institution deadline varies",
+      "status": "partial",
+      "deadlineConfirmed": false,
+      "finalDeadline": null,
+      "schedule": "Standing scholarship scheme; next-intake timing is university-specific and requires confirmation.",
+      "description": "Government tuition funding for eligible non-local students entering publicly funded undergraduate programs in Hong Kong.",
+      "output": "Tuition support toward an undergraduate degree if selected by the administering institution.",
+      "effort": "Normal undergraduate program duration",
+      "team": "Individual application / institution selection",
+      "caution": "This is an institution-administered scheme, not a direct central application. Country eligibility, nomination, quotas and current-cycle availability must be checked.",
+      "next": "Check the chosen university’s official scholarship page and ask about the next intake.",
+      "sources": [
+        [
+          "Government scholarship rules",
+          "https://www.edb.gov.hk/en/edu-system/postsecondary/local-higher-edu/publicly-funded-programmes/scholarship.html"
+        ],
+        [
+          "Country schemes and institution route",
+          "https://www.studyinhongkong.edu.hk/en/hong-kong-education/scholarships.php"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "id": "clarendon-2027",
+      "name": "Oxford Clarendon Scholarships",
+      "short": "Ox",
+      "org": "University of Oxford",
+      "cycle": "Graduate entry 2027–28",
+      "fields": [
+        "All subjects"
+      ],
+      "locations": [
+        "United Kingdom"
+      ],
+      "location": "Oxford, United Kingdom",
+      "eligibilityTags": [
+        "Master’s applicant",
+        "University student"
+      ],
+      "eligibilitySummary": "Master’s applicants · course requirements",
+      "eligibility": "Applicants to a new eligible master’s or DPhil course, of any nationality. Academic and English requirements are set by the chosen course.",
+      "cost": "Full course fees + living grant",
+      "costNote": "Clarendon covers course fees and living support during the fee-liability period. Admission application charges and other costs may remain; check the award terms.",
+      "deadlineStart": null,
+      "deadlineEnd": null,
+      "deadline": "Course’s Dec / Jan funding deadline",
+      "deadlineDetail": "Apply by the relevant course funding deadline in December 2026 or January 2027. There is no universal deadline; verify the exact day and timezone on the course page.",
+      "dateStatus": "Course deadline varies",
+      "status": "partial",
+      "deadlineConfirmed": false,
+      "finalDeadline": null,
+      "schedule": "For 2027–28 graduate entry; scholarship consideration follows the eligible course application.",
+      "description": "Graduate scholarship consideration linked to an Oxford course application, including eligible master’s courses across subject areas.",
+      "output": "Funding for graduate study if selected on academic merit and potential.",
+      "effort": "Duration depends on the graduate course",
+      "team": "Individual graduate application; no separate Clarendon form",
+      "caution": "Automatic consideration is not an award. A later admission deadline may not carry scholarship eligibility; use the course funding deadline.",
+      "next": "Choose an eligible course and check its current funding deadline and requirements.",
+      "sources": [
+        [
+          "Clarendon coverage and nationality rules",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon"
+        ],
+        [
+          "Applicant rules",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon/applicants"
+        ],
+        [
+          "2027–28 scholarship information",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "id": "euroculture-2027",
+      "name": "Euroculture Erasmus Mundus Scholarship",
+      "short": "EU",
+      "org": "Euroculture university consortium",
+      "cycle": "2027–2029 master’s intake",
+      "fields": [
+        "Social sciences",
+        "Humanities"
+      ],
+      "locations": [
+        "Europe"
+      ],
+      "location": "European partner universities · mobility required",
+      "eligibilityTags": [
+        "Master’s applicant"
+      ],
+      "eligibilitySummary": "Master’s applicants · degree completed",
+      "eligibility": "A relevant completed higher-education degree is required by the scholarship deadline, with language and writing requirements. Most nationalities are eligible; previous Erasmus Mundus awards can restrict eligibility.",
+      "cost": "Tuition waiver + €1,400/month",
+      "costNote": "The published scholarship offers the monthly allowance for 24 months, waived participation fees and health insurance. Selection is competitive.",
+      "deadlineStart": "2027-01-15",
+      "deadlineEnd": "2027-01-15",
+      "deadline": "15 Jan 2027",
+      "deadlineDetail": "Scholarship application deadline: 15 Jan 2027. The checked page does not establish a universal cut-off time or timezone; confirm before submitting.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "deadlineConfirmed": true,
+      "finalDeadline": "2027-01-15",
+      "schedule": "Applications opened 15 Oct 2026 for the two-year 2027–2029 program.",
+      "description": "An interdisciplinary master’s in European society and culture, with Erasmus Mundus scholarships for selected eligible applicants.",
+      "output": "A funded interdisciplinary master’s with study across partner universities, if selected.",
+      "effort": "Two academic years",
+      "team": "Individual application to the consortium",
+      "caution": "Scholarship applicants must have completed the qualifying degree by the deadline. The later completion allowance for self-funded applicants does not apply automatically to scholarship applicants.",
+      "next": "Check degree relevance, language evidence and the scholarship document checklist.",
+      "sources": [
+        [
+          "2027 scholarship, eligibility and dates",
+          "https://www.euroculturemaster.eu/application-procedure"
+        ],
+        [
+          "Participation fees and scholarship waiver",
+          "https://www.euroculturemaster.eu/tuition-fees"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "deadlineConfirmed": true,
+      "id": "eth-esop-2027",
+      "name": "ETH Zurich Excellence Scholarship (ESOP)",
+      "short": "ETH",
+      "org": "ETH Zurich",
+      "cycle": "Autumn 2027 master’s entry",
+      "fields": [
+        "Physics",
+        "Engineering",
+        "Computer science",
+        "Mathematics",
+        "Chemistry",
+        "Biology",
+        "Environment"
+      ],
+      "locations": [
+        "Switzerland"
+      ],
+      "location": "Zurich, Switzerland",
+      "eligibilityTags": [
+        "Master’s applicant",
+        "University student"
+      ],
+      "eligibilitySummary": "Excellent bachelor’s results · master’s entry",
+      "eligibility": "Master’s applicants with results in approximately the top 10% of their bachelor’s program. Applicants already enrolled in an ETH master’s, or already holding a master’s degree, are excluded.",
+      "cost": "Tuition waiver + CHF13,500/semester",
+      "costNote": "For autumn 2027 entrants, the published award is CHF13,500 per semester plus waived tuition, for the regular three- or four-semester master’s duration. Admission charges and individual costs should be checked.",
+      "deadlineStart": "2026-11-30",
+      "deadlineEnd": "2026-11-30",
+      "finalDeadline": "2026-11-30",
+      "deadline": "30 Nov 2026 · 11:59 CET",
+      "deadlineDetail": "The official 2027 master’s admissions page specifies 11:59 AM CET, equivalent to 18:59 Hong Kong, on 30 November. ESOP must be requested in this first application window.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "schedule": "Applications: 1–30 Nov 2026; autumn semester begins 20 Sep 2027.",
+      "description": "Competitive funding for excellent master’s applicants, including living support, waived tuition and mentorship.",
+      "output": "Scholarship support toward a regular ETH master’s degree, if selected.",
+      "effort": "Three or four semesters",
+      "team": "Individual application with thesis pre-proposal and references",
+      "caution": "Use the morning cut-off on the admissions page; do not assume the deadline is midnight. The thesis pre-proposal must be your own work.",
+      "next": "Read your master’s admission requirements and prepare the original thesis pre-proposal.",
+      "sources": [
+        [
+          "ESOP benefits and eligibility",
+          "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html"
+        ],
+        [
+          "2027 dates and exact cut-off",
+          "https://ethz.ch/en/studies/master/application/dates.html"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "deadlineConfirmed": true,
+      "id": "epfl-excellence-2027",
+      "name": "EPFL Master Excellence Fellowship",
+      "short": "EPFL",
+      "org": "École polytechnique fédérale de Lausanne",
+      "cycle": "2027 master’s entry",
+      "fields": [
+        "Physics",
+        "Engineering",
+        "Computer science",
+        "Mathematics",
+        "Chemistry",
+        "Biology",
+        "Environment"
+      ],
+      "locations": [
+        "Switzerland"
+      ],
+      "location": "Lausanne, Switzerland",
+      "eligibilityTags": [
+        "Master’s applicant",
+        "University student"
+      ],
+      "eligibilitySummary": "Outstanding master’s applicants",
+      "eligibility": "Excellent applicants beginning a master’s program, including candidates with bachelor’s degrees from universities outside EPFL. Admission and internal-candidate routes have different requirements.",
+      "cost": "CHF10,000 per semester",
+      "costNote": "Published support is CHF10,000 per semester with guaranteed housing access. Guaranteed housing does not mean free accommodation or that every expense is covered.",
+      "deadlineStart": "2026-12-15",
+      "deadlineEnd": "2026-12-15",
+      "finalDeadline": "2026-12-15",
+      "deadline": "15 Dec 2026 · external applicants",
+      "deadlineDetail": "For 2027 entry, external applications must be paid for and validated by 15 December. References are due one week later, on the date stated in the validation email. The page does not specify a cut-off timezone. Some EPFL internal applicants have a 31 January route.",
+      "dateStatus": "Confirmed application deadline",
+      "status": "confirmed",
+      "schedule": "For 2027 master’s entry; references follow the timing in the validated application email.",
+      "description": "A limited number of fellowships recognizing academic excellence and wider achievements among incoming master’s students.",
+      "output": "Financial support for master’s study, conditional on selection and renewal requirements.",
+      "effort": "Master’s duration; renewal conditions apply",
+      "team": "Individual application; select the fellowship box",
+      "caution": "The 2027 fellowship uses the first admission window. A later admission application can be valid for admission while being ineligible for this fellowship.",
+      "next": "Check the appropriate external or internal application route and current master’s requirements.",
+      "sources": [
+        [
+          "2027 fellowship and coverage",
+          "https://www.epfl.ch/education/master/master-excellence-fellowships/"
+        ],
+        [
+          "Application routes and deadlines",
+          "https://www.epfl.ch/education/master/master-excellence-fellowships/how-to-apply/"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "deadlineConfirmed": true,
+      "id": "ubc-international-scholars-2027",
+      "name": "UBC International Scholars Program",
+      "short": "UBC",
+      "org": "University of British Columbia",
+      "cycle": "September 2027 undergraduate entry",
+      "fields": [
+        "All subjects"
+      ],
+      "locations": [
+        "Canada"
+      ],
+      "location": "Vancouver or Okanagan, Canada",
+      "eligibilityTags": [
+        "Undergraduate applicant",
+        "Other high school",
+        "Pre-university gap year"
+      ],
+      "eligibilitySummary": "First undergraduate degree · financial need",
+      "eligibility": "International applicants entering a first undergraduate degree directly from an eligible secondary school; graduation must be no earlier than June 2026. Strong academics, leadership, school nomination and significant financial need are required.",
+      "cost": "Need-based award · assessed individually",
+      "costNote": "Funding is based on an assessment of educational costs and available family resources. A single fixed award amount is not promised to every applicant.",
+      "deadlineStart": "2026-11-25",
+      "deadlineEnd": "2026-11-25",
+      "finalDeadline": "2026-11-25",
+      "deadline": "25 Nov 2026 · portal extension",
+      "deadlineDetail": "The official 2027 award portal extends the deadline to 25 Nov at 12:00 PM Pacific Standard Time (26 Nov, 04:00 Hong Kong). The general information page still says 15 Nov; confirm reference and nomination timing.",
+      "dateStatus": "Official pages differ",
+      "status": "caution",
+      "schedule": "For September 2027 entry; admission application must precede the award application.",
+      "description": "Need-based undergraduate awards for international students with outstanding academic and community contributions.",
+      "output": "Assessed financial support for an eligible first undergraduate degree, if selected.",
+      "effort": "Undergraduate degree; award terms apply",
+      "team": "Applicant, school nominator and separate teacher referee",
+      "caution": "Some degrees are excluded. The award portal has an explicit extension, while general instructions retain the earlier date; complete nomination and references early.",
+      "next": "Check degree eligibility, speak with your school, and verify the live 2027 portal deadline.",
+      "sources": [
+        [
+          "Official 2027 portal and extension",
+          "https://undergraduatescholarships.ubc.ca/prog/2027_international_scholars_program_application/"
+        ],
+        [
+          "Eligibility and nomination rules",
+          "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/international-scholars/"
+        ]
+      ]
+    },
+    {
+      "type": "Scholarship",
+      "formats": [
+        "In person"
+      ],
+      "access": "Offer-holder application",
+      "costGroup": "Funded",
+      "aid": true,
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "deadlineConfirmed": true,
+      "id": "reach-oxford-2027",
+      "name": "Reach Oxford Scholarship",
+      "short": "OX",
+      "org": "University of Oxford",
+      "cycle": "2027 undergraduate offer holders",
+      "fields": [
+        "All subjects"
+      ],
+      "locations": [
+        "United Kingdom"
+      ],
+      "location": "Oxford, United Kingdom",
+      "eligibilityTags": [
+        "Undergraduate applicant",
+        "Other high school",
+        "Pre-university gap year"
+      ],
+      "eligibilitySummary": "Eligible-country Oxford offer holders",
+      "eligibility": "Oxford undergraduate offer holders from listed eligible countries, including Kazakhstan, with financial need and other scheme criteria. Medicine is excluded. Applicants must already have applied for 2027 admission or hold an eligible deferred offer.",
+      "cost": "Course fees + living grant + annual return flight",
+      "costNote": "The published package covers course fees, a living-cost grant and one return airfare each year. Only around two or three awards are offered annually; renewal requires satisfactory progress.",
+      "deadlineStart": "2027-01-26",
+      "deadlineEnd": "2027-01-26",
+      "finalDeadline": "2027-01-26",
+      "deadline": "26 Jan 2027 · 12:00 UK time",
+      "deadlineDetail": "Official undergraduate funding information gives 12 noon UK time on 26 January 2027, equivalent to 20:00 Hong Kong. The application procedure is due to appear in January.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "schedule": "Scholarship application opens January 2027 for eligible 2027 offer holders.",
+      "description": "A small undergraduate scholarship scheme for students unable to study suitably in their own countries for financial, political or educational reasons.",
+      "output": "Undergraduate funding if an eligible Oxford offer holder is selected.",
+      "effort": "Three or four years, depending on the course",
+      "team": "Individual scholarship application after an admission offer",
+      "caution": "This does not reopen undergraduate admissions. A scholarship application cannot be considered without an Oxford offer; check the eligible-country and return-home requirements.",
+      "next": "If you already have the required admission application or offer, watch for the January scholarship form.",
+      "sources": [
+        [
+          "Eligibility and award coverage",
+          "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-bursaries-and-scholarships/reach-oxford"
+        ],
+        [
+          "2027 scholarship deadline and time",
+          "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-bursaries-and-scholarships"
+        ]
+      ]
+    },
+    {
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "aid": true,
+      "deadlineConfirmed": true,
+      "id": "epfl-life-sciences-srp-2027",
+      "name": "EPFL Life Sciences Summer Research Program",
+      "short": "SRP",
+      "org": "EPFL School of Life Sciences",
+      "cycle": "Summer 2027",
+      "type": "Research",
+      "fields": [
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Engineering",
+        "Computer science"
+      ],
+      "locations": [
+        "Switzerland"
+      ],
+      "location": "Lausanne / selected Geneva labs, Switzerland",
+      "eligibilityTags": [
+        "University student"
+      ],
+      "eligibility": "Worldwide bachelor’s or first-year master’s students in life sciences or related subjects, with at least two undergraduate years completed by the program start. Enrolment must continue throughout the stay. The stated academic target is GPA 3.75/4 or top 5%; PhD students are excluded.",
+      "costGroup": "Funded",
+      "cost": "CHF3,600 total stipend + capped travel reimbursement",
+      "costNote": "Housing is deducted from the stipend in advance, leaving about CHF1,700. Travel reimbursement is capped at CHF1,000 for overseas journeys or CHF500 for shorter distances and paid after the program; extra costs remain yours.",
+      "deadlineStart": "2026-11-15",
+      "deadlineEnd": "2026-11-15",
+      "finalDeadline": "2026-11-15",
+      "deadline": "15 Nov 2026 · 23:59 CET",
+      "deadlineDetail": "Official cut-off: 15 November 2026 at 23:59 CET, equivalent to 16 November at 06:59 Hong Kong. Arrange the reference letter by this deadline; the referee link is sent only after submission.",
+      "dateStatus": "Confirmed deadline",
+      "status": "confirmed",
+      "schedule": "5 July–27 August 2027; attendance throughout is required.",
+      "description": "Eight weeks of supervised life-sciences research, workshops and a final symposium in a university laboratory.",
+      "output": "Research experience and a final scientific poster or presentation.",
+      "effort": "8 weeks, full time",
+      "team": "Individual application with one referee",
+      "caution": "The form cannot be saved midway. Prepare essays, transcript and referee details first. Funding is not an unlimited travel or living allowance.",
+      "next": "Read the participating labs and FAQ, prepare short essays, and coordinate the reference early.",
+      "sources": [
+        [
+          "2027 program and dates",
+          "https://www.epfl.ch/schools/sv/education/summer-research-program/"
+        ],
+        [
+          "Eligibility and application cut-off",
+          "https://www.epfl.ch/schools/sv/education/summer-research-program/how-to-apply/"
+        ],
+        [
+          "Stipend, housing and travel caps",
+          "https://www.epfl.ch/schools/sv/education/summer-research-program/program-description/"
+        ],
+        [
+          "Reference process and reimbursement timing",
+          "https://www.epfl.ch/schools/sv/education/summer-research-program/faqs/"
+        ]
+      ]
+    },
+    {
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "aid": true,
+      "deadlineConfirmed": true,
+      "id": "eth-ssrf-2027",
+      "name": "ETH Student Summer Research Fellowship",
+      "short": "ETH",
+      "org": "ETH Zurich · Department of Computer Science",
+      "cycle": "Summer 2027",
+      "type": "Research",
+      "fields": [
+        "Computer science",
+        "Engineering",
+        "Mathematics",
+        "Physics"
+      ],
+      "locations": [
+        "Switzerland"
+      ],
+      "location": "Zurich, Switzerland",
+      "eligibilityTags": [
+        "University student"
+      ],
+      "eligibility": "Bachelor’s and master’s students worldwide in computer science or a related subject, including mathematics, physics and electrical engineering. Complete two years of study by the start and expect graduation in 2028 or later. Current ETH Zurich students are excluded.",
+      "costGroup": "Funded",
+      "cost": "CHF4,000 stipend + travel and visa costs",
+      "costNote": "The stipend covers housing and living expenses. Travel and visa costs are also covered; travel is claimed against receipts at the beginning of the program, so upfront money may be needed.",
+      "deadlineStart": "2026-12-16",
+      "deadlineEnd": "2026-12-16",
+      "finalDeadline": "2026-12-16",
+      "deadline": "16 Dec 2026 · 13:00 CET",
+      "deadlineDetail": "The department confirms 16 December 2026 at 13:00 CET, equivalent to 20:00 Hong Kong. Applications opened 1 November. Submit through the official SiROP link.",
+      "dateStatus": "Program dates differ",
+      "status": "caution",
+      "schedule": "Department application page: 2 July–27 August 2027. Linked SiROP listing: 1 July–31 August. Confirm required arrival and departure dates before booking.",
+      "description": "Join a computer-science research group for a supervised summer project and an international cohort experience.",
+      "output": "Hands-on research within an ETH laboratory; no publication or admission outcome is promised.",
+      "effort": "Full summer research stay; July–August",
+      "team": "Individual application",
+      "caution": "The exact stay dates differ across official pages; the application deadline agrees. Do not contact faculty directly: indicate preferred research areas in the application.",
+      "next": "Check research-area fit and prepare the required transcript, CV and personal statement.",
+      "sources": [
+        [
+          "Official 2027 deadline, eligibility and funding",
+          "https://inf.ethz.ch/studies/summer-research-fellowship/how-to-apply.html"
+        ],
+        [
+          "Worldwide access and ETH student exclusion",
+          "https://inf.ethz.ch/studies/summer-research-fellowship.html"
+        ],
+        [
+          "Department-linked 2027 SiROP listing",
+          "https://sirop.org/app/1535d3bf-c2ef-4c74-8870-cb5bc17cb4da"
+        ]
+      ]
+    },
+    {
+      "formats": [
+        "In person"
+      ],
+      "access": "International",
+      "checkedOn": "2026-11-06",
+      "addedOn": "2026-11-06",
+      "archived": false,
+      "aid": true,
+      "deadlineConfirmed": true,
+      "id": "twente-uts-2027",
+      "name": "University of Twente Scholarship (UTS)",
+      "short": "UTS",
+      "org": "University of Twente",
+      "cycle": "September 2027 master’s entry",
+      "type": "Scholarship",
+      "fields": [
+        "Engineering",
+        "Physics",
+        "Mathematics",
+        "Computer science",
+        "Social sciences"
+      ],
+      "locations": [
+        "Netherlands"
+      ],
+      "location": "Enschede, Netherlands",
+      "eligibilityTags": [
+        "Master’s applicant"
+      ],
+      "eligibility": "Non-EU/EEA applicants, including Kazakhstan citizens, with admission to an eligible September 2027 MSc. Top 5–10% academics, English and visa requirements apply. Current UT students, UT graduates, ITC, pre-master’s and statutory-fee candidates are excluded.",
+      "costGroup": "Funded",
+      "cost": "€3,000–€22,000 for one year · partial funding",
+      "costNote": "An award toward study costs; tuition is not paid separately. A second year requires satisfactory progress. Budget for the remaining tuition and living expenses.",
+      "deadlineStart": "2027-04-01",
+      "deadlineEnd": "2027-04-01",
+      "finalDeadline": "2027-04-01",
+      "deadline": "1 Apr 2027 · verify portal clock",
+      "deadlineDetail": "The provider states 16:00 CET. Confirm the portal’s timezone because April normally uses daylight-saving time. Obtain admission first; allow processing time.",
+      "dateStatus": "Confirmed day · check timezone",
+      "status": "caution",
+      "schedule": "September 2027 intake.",
+      "description": "Merit-based support for incoming international master’s students.",
+      "output": "Partial financial support for an eligible MSc.",
+      "effort": "One year; conditional renewal",
+      "team": "Separate scholarship application after admission",
+      "caution": "This is not a full ride. Check all exclusions and English requirements before applying.",
+      "next": "Apply for MSc admission, then use your student number for UTS.",
+      "sources": [
+        [
+          "Official eligibility, funding and 2027 deadline",
+          "https://www.utwente.nl/en/education/scholarship-finder/university-of-twente-scholarship/"
+        ]
+      ]
+    }
+  ]
+};
+window.OPPORTUNITIES = window.EXPLORER_CATALOG.opportunities;
+window.CHECKED_ON = window.EXPLORER_CATALOG.updatedAt.slice(0,10);
