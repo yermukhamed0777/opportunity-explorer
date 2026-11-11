@@ -39,7 +39,7 @@ For an explicitly tested preview, add that preview origin with `/auth/callback` 
 
 In Authentication → Sign In / Providers, keep Email, new-user signup and Confirm Email enabled. In Authentication → Notifications → Email, keep the confirmation and reset templates linked through `{{ .ConfirmationURL }}`. A template that only links to `{{ .SiteURL }}` cannot establish a recovery session. Configure custom SMTP for public delivery and disable email-provider link tracking. Default Supabase delivery is restricted and rate-limited; successful request acceptance does not prove receipt.
 
-The Supabase connector does not expose URL/SMTP updates. The dashboard requires a separate sign-in in the agent browser. These dashboard changes are owner-dependent until that sign-in is completed; a file in this repository does not apply hosted auth configuration.
+The hosted dashboard was accessed through the owner’s secure GitHub sign-in. The Site URL was verified and the three production callback/reset paths above plus the exact preview callback/reset paths were added and saved. The dashboard now shows nine URLs, preserving the four earlier entries. SMTP is not configured: the Emails page explicitly reports default templates and asks for custom SMTP. Public email delivery still requires an owner-controlled sender/provider; no credential was requested in chat.
 
 ## Login enforcement and data
 
@@ -88,6 +88,8 @@ https://prospectoai.app/auth/update-password
 Browser session storage is origin-bound. Existing sessions are not silently copied from `.vercel.app` to the custom domain; users should sign in once on the new origin. Passing refresh tokens between domains in URLs would be unsafe. This does not delete account data or revoke the Supabase account.
 
 ## Evidence and remaining live checks
+
+All 29 automated tests pass. The build, formatting and whitespace checks pass, as does GitHub CI. Preview browser navigation to `/#universities` immediately redirects to `/login?next=%2F%23universities`, with no search data displayed. Preview auth routes return 200, protected data APIs return 401 without a session, and former public catalog URLs return 404.
 
 The automated suite covers direct auth routes, callback consumption, return-URL sanitization, missing/invalid/anonymous/unconfirmed sessions, refusal of privileged config, and anonymous rejection on all protected data APIs. The database migration was applied and verified: 58 resources remain; anonymous SELECT is denied and authenticated SELECT is granted.
 
