@@ -27,7 +27,8 @@ let db,
   profile = {},
   activityStatus = '',
   activityKind = '',
-  activitySort = 'deadline';
+  activitySort = 'deadline',
+  recoveringPassword = false;
 const messages = [];
 let careerExperience = '',
   careerArrangement = '',
@@ -197,6 +198,7 @@ async function initialize() {
     db = createClient(config.supabaseUrl, config.supabaseKey);
     db.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY') {
+        recoveringPassword = true;
         setTimeout(() => recoveryForm(), 0);
         return;
       }
@@ -273,7 +275,7 @@ async function loadAccount(nextUser) {
   activities = tasks.data || [];
   if (['activities', 'assistant'].includes(resourcesView))
     render(resourcesView);
-  if ($('#account-dialog').open)
+  if ($('#account-dialog').open && !recoveringPassword)
     accountUi('Signed in. Your private workspace is ready.');
 }
 function queueTracker(snapshot) {
@@ -678,7 +680,10 @@ document.addEventListener('submit', async (e) => {
     $('#account-status').textContent = error
       ? error.message
       : 'Password updated. You can now sign in with it.';
-    if (!error) e.target.reset();
+    if (!error) {
+      recoveringPassword = false;
+      e.target.reset();
+    }
     return;
   }
   if (e.target.id === 'profile-form') {
