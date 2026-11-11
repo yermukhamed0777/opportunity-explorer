@@ -1,0 +1,903 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-11-11",
+  "courses": [
+    {
+      "id": "materials",
+      "name": "Materials Science: 10 Things Every Engineer Should Know",
+      "provider": "Coursera · UC Davis",
+      "url": "https://www.coursera.org/learn/materials-science",
+      "skills": ["Structure–property relationships", "Materials selection"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "python",
+      "name": "Python for Everybody",
+      "provider": "Coursera · University of Michigan",
+      "url": "https://www.coursera.org/specializations/python",
+      "skills": ["Python", "Data processing"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "ml",
+      "name": "Machine Learning Specialization",
+      "provider": "Coursera · Stanford Online / DeepLearning.AI",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "skills": ["Machine learning", "Model evaluation"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics of Materials I",
+      "provider": "Coursera · Georgia Tech",
+      "url": "https://www.coursera.org/learn/mechanics-1",
+      "skills": ["Stress and strain", "Mechanical analysis"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "chemistry",
+      "name": "Introduction to Chemistry: Reactions and Ratios",
+      "provider": "Coursera · Duke",
+      "url": "https://www.coursera.org/learn/intro-chemistry",
+      "skills": ["Stoichiometry", "Chemical reactions"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "accounting",
+      "name": "Introduction to Financial Accounting",
+      "provider": "Coursera · Wharton",
+      "url": "https://www.coursera.org/learn/wharton-accounting",
+      "skills": ["Financial statements", "Accounting"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "markets",
+      "name": "Financial Markets",
+      "provider": "Coursera · Yale",
+      "url": "https://www.coursera.org/learn/financial-markets-global",
+      "skills": ["Risk", "Financial markets"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Paid / access options vary"
+    },
+    {
+      "id": "solidworks",
+      "name": "SOLIDWORKS 2024 Essential Training",
+      "provider": "LinkedIn Learning",
+      "url": "https://www.linkedin.com/learning/solidworks-2024-essential-training",
+      "skills": ["CAD", "Assemblies", "Technical drawings"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Subscription / institutional access"
+    },
+    {
+      "id": "python-linkedin",
+      "name": "Python Essential Training",
+      "provider": "LinkedIn Learning",
+      "url": "https://www.linkedin.com/learning/python-essential-training-18764650",
+      "skills": ["Python", "Jupyter"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Subscription / institutional access"
+    },
+    {
+      "id": "excel",
+      "name": "Build Your Excel Skills",
+      "provider": "LinkedIn Learning · Learning path",
+      "url": "https://www.linkedin.com/learning/paths/build-your-excel-skills",
+      "skills": ["Spreadsheets", "Data analysis"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Subscription / institutional access"
+    },
+    {
+      "id": "statistics",
+      "name": "Excel Statistics Essential Training: 2",
+      "provider": "LinkedIn Learning",
+      "url": "https://www.linkedin.com/learning/excel-statistics-essential-training-2-22879835",
+      "skills": ["Regression", "Hypothesis testing", "ANOVA"],
+      "checkedOn": "2026-11-11",
+      "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
+      "costType": "Subscription / institutional access"
+    }
+  ],
+  "skills": [
+    {
+      "id": "materials-semiconductors",
+      "name": "Materials & semiconductor engineering",
+      "fields": ["Materials Science", "Engineering", "Physics"],
+      "roles": [
+        "Materials engineer",
+        "Process engineer",
+        "Characterization researcher"
+      ],
+      "skills": [
+        "Structure–property–processing relationships",
+        "Thermodynamics and kinetics",
+        "Experimental statistics and uncertainty",
+        "Microscopy and diffraction interpretation",
+        "Python data analysis",
+        "Semiconductor fabrication concepts"
+      ],
+      "courses": ["materials", "python", "statistics"],
+      "project": "Analyze an open materials dataset, document units and uncertainty, and publish a reproducible notebook with a short engineering interpretation.",
+      "steps": [
+        "Learn the fundamentals of materials and write a one-page concept map.",
+        "Analyze a small dataset in Python; show uncertainty and document the source.",
+        "Build a portfolio report connecting a processing variable to a measured property."
+      ],
+      "checkedOn": "2026-11-11",
+      "assessment": "Suggested learning route, not a hiring requirement or an accredited curriculum.",
+      "learningPath": [
+        {
+          "level": "Beginner",
+          "task": "Learn the fundamentals of materials and write a one-page concept map."
+        },
+        {
+          "level": "Intermediate",
+          "task": "Analyze a small dataset in Python; show uncertainty and document the source."
+        },
+        {
+          "level": "Advanced",
+          "task": "Build a portfolio report connecting a processing variable to a measured property."
+        }
+      ],
+      "transferableSkills": [
+        "Technical writing",
+        "Evidence-based reasoning",
+        "Team communication",
+        "Project planning"
+      ],
+      "tools": [
+        "Python / Jupyter",
+        "Spreadsheets",
+        "SEM/XRD interpretation under supervision",
+        "Git"
+      ],
+      "credentials": "Optional course completion certificates can document learning. They do not replace practical projects, an accredited degree, or professional licensure.",
+      "skillProjects": [
+        {
+          "skill": "Structure–property–processing relationships",
+          "project": "Analyze an open materials dataset, document units and uncertainty, and publish a reproducible notebook with a short engineering interpretation."
+        },
+        {
+          "skill": "Data analysis / documentation",
+          "project": "Publish a small reproducible analysis with a cited dataset, a clear method, units, checks and limitations."
+        },
+        {
+          "skill": "Communication",
+          "project": "Write a one-page project brief and give a five-minute walkthrough for a non-specialist."
+        }
+      ]
+    },
+    {
+      "id": "software-ai",
+      "name": "Computer science & AI",
+      "fields": ["Computer Science", "AI", "Mathematics"],
+      "roles": ["Software developer", "Data scientist", "ML engineer"],
+      "skills": [
+        "Python",
+        "Data structures and algorithms",
+        "Git and code review",
+        "SQL and data modeling",
+        "Model evaluation and data leakage",
+        "Testing and deployment"
+      ],
+      "courses": ["python", "ml", "python-linkedin"],
+      "project": "Build a small search app with a documented dataset, tests and a held-out evaluation.",
+      "steps": [
+        "Write and test a Python data-cleaning pipeline.",
+        "Compare a baseline model with one alternative using held-out data.",
+        "Deploy a small app and describe its limits and reproducibility."
+      ],
+      "checkedOn": "2026-11-11",
+      "assessment": "Suggested learning route, not a hiring requirement or an accredited curriculum.",
+      "learningPath": [
+        {
+          "level": "Beginner",
+          "task": "Write and test a Python data-cleaning pipeline."
+        },
+        {
+          "level": "Intermediate",
+          "task": "Compare a baseline model with one alternative using held-out data."
+        },
+        {
+          "level": "Advanced",
+          "task": "Deploy a small app and describe its limits and reproducibility."
+        }
+      ],
+      "transferableSkills": [
+        "Technical writing",
+        "Evidence-based reasoning",
+        "Team communication",
+        "Project planning"
+      ],
+      "tools": ["Python", "Git", "SQL", "Testing frameworks"],
+      "credentials": "Optional course completion certificates can document learning. They do not replace practical projects, an accredited degree, or professional licensure.",
+      "skillProjects": [
+        {
+          "skill": "Python",
+          "project": "Build a small search app with a documented dataset, tests and a held-out evaluation."
+        },
+        {
+          "skill": "Data analysis / documentation",
+          "project": "Publish a small reproducible analysis with a cited dataset, a clear method, units, checks and limitations."
+        },
+        {
+          "skill": "Communication",
+          "project": "Write a one-page project brief and give a five-minute walkthrough for a non-specialist."
+        }
+      ]
+    },
+    {
+      "id": "mechanical-robotics",
+      "name": "Mechanical engineering & robotics",
+      "fields": ["Engineering", "Robotics"],
+      "roles": ["Mechanical engineer", "Robotics engineer", "Design engineer"],
+      "skills": [
+        "Mechanics and load paths",
+        "CAD parts and assemblies",
+        "Engineering drawings and tolerances",
+        "Basic controls",
+        "Design for manufacture",
+        "Test planning"
+      ],
+      "courses": ["mechanics", "solidworks", "python"],
+      "project": "Design a gripper assembly, calculate forces, define tolerances and produce a test plan.",
+      "steps": [
+        "Work through stress and strain with a hand calculation.",
+        "Model a small assembly and create drawings and a bill of materials.",
+        "Compare predicted and measured behavior, or state what still needs physical testing."
+      ],
+      "checkedOn": "2026-11-11",
+      "assessment": "Suggested learning route, not a hiring requirement or an accredited curriculum.",
+      "learningPath": [
+        {
+          "level": "Beginner",
+          "task": "Work through stress and strain with a hand calculation."
+        },
+        {
+          "level": "Intermediate",
+          "task": "Model a small assembly and create drawings and a bill of materials."
+        },
+        {
+          "level": "Advanced",
+          "task": "Compare predicted and measured behavior, or state what still needs physical testing."
+        }
+      ],
+      "transferableSkills": [
+        "Technical writing",
+        "Evidence-based reasoning",
+        "Team communication",
+        "Project planning"
+      ],
+      "tools": [
+        "CAD",
+        "Technical drawings",
+        "Python",
+        "Supervised prototyping"
+      ],
+      "credentials": "Optional course completion certificates can document learning. They do not replace practical projects, an accredited degree, or professional licensure.",
+      "skillProjects": [
+        {
+          "skill": "Mechanics and load paths",
+          "project": "Design a gripper assembly, calculate forces, define tolerances and produce a test plan."
+        },
+        {
+          "skill": "Data analysis / documentation",
+          "project": "Publish a small reproducible analysis with a cited dataset, a clear method, units, checks and limitations."
+        },
+        {
+          "skill": "Communication",
+          "project": "Write a one-page project brief and give a five-minute walkthrough for a non-specialist."
+        }
+      ]
+    },
+    {
+      "id": "physics-research",
+      "name": "Physics & scientific research",
+      "fields": ["Physics", "Mathematics", "Research"],
+      "roles": [
+        "Research assistant",
+        "Computational scientist",
+        "Experimental physicist"
+      ],
+      "skills": [
+        "Calculus and linear algebra",
+        "Numerical modeling",
+        "Measurement and error propagation",
+        "Python visualization",
+        "Scientific reading",
+        "Technical writing"
+      ],
+      "courses": ["python", "mechanics", "statistics"],
+      "project": "Fit a physical model to an open dataset and report residuals, uncertainty and failure cases.",
+      "steps": [
+        "Derive a model and list its assumptions.",
+        "Fit it to a cited dataset; inspect residuals.",
+        "Write a short reproducible report and propose a follow-up experiment."
+      ],
+      "checkedOn": "2026-11-11",
+      "assessment": "Suggested learning route, not a hiring requirement or an accredited curriculum.",
+      "learningPath": [
+        {
+          "level": "Beginner",
+          "task": "Derive a model and list its assumptions."
+        },
+        {
+          "level": "Intermediate",
+          "task": "Fit it to a cited dataset; inspect residuals."
+        },
+        {
+          "level": "Advanced",
+          "task": "Write a short reproducible report and propose a follow-up experiment."
+        }
+      ],
+      "transferableSkills": [
+        "Technical writing",
+        "Evidence-based reasoning",
+        "Team communication",
+        "Project planning"
+      ],
+      "tools": [
+        "Python / Jupyter",
+        "Numerical fitting",
+        "Scientific plotting",
+        "Lab notebooks"
+      ],
+      "credentials": "Optional course completion certificates can document learning. They do not replace practical projects, an accredited degree, or professional licensure.",
+      "skillProjects": [
+        {
+          "skill": "Calculus and linear algebra",
+          "project": "Fit a physical model to an open dataset and report residuals, uncertainty and failure cases."
+        },
+        {
+          "skill": "Data analysis / documentation",
+          "project": "Publish a small reproducible analysis with a cited dataset, a clear method, units, checks and limitations."
+        },
+        {
+          "skill": "Communication",
+          "project": "Write a one-page project brief and give a five-minute walkthrough for a non-specialist."
+        }
+      ]
+    },
+    {
+      "id": "chemistry-biotech",
+      "name": "Chemistry & life-science research",
+      "fields": ["Chemistry", "Biology"],
+      "roles": ["Lab researcher", "Analytical chemist", "Biotechnology intern"],
+      "skills": [
+        "Stoichiometry and solutions",
+        "Laboratory safety and documentation",
+        "Calibration and controls",
+        "Data analysis",
+        "Research ethics",
+        "Clear lab reports"
+      ],
+      "courses": ["chemistry", "python", "statistics"],
+      "project": "Analyze published calibration data and report a regression, units, uncertainty and quality controls.",
+      "steps": [
+        "Review chemical quantities and concentration calculations.",
+        "Use a cited dataset to build a calibration curve.",
+        "Document controls and uncertainty; reserve wet-lab work for supervised facilities."
+      ],
+      "checkedOn": "2026-11-11",
+      "assessment": "Suggested learning route, not a hiring requirement or an accredited curriculum.",
+      "learningPath": [
+        {
+          "level": "Beginner",
+          "task": "Review chemical quantities and concentration calculations."
+        },
+        {
+          "level": "Intermediate",
+          "task": "Use a cited dataset to build a calibration curve."
+        },
+        {
+          "level": "Advanced",
+          "task": "Document controls and uncertainty; reserve wet-lab work for supervised facilities."
+        }
+      ],
+      "transferableSkills": [
+        "Technical writing",
+        "Evidence-based reasoning",
+        "Team communication",
+        "Project planning"
+      ],
+      "tools": [
+        "Calibration spreadsheets",
+        "Python",
+        "Lab notebooks",
+        "Supervised spectrometry"
+      ],
+      "credentials": "Optional course completion certificates can document learning. They do not replace practical projects, an accredited degree, or professional licensure.",
+      "skillProjects": [
+        {
+          "skill": "Stoichiometry and solutions",
+          "project": "Analyze published calibration data and report a regression, units, uncertainty and quality controls."
+        },
+        {
+          "skill": "Data analysis / documentation",
+          "project": "Publish a small reproducible analysis with a cited dataset, a clear method, units, checks and limitations."
+        },
+        {
+          "skill": "Communication",
+          "project": "Write a one-page project brief and give a five-minute walkthrough for a non-specialist."
+        }
+      ]
+    },
+    {
+      "id": "business-analytics",
+      "name": "Business & finance analytics",
+      "fields": ["Business", "Economics", "Mathematics"],
+      "roles": ["Business analyst", "Finance analyst", "Operations analyst"],
+      "skills": [
+        "Financial statements",
+        "Spreadsheet modeling",
+        "Data visualization",
+        "Basic statistics",
+        "Structured problem solving",
+        "Communication"
+      ],
+      "courses": ["accounting", "markets", "excel"],
+      "project": "Compare two public annual reports using a transparent spreadsheet and a concise business memo.",
+      "steps": [
+        "Learn to connect the income statement, balance sheet and cash flow.",
+        "Build a spreadsheet with traceable assumptions and checks.",
+        "Write a decision memo separating observations from estimates."
+      ],
+      "checkedOn": "2026-11-11",
+      "assessment": "Suggested learning route, not a hiring requirement or an accredited curriculum.",
+      "learningPath": [
+        {
+          "level": "Beginner",
+          "task": "Learn to connect the income statement, balance sheet and cash flow."
+        },
+        {
+          "level": "Intermediate",
+          "task": "Build a spreadsheet with traceable assumptions and checks."
+        },
+        {
+          "level": "Advanced",
+          "task": "Write a decision memo separating observations from estimates."
+        }
+      ],
+      "transferableSkills": [
+        "Technical writing",
+        "Evidence-based reasoning",
+        "Team communication",
+        "Project planning"
+      ],
+      "tools": [
+        "Spreadsheets",
+        "Data visualization",
+        "Financial reports",
+        "Presentation tools"
+      ],
+      "credentials": "Optional course completion certificates can document learning. They do not replace practical projects, an accredited degree, or professional licensure.",
+      "skillProjects": [
+        {
+          "skill": "Financial statements",
+          "project": "Compare two public annual reports using a transparent spreadsheet and a concise business memo."
+        },
+        {
+          "skill": "Data analysis / documentation",
+          "project": "Publish a small reproducible analysis with a cited dataset, a clear method, units, checks and limitations."
+        },
+        {
+          "skill": "Communication",
+          "project": "Write a one-page project brief and give a five-minute walkthrough for a non-specialist."
+        }
+      ]
+    }
+  ],
+  "universities": [
+    {
+      "id": "cityu",
+      "name": "City University of Hong Kong",
+      "region": "Hong Kong",
+      "fields": [
+        "Materials Science",
+        "Physics",
+        "Engineering",
+        "Computer Science"
+      ],
+      "research": "Research centres include terahertz and millimeter-wave science, nanomaterials and precision-scale devices.",
+      "experience": "Explore departmental projects and research groups in materials, physics and engineering.",
+      "partnership": "The Physics department describes a joint bachelor’s route with Columbia University. This is a separate programme, not a standard exchange.",
+      "sources": [
+        ["Research centres", "https://www.cityu.edu.hk/research/centres"],
+        [
+          "CityUHK–Columbia joint bachelor’s",
+          "https://www.cityu.edu.hk/phy/undergraduate/jbdp"
+        ]
+      ],
+      "tags": ["Laboratories", "Joint / dual degree"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "hkust",
+      "name": "HKUST",
+      "region": "Hong Kong",
+      "fields": ["Engineering", "Physics", "Computer Science", "Business"],
+      "research": "UROP connects undergraduates with supervised research projects across academic units.",
+      "experience": "Browse the university’s UROP project catalogue and research courses. The UROP site currently marks IROP as suspended.",
+      "partnership": "Technology & Management combines an engineering/science degree with business within HKUST; this is an internal dual degree.",
+      "sources": [
+        ["Undergraduate research", "https://urop.hkust.edu.hk/"],
+        [
+          "Technology & Management",
+          "https://join.hkust.edu.hk/our-programs/academy-of-interdisciplinary-studies"
+        ]
+      ],
+      "tags": ["Undergraduate research", "Internal dual degree"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "nus",
+      "name": "National University of Singapore",
+      "region": "Singapore",
+      "fields": [
+        "Engineering",
+        "Materials Science",
+        "Computer Science",
+        "Biology"
+      ],
+      "research": "UROP provides supervised research across disciplines.",
+      "experience": "Research-based learning can complement a declared major through UROP.",
+      "partnership": "The published bulletin describes double degrees with French Grandes Écoles. Degree level and partner arrangements differ by programme; check the current programme page.",
+      "sources": [
+        ["UROP", "https://www.nus.edu.sg/undergraduate-research"],
+        [
+          "Partner double degrees · 2025/26 bulletin",
+          "https://www.nus.edu.sg/nusbulletin/ay202526/programmes/double-degree-programmes/"
+        ]
+      ],
+      "tags": ["Undergraduate research", "Joint / dual degree"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "ntu",
+      "name": "Nanyang Technological University",
+      "region": "Singapore",
+      "fields": [
+        "Materials Science",
+        "Engineering",
+        "Computer Science",
+        "Biology"
+      ],
+      "research": "URECA connects undergraduates with faculty, interdisciplinary and corporate-lab research projects.",
+      "experience": "A sustained research project can develop research communication and analytical experience.",
+      "partnership": "NTU lists internal double degrees including engineering/economics and computing/economics. These do not imply two universities.",
+      "sources": [
+        [
+          "URECA",
+          "https://www.ntu.edu.sg/education/undergraduate-research-experience-on-campus-(ureca)"
+        ],
+        [
+          "Degree programmes",
+          "https://www.ntu.edu.sg/education/degree-programmes"
+        ]
+      ],
+      "tags": ["Undergraduate research", "Internal dual degree"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "mit",
+      "name": "Massachusetts Institute of Technology",
+      "region": "United States",
+      "fields": [
+        "Materials Science",
+        "Engineering",
+        "Physics",
+        "Computer Science"
+      ],
+      "research": "MIT.nano combines fabrication, characterization and immersive-data research spaces; DMSE also describes metallography and electronic materials labs.",
+      "experience": "SuperUROP is an extended undergraduate research pathway in EECS.",
+      "partnership": "No external dual-degree route is claimed in this profile.",
+      "sources": [
+        [
+          "MIT.nano capabilities",
+          "https://mitnano.mit.edu/research-capabilities"
+        ],
+        [
+          "Materials facilities",
+          "https://dmse.mit.edu/research-impact/research-facilities/"
+        ],
+        ["SuperUROP", "https://superurop.mit.edu/start-here/"]
+      ],
+      "tags": ["Laboratories", "Undergraduate research"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "epfl",
+      "name": "EPFL",
+      "region": "Switzerland",
+      "fields": ["Materials Science", "Engineering", "Physics", "Biology"],
+      "research": "Discovery Learning Laboratories cover engineering, materials/bioengineering, molecular science and physics.",
+      "experience": "MAKE supports prototyping and interdisciplinary student projects. Summer in the Lab is a research option for EPFL students.",
+      "partnership": "No external dual-degree route is claimed in this profile.",
+      "sources": [
+        [
+          "Discovery labs",
+          "https://www.epfl.ch/education/educational-initiatives/discovery-learning-program-2/discovery-learning-laboratories/"
+        ],
+        [
+          "MAKE",
+          "https://www.epfl.ch/education/educational-initiatives/discovery-learning-program-2/"
+        ],
+        [
+          "Summer in the Lab",
+          "https://www.epfl.ch/education/bachelor/enhanced-learning-programs/summer-in-the-lab-internship-program/"
+        ]
+      ],
+      "tags": ["Laboratories", "Prototyping", "Undergraduate research"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "eth",
+      "name": "ETH Zurich",
+      "region": "Switzerland",
+      "fields": ["Engineering", "Physics", "Computer Science", "Biology"],
+      "research": "FIRST is a micro/nanotechnology cleanroom platform with project-based access and training.",
+      "experience": "Student Project House supports extracurricular prototypes, workshops and coaching; access to specific labs has additional conditions.",
+      "partnership": "No external dual-degree route is claimed in this profile.",
+      "sources": [
+        ["FIRST cleanrooms", "https://first.ethz.ch/"],
+        ["Student Project House", "https://sph.ethz.ch/"]
+      ],
+      "tags": ["Laboratories", "Prototyping"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "imperial",
+      "name": "Imperial College London",
+      "region": "United Kingdom",
+      "fields": ["Engineering", "Physics", "Chemistry", "Biology"],
+      "research": "Research groups offer lab-based and computational projects through UROP.",
+      "experience": "UROP can involve a defined project or work inside an ongoing research programme, including data analysis.",
+      "partnership": "No external dual-degree route is claimed in this profile.",
+      "sources": [
+        [
+          "Undergraduate research",
+          "https://www.imperial.ac.uk/study/student-life/imperial-education/undergraduate-research-opportunities/"
+        ],
+        ["UROP programme", "https://www.imperial.ac.uk/urop/"]
+      ],
+      "tags": ["Undergraduate research", "Laboratories"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "caltech",
+      "name": "California Institute of Technology",
+      "region": "United States",
+      "fields": ["Physics", "Engineering", "Chemistry", "Biology"],
+      "research": "SURF supports mentored summer research ending with technical writing and a presentation.",
+      "experience": "Caltech describes summer and academic-year research routes. JPL-linked programmes have separate participation rules.",
+      "partnership": "No external dual-degree route is claimed in this profile.",
+      "sources": [
+        [
+          "SURF",
+          "https://sfp.caltech.edu/undergraduate-research/programs/surf"
+        ],
+        [
+          "Research programmes",
+          "https://sfp.caltech.edu/undergraduate-research/programs"
+        ]
+      ],
+      "tags": ["Undergraduate research", "Laboratories"],
+      "checkedOn": "2026-11-11",
+      "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    }
+  ],
+  "careers": [
+    {
+      "id": "tsmc",
+      "name": "TSMC student & graduate careers",
+      "org": "TSMC",
+      "kind": "Job board",
+      "region": "Taiwan / global",
+      "fields": ["Materials Science", "Engineering", "Physics"],
+      "summary": "Explore semiconductor process, equipment, integration and related career families.",
+      "eligibility": "Role, location, work authorization and degree requirements vary. A careers page is not a verified offer.",
+      "url": "https://www.tsmc.com/static/english/careers/index.htm",
+      "skills": ["materials-semiconductors"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Source directory · individual openings vary",
+      "arrangement": "Varies by posting",
+      "experience": "Student / graduate / early career",
+      "employmentType": "Internship / graduate / full-time",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "asml",
+      "name": "ASML internships & graduate opportunities",
+      "org": "ASML",
+      "kind": "Job board",
+      "region": "Netherlands / United States / Asia",
+      "fields": [
+        "Engineering",
+        "Physics",
+        "Materials Science",
+        "Computer Science"
+      ],
+      "summary": "Explore internships, graduation assignments and early-career programmes.",
+      "eligibility": "Individual roles may require current enrolment and local work rights. Locations and degree stages vary.",
+      "url": "https://www.asml.com/en/careers/students-new-graduates",
+      "skills": [
+        "materials-semiconductors",
+        "mechanical-robotics",
+        "software-ai"
+      ],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Source directory · individual openings vary",
+      "arrangement": "Varies by posting",
+      "experience": "Student / graduate / early career",
+      "employmentType": "Internship / graduate / full-time",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA university & early-talent programmes",
+      "org": "NVIDIA",
+      "kind": "Job board",
+      "region": "Global",
+      "fields": ["Computer Science", "Engineering", "AI"],
+      "summary": "Find hardware, software and computing roles through the employer’s university recruiting page.",
+      "eligibility": "Requirements differ by role. Ignite positions can be restricted to students at US universities; do not assume global eligibility.",
+      "url": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
+      "skills": ["software-ai", "mechanical-robotics"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Source directory · individual openings vary",
+      "arrangement": "Varies by posting",
+      "experience": "Student / graduate / early career",
+      "employmentType": "Internship / graduate / full-time",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "cern",
+      "name": "CERN internships & early careers",
+      "org": "CERN",
+      "kind": "Job board",
+      "region": "Switzerland / France",
+      "fields": ["Physics", "Engineering", "Computer Science"],
+      "summary": "Browse technical studentships, short-term internships and early-career opportunities.",
+      "eligibility": "Nationality, degree stage and experience conditions depend on the individual scheme.",
+      "url": "https://careers.cern/jobs/",
+      "skills": ["physics-research", "mechanical-robotics", "software-ai"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Source directory · individual openings vary",
+      "arrangement": "Varies by posting",
+      "experience": "Student / graduate / early career",
+      "employmentType": "Internship / graduate / full-time",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "cern-summer",
+      "name": "CERN Summer Studentship",
+      "org": "CERN",
+      "kind": "Internship programme",
+      "region": "Switzerland",
+      "fields": ["Physics", "Engineering", "Computer Science"],
+      "summary": "Research and technical experience alongside CERN teams; the provider currently lists a 2027 summer programme.",
+      "eligibility": "Bachelor’s/master’s students; provider specifies at least six semesters completed by the start. Check current conditions and exact dates.",
+      "url": "https://careers.cern/programmes/summer-studentship/",
+      "skills": ["physics-research", "software-ai"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Programme page · verify current openings",
+      "arrangement": "On-site",
+      "experience": "University students",
+      "employmentType": "Internship",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "imperial-urop",
+      "name": "Imperial UROP research experience",
+      "org": "Imperial College London",
+      "kind": "Research placement",
+      "region": "United Kingdom",
+      "fields": ["Physics", "Engineering", "Chemistry", "Biology"],
+      "summary": "Arrange a supervised research placement, with project and funding details agreed through the university.",
+      "eligibility": "Some routes include students outside Imperial. Eligibility and funding are scheme-specific.",
+      "url": "https://www.imperial.ac.uk/urop/",
+      "skills": ["physics-research", "chemistry-biotech"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Programme page · verify current openings",
+      "arrangement": "Varies by posting",
+      "experience": "University students",
+      "employmentType": "Internship",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "caltech-surf",
+      "name": "Caltech SURF",
+      "org": "Caltech",
+      "kind": "Research placement",
+      "region": "United States",
+      "fields": ["Physics", "Engineering", "Chemistry", "Biology"],
+      "summary": "Mentored summer research with a proposal, a technical paper and an oral presentation.",
+      "eligibility": "University students, including visiting students with a supporting mentor. Check provider conditions; JPL has distinct rules.",
+      "url": "https://sfp.caltech.edu/undergraduate-research/programs/surf",
+      "skills": ["physics-research", "chemistry-biotech"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Programme page · verify current openings",
+      "arrangement": "On-site",
+      "experience": "University students",
+      "employmentType": "Internship",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "nvidia-ignite-software",
+      "name": "NVIDIA 2027 Ignite Internships — Software Engineering",
+      "org": "NVIDIA",
+      "kind": "Internship posting",
+      "region": "United States",
+      "fields": ["Computer Science", "Engineering", "Mathematics"],
+      "summary": "An employer-hosted 2027 Ignite posting for first- and second-year university students. Verify it is still accepting applications at the provider.",
+      "eligibility": "The posting is for first- or second-year bachelor’s students at a four-year university in the United States in the relevant technical fields. It is not a general internship for students studying elsewhere.",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/NVIDIA-2027-Ignite-Internships--Software-Engineering_JR2026958",
+      "skills": ["software-ai"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Employer posting · availability needs rechecking",
+      "arrangement": "On-site",
+      "experience": "University students",
+      "employmentType": "Internship",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    },
+    {
+      "id": "nvidia-ignite-hardware",
+      "name": "NVIDIA 2027 Ignite Internships — Hardware Engineering",
+      "org": "NVIDIA",
+      "kind": "Internship posting",
+      "region": "United States",
+      "fields": ["Computer Science", "Engineering", "Mathematics"],
+      "summary": "An employer-hosted 2027 Ignite posting for first- and second-year university students. Verify it is still accepting applications at the provider.",
+      "eligibility": "The posting is for first- or second-year bachelor’s students at a four-year university in the United States in the relevant technical fields. It is not a general internship for students studying elsewhere.",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/NVIDIA-2027-Ignite-Internships--Hardware-Engineering_JR2027047",
+      "skills": ["mechanical-robotics"],
+      "checkedOn": "2026-11-11",
+      "deadline": null,
+      "deadlineNote": "Not stated for this source. Check the individual provider posting.",
+      "status": "Employer posting · availability needs rechecking",
+      "arrangement": "On-site",
+      "experience": "University students",
+      "employmentType": "Internship",
+      "currentSkills": "See the linked skill paths and individual employer requirements."
+    }
+  ]
+}

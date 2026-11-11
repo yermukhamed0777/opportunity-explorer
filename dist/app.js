@@ -17,7 +17,7 @@
         typeof value.progress !== 'object' ||
         Array.isArray(value.progress)
       )
-        throw new Error('Choose an Opportunity Explorer backup file.');
+        throw new Error('Choose an ProspectoAI backup file.');
       const known = new Set(allowed),
         saved = [
           ...new Set(
@@ -97,10 +97,10 @@
         [
           'BEGIN:VCALENDAR',
           'VERSION:2.0',
-          'PRODID:-//Opportunity Explorer//Deadline reminder//EN',
+          'PRODID:-//ProspectoAI//Deadline reminder//EN',
           'CALSCALE:GREGORIAN',
           'BEGIN:VEVENT',
-          'UID:' + o.id + '-' + o.deadlineStart + '@opportunity-explorer',
+          'UID:' + o.id + '-' + o.deadlineStart + '@prospectoai',
           'DTSTAMP:' +
             new Date()
               .toISOString()
@@ -280,6 +280,14 @@
     }
   }
   $$('[data-icon]').forEach((el) => (el.innerHTML = icon(el.dataset.icon)));
+  let cloudMode = false;
+  function trackerChanged() {
+    document.dispatchEvent(
+      new CustomEvent('prospecto-tracker-changed', {
+        detail: { saved: [...saved], progress },
+      }),
+    );
+  }
   let view = 'explore',
     type = '',
     saved = new Set(),
@@ -394,17 +402,20 @@
       .join('')}</div></article>`;
   }
   function sourceCards() {
-    return `<div class="sources-intro"><h2>Fresh announcements, collected automatically.</h2><p>These public channels and websites are checked by the site’s scheduled updater. No Telegram login is required. Each source is a discovery service; final requirements belong to the program provider.</p><p><strong>Schedule:</strong> Monday mornings, Hong Kong time. <strong>Last successful collection:</strong> ${esc(dateLabel(feed?.lastSuccessfulRefresh, true))}.</p></div><div class="source-grid">${(feed?.sources || sourceDefaults).map((s) => `<article class="source-card"><div class="status-row"><span class="status ${s.status === 'ok' ? 'confirmed' : s.status === 'unavailable' ? 'caution' : 'partial'}">${s.status === 'ok' ? 'Source readable' : s.status === 'unavailable' ? 'Temporarily unavailable' : 'Waiting for status'}</span></div><h3>${esc(s.name)}</h3><p>${s.kind === 'telegram' ? 'Public Telegram channel' : 'Public website RSS feed'}</p><p>${esc(s.message || 'Availability is checked when the feed is loaded.')}</p><dl><dt>Last successful fetch</dt><dd>${esc(dateLabel(s.lastSuccessAt, true))}</dd><dt>Saved announcements</dt><dd>${s.count ?? '—'}</dd></dl><a href="${esc(safeLink(s.url))}" target="_blank" rel="noopener noreferrer">Open source ↗</a></article>`).join('')}</div><div class="sources-explanation"><h3>What automatic updates do</h3><p>The updater fetches new public posts, removes duplicates, saves the results, and makes them available under Latest updates. A failed fetch keeps the last saved announcements and shows the source’s status. The curated collection keeps its original review dates until the provider details are checked again.</p><h3>Why the labels matter</h3><p>A post being new does not prove its deadline, funding claims or your eligibility. Follow the original links before applying. Automatic collection is discovery, not independent verification.</p></div>`;
+    return `<section id="renewal-summary" class="sources-intro"><h2>Weekly source review</h2><p>Loading source availability and review queue…</p></section><div class="sources-intro"><h2>Fresh announcements, collected automatically.</h2><p>These public channels and websites are checked by the site’s scheduled updater. No Telegram login is required. Each source is a discovery service; final requirements belong to the program provider.</p><p><strong>Schedule:</strong> Monday mornings, Hong Kong time. <strong>Last successful collection:</strong> ${esc(dateLabel(feed?.lastSuccessfulRefresh, true))}.</p></div><div class="source-grid">${(feed?.sources || sourceDefaults).map((s) => `<article class="source-card"><div class="status-row"><span class="status ${s.status === 'ok' ? 'confirmed' : s.status === 'unavailable' ? 'caution' : 'partial'}">${s.status === 'ok' ? 'Source readable' : s.status === 'unavailable' ? 'Temporarily unavailable' : 'Waiting for status'}</span></div><h3>${esc(s.name)}</h3><p>${s.kind === 'telegram' ? 'Public Telegram channel' : 'Public website RSS feed'}</p><p>${esc(s.message || 'Availability is checked when the feed is loaded.')}</p><dl><dt>Last successful fetch</dt><dd>${esc(dateLabel(s.lastSuccessAt, true))}</dd><dt>Saved announcements</dt><dd>${s.count ?? '—'}</dd></dl><a href="${esc(safeLink(s.url))}" target="_blank" rel="noopener noreferrer">Open source ↗</a></article>`).join('')}</div><div class="sources-explanation"><h3>What automatic updates do</h3><p>The updater fetches new public posts, removes duplicates, saves the results, and makes them available under Latest updates. A failed fetch keeps the last saved announcements and shows the source’s status. The curated collection keeps its original review dates until the provider details are checked again.</p><h3>Why the labels matter</h3><p>A post being new does not prove its deadline, funding claims or your eligibility. Follow the original links before applying. Automatic collection is discovery, not independent verification.</p></div>`;
   }
   function trackerPanel(o) {
     const p = progress[o.id] || { status: 'Interested', notes: '' };
-    return `<section class="application-log" aria-label="Application log for ${esc(o.name)}"><h3>Your application log</h3><label for="progress-${o.id}">Application stage</label><select id="progress-${o.id}" data-progress="${o.id}">${PROGRESS_STATES.map((x) => `<option ${x === p.status ? 'selected' : ''}>${x}</option>`).join('')}</select><label for="notes-${o.id}">Private notes / next steps</label><textarea id="notes-${o.id}" data-notes="${o.id}" rows="3" maxlength="1500" placeholder="Documents to prepare, questions to ask, your next step…">${esc(p.notes)}</textarea><p class="log-hint" id="log-hint-${o.id}">Saved on this device. Notes are not included in shared links or calendar files.</p></section>`;
+    return `<section class="application-log" aria-label="Application log for ${esc(o.name)}"><h3>Your application log</h3><label for="progress-${o.id}">Application stage</label><select id="progress-${o.id}" data-progress="${o.id}">${PROGRESS_STATES.map((x) => `<option ${x === p.status ? 'selected' : ''}>${x}</option>`).join('')}</select><label for="notes-${o.id}">Private notes / next steps</label><textarea id="notes-${o.id}" data-notes="${o.id}" rows="3" maxlength="1500" placeholder="Documents to prepare, questions to ask, your next step…">${esc(p.notes)}</textarea><p class="log-hint" id="log-hint-${o.id}">Changes stay private. Guest mode saves on this device; account mode syncs to Supabase.</p></section>`;
   }
   function persistProgress(id) {
     try {
-      localStorage.setItem('oe-progress-v1', JSON.stringify(progress));
-      $('#log-hint-' + id).textContent =
-        'Saved on this device. Notes stay out of shared links and calendar files.';
+      if (!cloudMode)
+        localStorage.setItem('oe-progress-v1', JSON.stringify(progress));
+      trackerChanged();
+      $('#log-hint-' + id).textContent = cloudMode
+        ? 'Syncing to your private account…'
+        : 'Saved on this device. Notes stay out of shared links and calendar files.';
     } catch {
       $('#log-hint-' + id).textContent =
         'Browser storage is unavailable. Export a backup before leaving.';
@@ -444,6 +455,42 @@
     document.body.style.paddingBottom = compare.size ? '100px' : '';
   }
   function render() {
+    const platform = [
+      'skills',
+      'careers',
+      'universities',
+      'activities',
+      'assistant',
+    ].includes(view);
+    document.body.dataset.view = view;
+    $('#platform-panel').hidden = !platform;
+    for (const selector of [
+      '.hero',
+      '.collection-bar',
+      '.search-row',
+      '.type-tabs',
+      '.explore-layout',
+    ])
+      $(selector).hidden = platform;
+    if (platform) {
+      $$('.nav-item[data-view]').forEach((b) => {
+        b.classList.toggle('active', b.dataset.view === view);
+        b.setAttribute(
+          'aria-current',
+          b.dataset.view === view ? 'page' : 'false',
+        );
+      });
+      $('#breadcrumb-title').textContent = {
+        skills: 'Skills & courses',
+        careers: 'Internships & jobs',
+        universities: 'Search for universities',
+        activities: 'My activities',
+        assistant: 'Ask ProspectoAI',
+      }[view];
+      $('#compare-tray').hidden = true;
+      window.ProspectoPlatform?.render(view);
+      return;
+    }
     const isFeed = view === 'latest',
       isSources = view === 'sources',
       f = filters();
@@ -493,7 +540,7 @@
       ],
       saved: [
         'Your next steps.<br><em>Worth keeping.</em>',
-        'Track your application stages, write private notes, and keep a backup. Saved on this device; no account or cross-device sync.',
+        'Track your application stages, write private notes, and keep a backup. Browse as a guest or sign in to sync your private tracker across devices.',
         'Application tracker',
       ],
       deadlines: [
@@ -518,6 +565,7 @@
         : 'Status comes from the latest saved fetch.';
       grid.className = 'source-board';
       grid.innerHTML = sourceCards();
+      document.dispatchEvent(new Event('prospecto-renewal-view'));
       $('#empty').hidden = true;
       updateTray();
       return;
@@ -561,7 +609,7 @@
         );
       $('#results-context').textContent =
         view === 'saved'
-          ? 'Saved only in this browser. Closed listings remain in your shortlist.'
+          ? 'Guest data stays in this browser. Sign in for a separate private account tracker.'
           : view === 'deadlines'
             ? 'Primary next deadlines. Read the details for secondary dates.'
             : 'Read the essentials here, then compare or open the provider source.';
@@ -646,7 +694,9 @@
     else saved.add(id);
     let stored = true;
     try {
-      localStorage.setItem('oe-shortlist-v1', JSON.stringify([...saved]));
+      if (!cloudMode)
+        localStorage.setItem('oe-shortlist-v1', JSON.stringify([...saved]));
+      trackerChanged();
     } catch {
       stored = false;
     }
@@ -823,7 +873,7 @@
   $('#tracker-status').addEventListener('change', render);
   $('#backup-export').addEventListener('click', () => {
     downloadFile(
-      'opportunity-explorer-backup.json',
+      'prospectoai-backup.json',
       JSON.stringify(
         {
           version: 1,
@@ -852,7 +902,9 @@
       Object.assign(progress, backup.progress);
       let persisted = false;
       try {
-        persisted = Core.persistTracker(localStorage, [...saved], progress);
+        persisted =
+          cloudMode || Core.persistTracker(localStorage, [...saved], progress);
+        trackerChanged();
       } catch {}
       render();
       toast(
@@ -930,6 +982,45 @@
       $('#search').focus();
     }
   });
+  window.ProspectoTracker = {
+    snapshot: () => ({
+      saved: [...saved],
+      progress: structuredClone(progress),
+    }),
+    guest: () =>
+      Core.parseBackup(
+        {
+          version: 1,
+          saved: JSON.parse(localStorage.getItem('oe-shortlist-v1') || '[]'),
+          progress: JSON.parse(localStorage.getItem('oe-progress-v1') || '{}'),
+        },
+        data.map((o) => o.id),
+      ),
+    setCloud(value) {
+      cloudMode = value !== null;
+      let parsed;
+      try {
+        parsed = value
+          ? Core.parseBackup(
+              { version: 1, ...value },
+              data.map((o) => o.id),
+            )
+          : this.guest();
+      } catch {
+        parsed = { saved: [], progress: {} };
+      }
+      saved = new Set(parsed.saved);
+      progress = parsed.progress;
+      render();
+      if ($('#detail-dialog').open) $('#detail-dialog').close();
+    },
+    setView(next) {
+      view = next;
+      type = '';
+      render();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    },
+  };
   render();
   loadFeed();
   const linked = new URLSearchParams(location.search).get('opportunity');
