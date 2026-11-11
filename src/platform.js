@@ -495,7 +495,7 @@ document.addEventListener('change', (e) => {
   resourceList(resourcesView);
 });
 document.addEventListener('click', async (e) => {
-  const nav = e.target.closest('[data-view]');
+  const nav = e.target.closest('button[data-view]');
   if (nav) {
     activeSearch = '';
     activeField = '';

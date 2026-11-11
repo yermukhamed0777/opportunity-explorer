@@ -462,7 +462,7 @@
       'activities',
       'assistant',
     ].includes(view);
-    document.body.dataset.view = view;
+    document.body.dataset.currentView = view;
     $('#platform-panel').hidden = !platform;
     for (const selector of [
       '.hero',
@@ -481,7 +481,7 @@
         );
       });
       $('#breadcrumb-title').textContent = {
-        skills: 'Skills & courses',
+        skills: 'Skills to Develop',
         careers: 'Internships & jobs',
         universities: 'Search for universities',
         activities: 'My activities',
@@ -797,7 +797,7 @@
   document.addEventListener('click', (event) => {
     const detail = event.target.closest('[data-detail]'),
       sv = event.target.closest('[data-save]'),
-      nav = event.target.closest('[data-view]'),
+      nav = event.target.closest('button[data-view]'),
       tab = event.target.closest('[data-type]');
     if (detail) {
       openDetail(detail.dataset.detail);
