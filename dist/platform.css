@@ -780,3 +780,9 @@ select {
 .stage-shortcuts button:hover {
   background: #35513a;
 }
+.breadcrumb strong {
+  color: #d3e4c2;
+}
+.breadcrumb span {
+  color: #9eb18f;
+}

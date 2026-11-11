@@ -690,6 +690,15 @@
     toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 3500);
   }
   function save(id) {
+    if (
+      window.ProspectoPlatform?.canEditTracker &&
+      !window.ProspectoPlatform.canEditTracker()
+    ) {
+      toast(
+        'Your private workspace is still loading. Reload if sync is unavailable.',
+      );
+      return;
+    }
     if (saved.has(id)) saved.delete(id);
     else saved.add(id);
     let stored = true;
@@ -894,6 +903,11 @@
     try {
       if (file.size > 1000000)
         throw new Error('Choose a backup smaller than 1 MB.');
+      if (
+        window.ProspectoPlatform?.canEditTracker &&
+        !window.ProspectoPlatform.canEditTracker()
+      )
+        throw Error('Load your private workspace before importing.');
       const backup = Core.parseBackup(
         JSON.parse(await file.text()),
         data.map((o) => o.id),

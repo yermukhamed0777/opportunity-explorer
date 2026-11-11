@@ -162,7 +162,10 @@ function render(view) {
   } else if (view === 'activities') renderActivities();
   else if (view === 'assistant') renderAssistant();
 }
-window.ProspectoPlatform = { render };
+window.ProspectoPlatform = {
+  render,
+  canEditTracker: () => !user || accountReady,
+};
 function setView(v) {
   activeSearch = '';
   activeField = '';
@@ -680,7 +683,11 @@ document.addEventListener('submit', async (e) => {
   }
   if (e.target.id === 'profile-form') {
     e.preventDefault();
-    if (!user) return;
+    if (!user || !accountReady) {
+      $('#account-status').textContent =
+        'Wait for your private workspace to load, then retry.';
+      return;
+    }
     const value = Object.fromEntries(new FormData(e.target));
     value.hours_per_week = value.hours_per_week
       ? Number(value.hours_per_week)

@@ -4,6 +4,8 @@ A place to explore education and career possibilities, build useful skills and k
 
 [Open the website](https://opportunity-explorer-ruddy.vercel.app/)
 
+![ProspectoAI university discovery preview](docs/preview.png)
+
 ## Explore
 
 - Research programmes, scholarships, hackathons and olympiads, with filters, comparisons and deadline reminders.
