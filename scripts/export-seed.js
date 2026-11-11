@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs';
-const resources = JSON.parse(readFileSync('dist/resources.json'));
-const catalog = JSON.parse(readFileSync('dist/opportunities.json'));
+const resources = JSON.parse(readFileSync('data/resources.json'));
+const catalog = JSON.parse(readFileSync('data/opportunities.json'));
 const quote = (s) => "'" + s.replaceAll("'", "''") + "'";
 const rows = [];
 for (const [kind, key] of [

@@ -13,7 +13,7 @@ A place to explore education and career possibilities, build useful skills and k
 - **Skills to Develop**: six career paths with technical and transferable skills, tools, projects and verified course links.
 - **Internships and Jobs**: official career sources and individual postings. A source directory is clearly distinguished from a vacancy; missing deadlines are not guessed.
 - An optional account workspace with a saved application tracker, profile and private activities. Activities support notes, dates, categories, priority, progress, filtering and sorting.
-- A source-grounded assistant for discovery and development plans. Guest catalog search is separate from AI generation.
+- A source-grounded assistant for discovery and development plans. Search and AI planning require a confirmed account.
 
 The initial expanded collection contains 23 opportunities, 9 university profiles, 6 skill paths, 11 courses and 9 career sources/postings. Each retains its source and review date. Prices, openings, facilities access and programme conditions can change.
 
@@ -27,7 +27,7 @@ npm run build
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. Local configuration and chat handlers are available; without AI configuration, the assistant returns clearly labelled catalog search. The feed uses its saved fallback when live storage is unavailable.
+Open `http://127.0.0.1:4173`. Local auth routes and API handlers are available. A configured Supabase project and confirmed login are required to load the collection.
 
 ```bash
 npm run check
@@ -44,7 +44,7 @@ Set environment variables in your hosting dashboard or an untracked local file. 
 | --------------------------------------------------- | -------------------------------------------------------------------- |
 | `dist/index.html`, `dist/app.js`, `dist/styles.css` | Existing explorer and tracker                                        |
 | `src/platform.js`, `dist/platform.css`              | Accounts, skills, universities, careers, activities and assistant UI |
-| `dist/opportunities.json`, `dist/resources.json`    | Researched source catalogs                                           |
+| `data/opportunities.json`, `data/resources.json`    | Researched source catalogs                                           |
 | `dist/assets/`                                      | ProspectoAI SVG mark and dark/light wordmarks                        |
 | `api/`                                              | Configuration, chat, feeds, review report and scheduled refresh      |
 | `lib/`                                              | Retrieval, source auditing, feed parsing, storage and caching        |
@@ -53,11 +53,11 @@ Set environment variables in your hosting dashboard or an untracked local file. 
 | `tests/`                                            | Validation, tracker, calendar, assistant, feeds and renewal checks   |
 | `docs/`                                             | Skills guide, recovery notes and review workflow                     |
 
-`npm run build` generates the catalog scripts and bundles the Supabase client from pinned packages. It rejects missing frontend assets. Generated `dist/platform.js` and `dist/resource-data.js` are ignored in Git; the source and lockfile reproduce them.
+`npm run build` validates the catalogs and bundles the login, bootstrap and workspace scripts from pinned packages. Catalog JSON remains outside public output and is served only by the authenticated catalog API. Generated bundles are ignored in Git; the source and lockfile reproduce them.
 
 ## Supabase
 
-Create a project, then apply the migrations in order. Run the idempotent `supabase/seed.sql` after reviewing it. Public resources are readable, while `profiles`, `trackers` and `activities` are restricted to their owners using `auth.uid()` in every policy. No service-role key is used in the browser or required by the application.
+Create a project, then apply the migrations in order. Run the idempotent `supabase/seed.sql` after reviewing it. Resources require login, while `profiles`, `trackers` and `activities` are restricted to their owners using `auth.uid()` in every policy. No service-role key is used in the browser or required by the application.
 
 The account client supports email/password registration, login, logout, session persistence and reset-password links. Before opening registration publicly, configure these owner settings:
 
@@ -100,14 +100,18 @@ The process does not automatically rewrite university facilities, course prices 
 
 Import the repository root into Vercel with framework **Other**. Use `npm run build`, `npm ci --ignore-scripts --no-fund --no-audit`, output `dist` and Node.js 24. Include the entire repository source; publishing only the feed functions causes the missing-homepage failure described in [recovery notes](docs/recovery.md).
 
-Configure the environment variables, apply the database migrations and seed, then deploy the tested GitHub revision. Verify the production origin, assets, `/api/config`, `/api/discover`, `/api/renewal`, guest assistant and signed-in user flows. Vercel READY is not sufficient proof.
+Configure the environment variables, apply the database migrations and seed, then deploy the tested GitHub revision. Verify the production origin, assets, `/api/config`, `/api/discover`, `/api/renewal`, anonymous API denial and signed-in user flows. Vercel READY is not sufficient proof.
 
 GitHub is the source of truth. Keep provider fact changes, schema changes and configuration instructions in the repository. Use a PR and passing checks before merging a release.
 
 ## Privacy and costs
 
-Guest tracker data remains in the browser. Signed-in trackers, profiles and activities are private to the user. Guest data is imported only on request. Shared links and calendar exports omit private notes. A tracker backup contains notes and should be kept private.
+Legacy guest tracker data remains in the browser for explicit import after login. Signed-in trackers, profiles and activities are private to the user. Guest data is imported only on request. Shared links and calendar exports omit private notes. A tracker backup contains notes and should be kept private.
 
 Supabase, Vercel functions, Blob storage, email delivery and AI have separate quotas and may incur charges. No paid tier or billing commitment is included in source configuration. AI request caps bound volume; monitor provider prices, account budgets and hosting usage before growing traffic. Expensive model changes require reviewing those limits.
 
 Created by **Yermukhamed Tuktibay**.
+
+## Authentication and custom domains
+
+See [auth routing, exact redirects and DNS rollout](docs/auth-routing-and-domains.md). The app now redirects unsigned visitors to `/login` before loading search data. Password recovery has a dedicated `/reset-password` route, and confirmation has `/auth/callback`. A custom domain must be purchased or owned and verified before auth configuration switches to it.

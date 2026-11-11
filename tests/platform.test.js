@@ -21,7 +21,7 @@ function res() {
   };
 }
 test('resource references exist and university profiles omit admissions stats', () => {
-  const r = JSON.parse(readFileSync('dist/resources.json'));
+  const r = JSON.parse(readFileSync('data/resources.json'));
   assert.equal(r.universities.length, 9);
   assert.equal(r.skills.length, 6);
   for (const u of r.universities) {
@@ -51,15 +51,14 @@ test('assistant retrieval narrows field and stage, excludes closed listings and 
   assert(searchResources('CERN').some((o) => o.kind === 'career'));
   assert.match(fallbackAnswer([]), /could not find/);
 });
-test('chat validates requests and labels guest catalog results', async () => {
+test('chat validates requests and rejects unsigned catalog access', async () => {
   const old = process.env.AI_GATEWAY_MODEL;
   delete process.env.AI_GATEWAY_MODEL;
   try {
     let r = res();
     await chat({ method: 'POST', body: { message: 'materials' } }, r);
-    assert.equal(r.statusCode, 200);
-    assert.equal(r.body.mode, 'catalog');
-    assert(r.body.references.length);
+    assert.equal(r.statusCode, 401);
+    assert.equal(r.body.code, 'login_required');
     r = res();
     await chat({ method: 'POST', body: { message: 'x'.repeat(1501) } }, r);
     assert.equal(r.statusCode, 400);

@@ -3,11 +3,13 @@ const fs = require('fs'),
   assert = require('node:assert/strict');
 const c = { window: {}, TextEncoder };
 vm.createContext(c);
-vm.runInContext(fs.readFileSync('dist/data.js', 'utf8'), c);
+c.window.OPPORTUNITIES = JSON.parse(
+  fs.readFileSync('data/opportunities.json', 'utf8'),
+).opportunities;
 vm.runInContext(fs.readFileSync('dist/app.js', 'utf8'), c);
 const data = c.window.OPPORTUNITIES,
   core = c.ExplorerCore,
-  catalog = JSON.parse(fs.readFileSync('dist/opportunities.json', 'utf8')),
+  catalog = JSON.parse(fs.readFileSync('data/opportunities.json', 'utf8')),
   ids = (items) => Array.from(items, (o) => o.id).sort();
 assert(data.length >= 20);
 assert.equal(new Set(data.map((o) => o.id)).size, data.length);

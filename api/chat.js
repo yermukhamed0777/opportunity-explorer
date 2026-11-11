@@ -1,5 +1,5 @@
 import { generateText } from 'ai';
-import { createClient } from '@supabase/supabase-js';
+import { requireUser } from '../lib/auth.js';
 import { searchResources, fallbackAnswer } from '../lib/assistant.js';
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -17,6 +17,9 @@ export default async function handler(req, res) {
       return res
         .status(400)
         .json({ error: 'Write a question of 1–1,500 characters.' });
+    const authenticated = await requireUser(req, res);
+    if (!authenticated) return;
+    const { db } = authenticated;
     const profile = Object.fromEntries(
       [
         'stage',
@@ -96,27 +99,6 @@ export default async function handler(req, res) {
       return fallback(
         'AI generation is not configured. Showing catalog search.',
       );
-    const token = req.headers.authorization?.match(/^Bearer (.+)$/)?.[1];
-    if (!token)
-      return fallback(
-        'Sign in to use AI planning. Catalog search is available to everyone.',
-      );
-    const db = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_PUBLISHABLE_KEY,
-      {
-        global: { headers: { Authorization: 'Bearer ' + token } },
-        auth: { persistSession: false, autoRefreshToken: false },
-      },
-    );
-    const {
-      data: { user },
-      error,
-    } = await db.auth.getUser(token);
-    if (error || !user)
-      return res
-        .status(401)
-        .json({ error: 'Your session expired. Sign in again.' });
     const { data: allowed, error: quotaError } =
       await db.rpc('reserve_ai_request');
     if (quotaError || !allowed)

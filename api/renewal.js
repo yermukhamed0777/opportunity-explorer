@@ -1,9 +1,7 @@
+import { requireUser } from '../lib/auth.js';
 import { readRenewal } from '../lib/renewal.js';
 export default async function handler(req, res) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=300, stale-while-revalidate=3600',
-  );
+  if (!(await requireUser(req, res))) return;
   if (req.method !== 'GET')
     return res.status(405).json({ error: 'Method not allowed' });
   try {

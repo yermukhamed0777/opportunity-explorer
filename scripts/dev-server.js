@@ -4,6 +4,9 @@ import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import configHandler from '../api/config.js';
 import chatHandler from '../api/chat.js';
+import catalogHandler from '../api/catalog.js';
+import discoverHandler from '../api/discover.js';
+import renewalHandler from '../api/renewal.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../dist');
 const mime = {
@@ -18,7 +21,14 @@ const mime = {
 export function createPreviewServer() {
   return createServer(async (req, res) => {
     const pathname = new URL(req.url, 'http://localhost').pathname;
-    if (pathname === '/api/config' || pathname === '/api/chat') {
+    const handlers = {
+      '/api/config': configHandler,
+      '/api/chat': chatHandler,
+      '/api/catalog': catalogHandler,
+      '/api/discover': discoverHandler,
+      '/api/renewal': renewalHandler,
+    };
+    if (handlers[pathname]) {
       const response = {
         setHeader: (...args) => res.setHeader(...args),
         status(code) {
@@ -42,10 +52,7 @@ export function createPreviewServer() {
         }
         req.body = body;
       }
-      await (pathname === '/api/config' ? configHandler : chatHandler)(
-        req,
-        response,
-      );
+      await handlers[pathname](req, response);
       return;
     }
 
@@ -63,7 +70,21 @@ export function createPreviewServer() {
         res.end();
         return;
       }
-      const file = resolve(root, '.' + (path === '/' ? '/index.html' : path));
+      const authRoutes = [
+        '/login',
+        '/reset-password',
+        '/auth/update-password',
+        '/auth/callback',
+      ];
+      const file = resolve(
+        root,
+        '.' +
+          (authRoutes.includes(path)
+            ? '/auth.html'
+            : ['/', '/dashboard', '/search'].includes(path)
+              ? '/index.html'
+              : path),
+      );
       if (!file.startsWith(root + sep)) {
         res.writeHead(403);
         res.end();

@@ -4,3 +4,6 @@ package-lock.json
 
 dist/platform.js
 dist/resource-data.js
+
+dist/bootstrap.js
+dist/auth-page.js

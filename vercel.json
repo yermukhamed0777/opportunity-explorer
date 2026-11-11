@@ -14,5 +14,73 @@
       "path": "/api/refresh",
       "schedule": "0 0 * * 1"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/login",
+      "destination": "/auth.html"
+    },
+    {
+      "source": "/reset-password",
+      "destination": "/auth.html"
+    },
+    {
+      "source": "/auth/update-password",
+      "destination": "/auth.html"
+    },
+    {
+      "source": "/auth/callback",
+      "destination": "/auth.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/search",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/auth/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        }
+      ]
+    },
+    {
+      "source": "/reset-password",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        }
+      ]
+    },
+    {
+      "source": "/login",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        }
+      ]
+    }
   ]
 }

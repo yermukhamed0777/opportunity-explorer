@@ -1,6 +1,6 @@
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, rmSync } from 'node:fs';
 import { build } from 'esbuild';
-const r = JSON.parse(readFileSync('dist/resources.json', 'utf8'));
+const r = JSON.parse(readFileSync('data/resources.json', 'utf8'));
 const ids = new Set();
 for (const kind of ['skills', 'courses', 'careers', 'universities']) {
   if (!Array.isArray(r[kind]) || !r[kind].length)
@@ -25,30 +25,25 @@ for (const kind of ['skills', 'courses', 'careers', 'universities']) {
 for (const s of r.skills)
   for (const c of s.courses)
     if (!r.courses.some((x) => x.id === c)) throw Error('Unknown course ' + c);
-writeFileSync(
-  'dist/resource-data.js',
-  'window.PROSPECTO_RESOURCES = ' +
-    JSON.stringify(r).replace(/</g, '\\u003c') +
-    ';\n',
-);
-mkdirSync('dist/vendor', { recursive: true });
-await build({
-  entryPoints: ['src/platform.js'],
-  bundle: true,
-  format: 'iife',
-  platform: 'browser',
-  target: ['es2022'],
-  outfile: 'dist/platform.js',
-  minify: true,
-  legalComments: 'none',
-});
+for (const name of ['platform', 'bootstrap', 'auth-page'])
+  await build({
+    entryPoints: ['src/' + name + '.js'],
+    bundle: true,
+    format: 'iife',
+    platform: 'browser',
+    target: ['es2022'],
+    outfile: 'dist/' + name + '.js',
+    minify: true,
+    legalComments: 'none',
+  });
 for (const file of [
   'dist/index.html',
   'dist/app.js',
   'dist/styles.css',
-  'dist/data.js',
+  'dist/auth.html',
+  'dist/bootstrap.js',
+  'dist/auth-page.js',
   'dist/platform.js',
-  'dist/resource-data.js',
 ]) {
   if (readFileSync(file).length < 100)
     throw Error('Missing or empty release asset: ' + file);
@@ -56,3 +51,13 @@ for (const file of [
 console.log(
   'Platform assets validated: skills, courses, universities, careers and account client.',
 );
+
+// Catalogs must never be emitted into the public static directory.
+for (const name of [
+  'data.js',
+  'resource-data.js',
+  'opportunities.json',
+  'resources.json',
+  'feed-snapshot.json',
+])
+  rmSync('dist/' + name, { force: true });

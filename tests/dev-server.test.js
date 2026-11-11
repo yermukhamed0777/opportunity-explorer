@@ -13,7 +13,7 @@ test('local preview serves public assets and rejects unsafe requests', async () 
     const head = await fetch(url + '/app.js', { method: 'HEAD' });
     assert.equal(head.status, 200);
     assert.equal(await head.text(), '');
-    assert.equal((await fetch(url + '/api/discover')).status, 404);
+    assert.equal((await fetch(url + '/api/discover')).status, 401);
     assert.equal(
       (await fetch(url + '/index.html', { method: 'POST' })).status,
       405,

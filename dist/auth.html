@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#101d24" />
+    <title>Sign in — ProspectoAI</title>
+    <link rel="icon" href="/assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/platform.css" />
+    <script src="/auth-page.js" defer></script>
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-story" aria-label="About ProspectoAI">
+        <a href="/login" aria-label="ProspectoAI home"
+          ><img
+            src="/assets/logo-dark.svg"
+            alt="ProspectoAI"
+            width="206"
+            height="42"
+        /></a>
+        <span class="eyebrow">YOUR NEXT POSSIBILITY</span>
+        <h1>Good opportunities.<br />A clearer direction.</h1>
+        <p>
+          Explore research, universities and careers. Build the skills to get
+          there, and keep your next steps in one place.
+        </p>
+        <ul>
+          <li>Researched opportunities with original sources</li>
+          <li>Skill paths and practical learning projects</li>
+          <li>A private workspace for your plans</li>
+        </ul>
+        <p class="auth-footnote">
+          Your account unlocks the collection and saves your progress across
+          devices.
+        </p>
+      </section>
+      <section class="auth-card" aria-labelledby="auth-title">
+        <span class="eyebrow" id="auth-kicker">WELCOME TO PROSPECTOAI</span>
+        <h2 id="auth-title">Sign in to explore.</h2>
+        <p id="auth-intro">Use your ProspectoAI email and password.</p>
+        <p id="auth-status" role="status" aria-live="polite">
+          Connecting securely…
+        </p>
+        <form id="login-form" hidden>
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+          /></label>
+          <label
+            >Password<input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              maxlength="128"
+              required
+          /></label>
+          <button class="primary" type="submit">Sign in</button>
+          <button class="secondary" type="submit" name="action" value="signup">
+            Create account
+          </button>
+          <a class="text-button" href="/reset-password"
+            >Forgot your password?</a
+          >
+          <button class="text-button" type="button" id="resend-confirmation">
+            Resend confirmation email
+          </button>
+          <p class="auth-footnote">
+            New accounts need email confirmation. Creating an account here is
+            separate from signing in to the Supabase dashboard.
+          </p>
+        </form>
+        <form id="reset-request-form" hidden>
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+          /></label>
+          <button class="primary" type="submit">Email me a reset link</button>
+          <a href="/login">Back to sign in</a>
+        </form>
+        <form id="update-password-form" hidden>
+          <label
+            >New password<input
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              minlength="10"
+              maxlength="128"
+              required
+          /></label>
+          <label
+            >Confirm new password<input
+              name="confirmation"
+              type="password"
+              autocomplete="new-password"
+              minlength="10"
+              maxlength="128"
+              required
+          /></label>
+          <button class="primary" type="submit">Save new password</button>
+        </form>
+        <a id="auth-retry" href="/login" hidden>Back to sign in</a>
+        <noscript
+          >JavaScript is needed to securely sign in to ProspectoAI.</noscript
+        >
+      </section>
+    </main>
+  </body>
+</html>
