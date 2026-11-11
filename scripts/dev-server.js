@@ -8,6 +8,9 @@ import catalogHandler from '../api/catalog.js';
 import discoverHandler from '../api/discover.js';
 import renewalHandler from '../api/renewal.js';
 
+import documentHandler from '../api/document.js';
+import developmentHandler from '../api/development.js';
+import accountHandler from '../api/account.js';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../dist');
 const mime = {
   '.html': 'text/html; charset=utf-8',
@@ -23,6 +26,9 @@ export function createPreviewServer() {
     const pathname = new URL(req.url, 'http://localhost').pathname;
     const handlers = {
       '/api/config': configHandler,
+      '/api/document': documentHandler,
+      '/api/development': developmentHandler,
+      '/api/account': accountHandler,
       '/api/chat': chatHandler,
       '/api/catalog': catalogHandler,
       '/api/discover': discoverHandler,
@@ -40,7 +46,7 @@ export function createPreviewServer() {
           res.end(JSON.stringify(value));
         },
       };
-      if (pathname === '/api/chat') {
+      if (['POST', 'DELETE'].includes(req.method)) {
         let body = '';
         for await (const chunk of req) {
           body += chunk;

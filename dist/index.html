@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#173f34" />
-    <title>ProspectoAI — Scholarships, Research &amp; Competitions</title>
+    <title>ProspectoAI — Your Development Workspace</title>
     <meta
       name="description"
       content="Find and compare scholarships, research programs, hackathons and olympiads. Clear eligibility, funding, deadlines and automatically collected source updates."
@@ -21,6 +21,7 @@
     <meta property="og:site_name" content="ProspectoAI" />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/platform.css" />
+    <link rel="stylesheet" href="/workspace.css" />
     <script src="/bootstrap.js" defer=""></script>
   </head>
   <body class="auth-pending">
@@ -50,6 +51,31 @@
       /></a>
       <div class="workspace-label">FIND YOUR NEXT STEP</div>
       <nav class="main-nav" aria-label="Workspace">
+        <button data-view="dashboard" class="nav-item">
+          <i data-icon="compass"></i><span>My dashboard</span>
+        </button>
+        <button data-view="profile" class="nav-item">
+          <i data-icon="people"></i><span>My development profile</span>
+        </button>
+        <button data-view="plan" class="nav-item">
+          <i data-icon="calendar"></i><span>My development plan</span>
+        </button>
+        <button data-view="finder" class="nav-item">
+          <i data-icon="globe"></i><span>Opportunity finder</span>
+        </button>
+        <button data-view="courses" class="nav-item">
+          <i data-icon="check"></i><span>Courses & learning</span>
+        </button>
+        <button data-view="pathways" class="nav-item">
+          <i data-icon="compass"></i><span>Career pathways</span>
+        </button>
+        <button data-view="documents" class="nav-item">
+          <i data-icon="bookmark"></i><span>Private documents</span>
+        </button>
+        <button data-view="privacy" class="nav-item">
+          <i data-icon="info"></i><span>Privacy & account</span>
+        </button>
+
         <button data-view="explore" class="nav-item active">
           <i data-icon="compass"></i><span>Explore &amp; compare</span
           ><span id="nav-total" class="nav-count">23</span>
@@ -69,7 +95,7 @@
           <i data-icon="globe"></i><span>Search for universities</span>
         </button>
         <button data-view="skills" class="nav-item">
-          <i data-icon="spark"></i><span>Skills to Develop</span>
+          <i data-icon="spark"></i><span>Skills for my major</span>
         </button>
         <button data-view="careers" class="nav-item">
           <i data-icon="compass"></i><span>Internships &amp; jobs</span>
@@ -81,7 +107,7 @@
           <i data-icon="spark"></i><span>Ask ProspectoAI</span>
         </button>
         <button data-view="sources" class="nav-item">
-          <i data-icon="globe"></i><span>Sources &amp; review queue</span>
+          <i data-icon="globe"></i><span>Sources &amp; review status</span>
         </button>
       </nav>
       <div class="sidebar-note">

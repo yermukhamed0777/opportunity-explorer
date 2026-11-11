@@ -1,6 +1,6 @@
 {
   "name": "prospectoai",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -20,11 +20,16 @@
     "@vercel/blob": "2.8.2",
     "ai": "7.0.169",
     "cheerio": "1.1.2",
-    "esbuild": "0.28.2"
+    "esbuild": "0.28.2",
+    "fflate": "0.8.3",
+    "mammoth": "1.13.0",
+    "unpdf": "2.1.0",
+    "zod": "4.6.6"
   },
   "description": "Research opportunities, career skills and universities, with a private workspace and AI planning.",
   "author": "Yermukhamed Tuktibay",
   "devDependencies": {
+    "happy-dom": "21.0.4",
     "prettier": "3.9.10"
   },
   "overrides": {

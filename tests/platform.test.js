@@ -22,7 +22,7 @@ function res() {
 }
 test('resource references exist and university profiles omit admissions stats', () => {
   const r = JSON.parse(readFileSync('data/resources.json'));
-  assert.equal(r.universities.length, 9);
+  assert.equal(r.universities.length, 12);
   assert.equal(r.skills.length, 6);
   for (const u of r.universities) {
     assert(u.sources.length);
