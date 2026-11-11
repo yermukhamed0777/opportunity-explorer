@@ -786,8 +786,10 @@ function closeNavigation() {
   $('.main-shell').inert = false;
   navigation.removeAttribute('role');
   navigation.removeAttribute('aria-modal');
+  navigation.inert = window.innerWidth <= 900;
 }
 navToggle.addEventListener('click', () => {
+  navigation.inert = false;
   document.body.classList.add('navigation-open');
   $('#nav-backdrop').hidden = false;
   navToggle.setAttribute('aria-expanded', 'true');
@@ -803,7 +805,10 @@ for (const id of ['nav-close', 'nav-backdrop'])
     navToggle.focus();
   });
 navigation.addEventListener('click', (event) => {
-  if (event.target.closest('button[data-view]')) closeNavigation();
+  if (event.target.closest('button[data-view]')) {
+    closeNavigation();
+    if (window.innerWidth <= 900) navToggle.focus();
+  }
 });
 document.addEventListener('keydown', (event) => {
   if (!document.body.classList.contains('navigation-open')) return;
@@ -829,4 +834,7 @@ document.addEventListener('keydown', (event) => {
 });
 window.addEventListener('resize', () => {
   if (window.innerWidth > 900) closeNavigation();
+  else if (!document.body.classList.contains('navigation-open'))
+    navigation.inert = true;
 });
+closeNavigation();
