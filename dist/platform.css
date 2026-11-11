@@ -1218,3 +1218,7 @@ textarea::placeholder {
     transition: none;
   }
 }
+
+.auth-page .eyebrow {
+  color: #cfe8b6;
+}
