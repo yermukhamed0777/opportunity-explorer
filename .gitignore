@@ -8,3 +8,10 @@ node_modules/
 coverage/
 *.tar.gz
 *.zip
+
+# Generated from reviewed source during npm run build
+dist/platform.js
+dist/resource-data.js
+dist/vendor/
+
+supabase/.temp/

@@ -1,100 +1,113 @@
-# Opportunity Explorer
+# ProspectoAI
 
-A practical way to find, compare and keep track of research programs, hackathons, olympiads and scholarships.
+A place to explore education and career possibilities, build useful skills and keep track of the next step.
 
-**[Open the live site](https://opportunity-explorer-ruddy.vercel.app/)**
+[Open the website](https://opportunity-explorer-ruddy.vercel.app/)
 
-## What it does
+![ProspectoAI university discovery preview](docs/preview.png)
 
-- Filter opportunities by subject, student stage, location, format, deadline and funding.
-- Compare up to three options side by side, including eligibility restrictions and costs.
-- Save an application tracker with stages and private notes.
-- Export and restore a tracker backup, copy opportunity links, or download calendar reminders.
-- Read new announcements from public scholarship websites and Telegram channels.
+## Explore
 
-The curated collection and automatic announcements are separate. Curated listings link to their providers and show review dates, funding gaps and uncertain details. Incoming feed items are discovery leads, not verified eligibility decisions.
+- Research programmes, scholarships, hackathons and olympiads, with filters, comparisons and deadline reminders.
+- **Search for Universities**: laboratories, undergraduate research, prototyping and distinctive degree partnerships. No score thresholds or admission predictions.
+- **Skills to Develop**: six career paths with technical and transferable skills, tools, projects and verified course links.
+- **Internships and Jobs**: official career sources and individual postings. A source directory is clearly distinguished from a vacancy; missing deadlines are not guessed.
+- An optional account workspace with a saved application tracker, profile and private activities. Activities support notes, dates, categories, priority, progress, filtering and sorting.
+- A source-grounded assistant for discovery and development plans. Guest catalog search is separate from AI generation.
+
+The initial expanded collection contains 23 opportunities, 9 university profiles, 6 skill paths, 11 courses and 9 career sources/postings. Each retains its source and review date. Prices, openings, facilities access and programme conditions can change.
 
 ## Run locally
 
-Requires **Node.js 24** and npm.
+Requires Node.js 24 and npm.
 
 ```bash
-npm ci
+npm ci --ignore-scripts
 npm run build
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. The local server serves the frontend and its saved feed snapshot. For live functions, use a linked Vercel development environment with the environment variables below.
+Open `http://127.0.0.1:4173`. Local configuration and chat handlers are available; without AI configuration, the assistant returns clearly labelled catalog search. The feed uses its saved fallback when live storage is unavailable.
 
 ```bash
-npm run check          # catalog validation and tests
-npm run format:check   # source formatting
-npm audit             # dependency audit
-```
-
-## Project structure
-
-| Path              | Purpose                                                                |
-| ----------------- | ---------------------------------------------------------------------- |
-| `dist/`           | Frontend, curated catalog and fallback feed snapshot                   |
-| `api/discover.js` | Public feed endpoint                                                   |
-| `api/refresh.js`  | Authenticated refresh endpoint                                         |
-| `lib/`            | Feed collection, storage, caching and catalog validation               |
-| `scripts/`        | Catalog generation and local preview server                            |
-| `tests/`          | Catalog, filtering, tracker, feed, failure-recovery and preview checks |
-| `vercel.json`     | Hosting settings and weekly refresh schedule                           |
-
-The app uses plain HTML, CSS and JavaScript. The backend uses Node.js functions, Cheerio and a private Vercel Blob store.
-
-## Deploy on Vercel
-
-Import the repository root using the **Other** framework preset. The configuration builds the catalog with `npm run build` and serves `dist/`. Keep `api/`, `lib/`, the package files and `vercel.json` in the deployment: the feed updater needs them.
-
-Connect a **private Vercel Blob store** and set these server-side environment variables:
-
-| Variable                | Purpose                                   |
-| ----------------------- | ----------------------------------------- |
-| `BLOB_READ_WRITE_TOKEN` | Read and update the private feed snapshot |
-| `CRON_SECRET`           | Authenticate scheduled refresh requests   |
-
-`.env.example` lists the names without credentials. Set real values in the hosting dashboard or an untracked local environment file.
-
-The scheduled job runs on Mondays at `00:00 UTC`. Vercel supplies the bearer secret to `/api/refresh`. If a stored snapshot is older than eight days, a visitor request can also refresh it. A failed refresh serves the last available snapshot with a warning. Hosting limits and source availability still apply.
-
-GitHub hosts the source code. The full application needs Vercel's functions and storage; GitHub Pages alone would serve only the static frontend.
-
-## Updating opportunities
-
-Edit `dist/opportunities.json`, then run:
-
-```bash
-npm run build
 npm run check
+npm run format:check
+npm audit
+npm run seed:export
 ```
 
-`dist/data.js` is generated from the catalog. Keep IDs stable so saved opportunities continue to work. Update an entry's `checkedOn` only after revisiting its provider information, and update `updatedAt` after a researched catalog release. Keep expired entries with `archived: true`.
+Set environment variables in your hosting dashboard or an untracked local file. A plain Node process does not automatically load `.env.local`; export the variables before starting it, or use Node's `--env-file` option. Never commit credentials.
 
-A confirmed deadline requires a real calendar day. Unknown dates stay `null`, tentative windows stay labelled, and a passed early round must not replace a still-valid final deadline. Exact times and timezone cautions belong in `deadlineDetail`. Code changes and feed collection do not change provider review dates.
+## Source and build
 
-## Automatic sources
+| Path                                                | Purpose                                                              |
+| --------------------------------------------------- | -------------------------------------------------------------------- |
+| `dist/index.html`, `dist/app.js`, `dist/styles.css` | Existing explorer and tracker                                        |
+| `src/platform.js`, `dist/platform.css`              | Accounts, skills, universities, careers, activities and assistant UI |
+| `dist/opportunities.json`, `dist/resources.json`    | Researched source catalogs                                           |
+| `dist/assets/`                                      | ProspectoAI SVG mark and dark/light wordmarks                        |
+| `api/`                                              | Configuration, chat, feeds, review report and scheduled refresh      |
+| `lib/`                                              | Retrieval, source auditing, feed parsing, storage and caching        |
+| `supabase/migrations/`                              | Reproducible schema and ownership policies                           |
+| `supabase/seed.sql`                                 | Generated, source-backed public content; no users or secrets         |
+| `tests/`                                            | Validation, tracker, calendar, assistant, feeds and renewal checks   |
+| `docs/`                                             | Skills guide, recovery notes and review workflow                     |
 
-- [StudyQA](https://t.me/studyqa)
-- [No Borders Abroad](https://t.me/noborders_abroad)
-- [Scholars4Dev](https://www.scholars4dev.com/)
-- [Opportunity Desk](https://opportunitydesk.org/)
+`npm run build` generates the catalog scripts and bundles the Supabase client from pinned packages. It rejects missing frontend assets. Generated `dist/platform.js` and `dist/resource-data.js` are ignored in Git; the source and lockfile reproduce them.
 
-The collector uses their public previews or RSS feeds, filters announcements, deduplicates links and stores short attributed excerpts. It does not log in to Telegram, join groups or send messages. Tags are keyword hints; final eligibility and award details belong to the original provider.
+## Supabase
 
-Feed failures retain saved announcements and their original collection dates. Sources can change their markup, restrict public previews or stop publishing, so availability is shown in the interface.
+Create a project, then apply the migrations in order. Run the idempotent `supabase/seed.sql` after reviewing it. Public resources are readable, while `profiles`, `trackers` and `activities` are restricted to their owners using `auth.uid()` in every policy. No service-role key is used in the browser or required by the application.
 
-## Privacy and reminders
+The account client supports email/password registration, login, logout, session persistence and reset-password links. Before opening registration publicly, configure these owner settings:
 
-The tracker stays in the visitor's browser. There is no account system, cross-device synchronization, analytics or shared notes database. Clearing browser data removes the tracker; export a private backup first. A backup contains notes. Shared opportunity links and calendar files do not.
+1. **Authentication → URL Configuration**: set the Site URL to the production origin. Allow its root and password-recovery redirects.
+2. **Authentication → Email / SMTP**: configure delivery for public users. Supabase's default sender is restricted and is not a production email service.
+3. Confirm email signup is enabled; test confirmation and recovery using an account you own.
 
-Calendar downloads are all-day reminders of the provider's deadline date. They are not exact cut-off times or guaranteed alerts; check the source timezone and your calendar's notification settings. The site does not submit applications.
+Do not disable email confirmation as a workaround for delivery failures. The UI surfaces delivery and session errors without pretending a registration succeeded.
 
-## Maintenance
+## Environment variables
 
-The tests and formatting checks run on pushes and pull requests. A dependency override pins Zod to a patched version while the storage SDK's dependency chain still pins an older release. Review the override when updating dependencies.
+| Variable                   | Visibility           | Purpose                                                       |
+| -------------------------- | -------------------- | ------------------------------------------------------------- |
+| `SUPABASE_URL`             | Public configuration | Project API origin                                            |
+| `SUPABASE_PUBLISHABLE_KEY` | Public configuration | Browser-safe key; RLS enforces ownership                      |
+| `BLOB_READ_WRITE_TOKEN`    | Server secret        | Private feed and source-review snapshots                      |
+| `CRON_SECRET`              | Server secret        | Scheduled refresh authorization                               |
+| `AI_GATEWAY_MODEL`         | Server configuration | Exact `provider/model` ID from the gateway catalog            |
+| `AI_GATEWAY_API_KEY`       | Server secret        | Gateway authentication when deployment OIDC is not configured |
+
+The public config endpoint returns only the project URL, publishable key and capability flag. It never returns AI, cron, storage or service-role secrets.
+
+## AI interface and limits
+
+`POST /api/chat` validates input, retrieves matching researched records and returns attributed references with review dates. It uses the provider-independent Vercel AI SDK and the configured gateway model. Set `AI_GATEWAY_API_KEY` securely, or use deployment OIDC only after the project owner approves that authentication setup. A ChatGPT subscription is not used by the website.
+
+AI calls require a verified Supabase session. The database enforces 10 requests per user per day and 200 requests site-wide per day. Inputs, history and output length are bounded. A failed provider, missing configuration or exhausted allowance returns clearly labelled catalog search. A personalized plan asks for missing stage, field, time and goals first.
+
+The model has no tools to execute commands, modify the database, submit applications or send messages. Imported content is data, and model text is rendered as text rather than HTML. Chat history stays in the tab, is cleared on account changes, and is not stored by the app unless a user explicitly saves a recommendation as an activity. AI messages and selected context are transmitted to the model provider; provider retention policies still apply.
+
+The quota RPC is an intentionally privileged, narrowly scoped function: it checks the current authenticated user, uses a fixed search path and serializes counter updates. Anonymous execution and direct counter-table access are denied. Security advisors may flag authenticated execution for review; granting arbitrary clients counter-table write access would defeat the limit.
+
+## Weekly renewal
+
+Vercel Cron runs Monday at 00:00 UTC / 08:00 Hong Kong. It collects attributed Telegram/RSS leads and checks the fixed provider source list with bounded HEAD requests. Failed checks retain previous records. Changed headers, stale provider facts and broken links enter a read-only review report. A separate Supabase pg_cron job marks known expired public opportunities without deleting saved user data.
+
+The process does not automatically rewrite university facilities, course prices or job eligibility from scraped text. Those facts enter the repository review workflow before publication. See [maintenance workflow](docs/maintenance.md).
+
+## Deployment
+
+Import the repository root into Vercel with framework **Other**. Use `npm run build`, `npm ci --ignore-scripts --no-fund --no-audit`, output `dist` and Node.js 24. Include the entire repository source; publishing only the feed functions causes the missing-homepage failure described in [recovery notes](docs/recovery.md).
+
+Configure the environment variables, apply the database migrations and seed, then deploy the tested GitHub revision. Verify the production origin, assets, `/api/config`, `/api/discover`, `/api/renewal`, guest assistant and signed-in user flows. Vercel READY is not sufficient proof.
+
+GitHub is the source of truth. Keep provider fact changes, schema changes and configuration instructions in the repository. Use a PR and passing checks before merging a release.
+
+## Privacy and costs
+
+Guest tracker data remains in the browser. Signed-in trackers, profiles and activities are private to the user. Guest data is imported only on request. Shared links and calendar exports omit private notes. A tracker backup contains notes and should be kept private.
+
+Supabase, Vercel functions, Blob storage, email delivery and AI have separate quotas and may incur charges. No paid tier or billing commitment is included in source configuration. AI request caps bound volume; monitor provider prices, account budgets and hosting usage before growing traffic. Expensive model changes require reviewing those limits.
 
 Created by **Yermukhamed Tuktibay**.

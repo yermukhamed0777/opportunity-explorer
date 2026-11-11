@@ -9,7 +9,7 @@ test('local preview serves public assets and rejects unsafe requests', async () 
   try {
     const home = await fetch(url);
     assert.equal(home.status, 200);
-    assert((await home.text()).includes('Opportunity Explorer'));
+    assert((await home.text()).includes('ProspectoAI'));
     const head = await fetch(url + '/app.js', { method: 'HEAD' });
     assert.equal(head.status, 200);
     assert.equal(await head.text(), '');

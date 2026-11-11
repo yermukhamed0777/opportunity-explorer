@@ -2,6 +2,8 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import configHandler from '../api/config.js';
+import chatHandler from '../api/chat.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../dist');
 const mime = {
@@ -10,10 +12,43 @@ const mime = {
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
+  '.webmanifest': 'application/manifest+json',
 };
 
 export function createPreviewServer() {
   return createServer(async (req, res) => {
+    const pathname = new URL(req.url, 'http://localhost').pathname;
+    if (pathname === '/api/config' || pathname === '/api/chat') {
+      const response = {
+        setHeader: (...args) => res.setHeader(...args),
+        status(code) {
+          res.statusCode = code;
+          return this;
+        },
+        json(value) {
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify(value));
+        },
+      };
+      if (pathname === '/api/chat') {
+        let body = '';
+        for await (const chunk of req) {
+          body += chunk;
+          if (Buffer.byteLength(body) > 16000) {
+            res.writeHead(413);
+            res.end();
+            return;
+          }
+        }
+        req.body = body;
+      }
+      await (pathname === '/api/config' ? configHandler : chatHandler)(
+        req,
+        response,
+      );
+      return;
+    }
+
     if (!['GET', 'HEAD'].includes(req.method)) {
       res.writeHead(405, { Allow: 'GET, HEAD' });
       res.end();
@@ -60,6 +95,6 @@ if (
 ) {
   const port = Number(process.env.PORT || 4173);
   createPreviewServer().listen(port, '127.0.0.1', () =>
-    console.log('Opportunity Explorer: http://127.0.0.1:' + port),
+    console.log('ProspectoAI: http://127.0.0.1:' + port),
   );
 }
