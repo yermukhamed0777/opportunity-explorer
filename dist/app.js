@@ -472,6 +472,7 @@
       'universities',
       'activities',
       'assistant',
+      ...(window.ProspectoWorkspace?.views || []),
     ].includes(view);
     document.body.dataset.currentView = view;
     $('#platform-panel').hidden = !platform;
@@ -491,13 +492,26 @@
           b.dataset.view === view ? 'page' : 'false',
         );
       });
-      $('#breadcrumb-title').textContent = {
-        skills: 'Skills to Develop',
-        careers: 'Internships & jobs',
-        universities: 'Search for universities',
-        activities: 'My activities',
-        assistant: 'Ask ProspectoAI',
-      }[view];
+      $('#breadcrumb-title').textContent =
+        {
+          skills: 'Skills to Develop',
+          careers: 'Internships & jobs',
+          universities: 'Search for universities',
+          activities: 'My activities',
+          assistant: 'Ask ProspectoAI',
+        }[view] ||
+        {
+          dashboard: 'My dashboard',
+          profile: 'My development profile',
+          documents: 'Private documents',
+          courses: 'Courses & learning',
+          plan: 'My development plan',
+          pathways: 'Career pathways',
+          finder: 'Opportunity finder',
+          privacy: 'Privacy & account',
+          onboarding: 'Setup',
+        }[view] ||
+        'Development workspace';
       $('#compare-tray').hidden = true;
       window.ProspectoPlatform?.render(view);
       return;

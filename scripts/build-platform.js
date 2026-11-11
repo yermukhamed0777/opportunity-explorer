@@ -25,7 +25,32 @@ for (const kind of ['skills', 'courses', 'careers', 'universities']) {
 for (const s of r.skills)
   for (const c of s.courses)
     if (!r.courses.some((x) => x.id === c)) throw Error('Unknown course ' + c);
-for (const name of ['platform', 'bootstrap', 'auth-page'])
+const development = JSON.parse(readFileSync('data/development.json', 'utf8'));
+if (
+  development.majors.length < 33 ||
+  development.skillMaps.length !== development.majors.length
+)
+  throw Error('Incomplete field coverage');
+const developmentIds = new Set();
+for (const kind of ['majors', 'skillMaps', 'opportunities', 'pathways'])
+  for (const entry of development[kind]) {
+    if (!entry.id || developmentIds.has(kind + entry.id))
+      throw Error('Invalid development catalog ID');
+    developmentIds.add(kind + entry.id);
+    for (const [, url] of entry.sources || [])
+      if (new URL(url).protocol !== 'https:') throw Error('Unsafe source');
+  }
+for (const map of development.skillMaps) {
+  if (
+    !development.majors.some((m) => m.id === map.fieldId) ||
+    map.skills.length < 10
+  )
+    throw Error('Incomplete skill map');
+  for (const id of map.courses)
+    if (!r.courses.some((c) => c.id === id))
+      throw Error('Unknown mapped course');
+}
+for (const name of ['platform', 'bootstrap', 'auth-page', 'workspace'])
   await build({
     entryPoints: ['src/' + name + '.js'],
     bundle: true,

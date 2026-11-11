@@ -1,4 +1,5 @@
 import { generateText } from 'ai';
+import { developmentContext } from '../lib/development-context.js';
 import { requireUser } from '../lib/auth.js';
 import { searchResources, fallbackAnswer } from '../lib/assistant.js';
 export default async function handler(req, res) {
@@ -19,7 +20,8 @@ export default async function handler(req, res) {
         .json({ error: 'Write a question of 1–1,500 characters.' });
     const authenticated = await requireUser(req, res);
     if (!authenticated) return;
-    const { db } = authenticated;
+    const { db, user } = authenticated;
+    const permittedContext = await developmentContext(db, user.id);
     const profile = Object.fromEntries(
       [
         'stage',
@@ -50,6 +52,12 @@ export default async function handler(req, res) {
           )
           .map((m) => ({ role: m.role, content: m.content.slice(0, 1500) }))
       : [];
+    if (permittedContext.profileConsent) {
+      profile.stage ||= permittedContext.basic.stage;
+      profile.field ||= permittedContext.fields?.[0];
+      profile.hours ||= permittedContext.basic.hours;
+      profile.goal ||= permittedContext.goals?.[0];
+    }
     const results = searchResources(body.message, {
       stage: profile.stage,
       field: profile.field,
@@ -113,6 +121,7 @@ export default async function handler(req, res) {
         prompt: JSON.stringify({
           question: body.message,
           profile,
+          permittedContext,
           today: new Date().toISOString().slice(0, 10),
           catalog: results,
           conversation: history,

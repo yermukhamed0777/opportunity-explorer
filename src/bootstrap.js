@@ -66,11 +66,12 @@ async function start() {
   const response = await authorizedFetch('/api/catalog');
   if (!response.ok)
     throw Error('The collection could not load. Please reload.');
-  const { catalog, resources } = await response.json();
+  const { catalog, resources, development } = await response.json();
   window.EXPLORER_CATALOG = catalog;
   window.OPPORTUNITIES = catalog.opportunities;
   window.CHECKED_ON = catalog.updatedAt.slice(0, 10);
   window.PROSPECTO_RESOURCES = resources;
+  window.PROSPECTO_DEVELOPMENT = development;
   window.ProspectoAuth = {
     client,
     config,
@@ -84,6 +85,7 @@ async function start() {
     }
   });
   await loadScript('/app.js');
+  await loadScript('/workspace.js');
   await loadScript('/platform.js');
   document.body.classList.remove('auth-pending');
   status.hidden = true;

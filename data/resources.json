@@ -14,7 +14,7 @@
     },
     {
       "id": "python",
-      "name": "Python for Everybody",
+      "name": "Python for Everybody Specialization",
       "provider": "Coursera · University of Michigan",
       "url": "https://www.coursera.org/specializations/python",
       "skills": ["Python", "Data processing"],
@@ -34,7 +34,7 @@
     },
     {
       "id": "mechanics",
-      "name": "Mechanics of Materials I",
+      "name": "Mechanics of Materials I: Fundamentals of Stress & Strain and Axial Loading",
       "provider": "Coursera · Georgia Tech",
       "url": "https://www.coursera.org/learn/mechanics-1",
       "skills": ["Stress and strain", "Mechanical analysis"],
@@ -111,6 +111,378 @@
       "checkedOn": "2026-11-11",
       "cost": "Provider pricing applies. University/library access may cover LinkedIn Learning. Preview, audit and certificate access vary; no free certificate is promised.",
       "costType": "Subscription / institutional access"
+    },
+    {
+      "id": "calculus",
+      "name": "Single Variable Calculus",
+      "provider": "MIT OpenCourseWare",
+      "institution": "MIT",
+      "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+      "fieldIds": [
+        "mathematics",
+        "physics",
+        "mse",
+        "mechanical",
+        "electrical",
+        "civil",
+        "chemical-engineering"
+      ],
+      "fields": [
+        "Mathematics",
+        "Physics",
+        "Materials Science and Engineering",
+        "Mechanical Engineering",
+        "Electrical and Electronic Engineering",
+        "Civil Engineering",
+        "Chemical Engineering"
+      ],
+      "skills": ["Calculus", "Mathematical modeling"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Open course materials; no enrollment needed",
+      "certificate": "No certificate or academic credit",
+      "costType": "Free open course materials",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra",
+      "provider": "MIT OpenCourseWare",
+      "institution": "MIT",
+      "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+      "fieldIds": ["mathematics", "ai", "data-science", "cs", "physics"],
+      "fields": [
+        "Mathematics",
+        "Artificial Intelligence",
+        "Data Science",
+        "Computer Science",
+        "Physics"
+      ],
+      "skills": ["Linear algebra", "Matrix methods"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Open course materials; no enrollment needed",
+      "certificate": "No certificate or academic credit",
+      "costType": "Free open course materials",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "circuits",
+      "name": "Circuits and Electronics",
+      "provider": "MIT OpenCourseWare",
+      "institution": "MIT",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+      "fieldIds": ["electrical", "biomedical"],
+      "fields": [
+        "Electrical and Electronic Engineering",
+        "Biomedical Engineering"
+      ],
+      "skills": ["Circuit analysis", "Electronics"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Open course materials; no enrollment needed",
+      "certificate": "No certificate or academic credit",
+      "costType": "Free open course materials",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "bio-fundamentals",
+      "name": "Introduction to Biology",
+      "provider": "MIT OpenCourseWare",
+      "institution": "MIT",
+      "url": "https://ocw.mit.edu/courses/7-012-introduction-to-biology-fall-2004/",
+      "fieldIds": [
+        "biology",
+        "biotechnology",
+        "medicine",
+        "nursing",
+        "pharmacy",
+        "veterinary",
+        "biomedical"
+      ],
+      "fields": [
+        "Biology",
+        "Biotechnology",
+        "Medicine",
+        "Nursing",
+        "Pharmacy",
+        "Veterinary Medicine",
+        "Biomedical Engineering"
+      ],
+      "skills": ["Cell biology", "Genetics"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Open course materials; no enrollment needed",
+      "certificate": "No certificate or academic credit",
+      "costType": "Free open course materials",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "microeconomics",
+      "name": "Principles of Microeconomics",
+      "provider": "MIT OpenCourseWare",
+      "institution": "MIT",
+      "url": "https://ocw.mit.edu/courses/14-01sc-principles-of-microeconomics-fall-2011/",
+      "fieldIds": [
+        "economics",
+        "finance",
+        "business",
+        "politics",
+        "international-relations"
+      ],
+      "fields": [
+        "Economics",
+        "Finance",
+        "Business",
+        "Political Science",
+        "International Relations"
+      ],
+      "skills": ["Microeconomics", "Economic reasoning"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Open course materials; no enrollment needed",
+      "certificate": "No certificate or academic credit",
+      "costType": "Free open course materials",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "health-research",
+      "name": "Understanding Clinical Research: Behind the Statistics",
+      "provider": "Coursera",
+      "institution": "University of Cape Town",
+      "url": "https://www.coursera.org/learn/clinical-research",
+      "fieldIds": [
+        "medicine",
+        "nursing",
+        "dentistry",
+        "pharmacy",
+        "veterinary",
+        "psychology",
+        "biomedical"
+      ],
+      "fields": [
+        "Medicine",
+        "Nursing",
+        "Dentistry",
+        "Pharmacy",
+        "Veterinary Medicine",
+        "Psychology",
+        "Biomedical Engineering"
+      ],
+      "skills": ["Study design", "Evidence appraisal"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "psychology-intro",
+      "name": "Introduction to Psychology",
+      "provider": "Coursera",
+      "institution": "Yale University",
+      "url": "https://www.coursera.org/learn/introduction-psychology",
+      "fieldIds": ["psychology", "education"],
+      "fields": ["Psychology", "Education"],
+      "skills": ["Psychology", "Behavioral science"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "dental-intro",
+      "name": "Introduction to Dental Medicine",
+      "provider": "Coursera",
+      "institution": "University of Pennsylvania",
+      "url": "https://www.coursera.org/learn/dental-medicine-penn",
+      "fieldIds": ["dentistry", "biomedical"],
+      "fields": ["Dentistry", "Biomedical Engineering"],
+      "skills": ["Oral health concepts", "Dental medicine awareness"],
+      "level": "Beginner (provider-listed)",
+      "duration": "Provider estimate: 1 week at 10 hours/week; self-paced",
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "animal-welfare",
+      "name": "Animal Behaviour and Welfare",
+      "provider": "Coursera",
+      "institution": "University of Edinburgh",
+      "url": "https://www.coursera.org/learn/animal-welfare",
+      "fieldIds": ["veterinary", "biology"],
+      "fields": ["Veterinary Medicine", "Biology"],
+      "skills": ["Animal welfare", "Animal behavior"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "drug-discovery",
+      "name": "Drug Discovery",
+      "provider": "Coursera",
+      "institution": "University of California San Diego",
+      "url": "https://www.coursera.org/learn/drug-discovery",
+      "fieldIds": ["pharmacy", "biotechnology", "chemistry", "medicine"],
+      "fields": ["Pharmacy", "Biotechnology", "Chemistry", "Medicine"],
+      "skills": ["Drug discovery", "Research process"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "vital-signs",
+      "name": "Vital Signs: Understanding What the Body Is Telling Us",
+      "provider": "Coursera",
+      "institution": "University of Pennsylvania",
+      "url": "https://www.coursera.org/learn/vital-signs",
+      "fieldIds": ["nursing", "medicine", "biomedical"],
+      "fields": ["Nursing", "Medicine", "Biomedical Engineering"],
+      "skills": ["Physiology", "Health-science foundations"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "global-diplomacy",
+      "name": "Global Diplomacy – Diplomacy in the Modern World",
+      "provider": "Coursera",
+      "institution": "University of London",
+      "url": "https://www.coursera.org/learn/global-diplomacy",
+      "fieldIds": ["international-relations", "politics", "media"],
+      "fields": [
+        "International Relations",
+        "Political Science",
+        "Media and Communication"
+      ],
+      "skills": ["Diplomacy", "International affairs"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "international-law",
+      "name": "Introduction to International Criminal Law",
+      "provider": "Coursera",
+      "institution": "Case Western Reserve University",
+      "url": "https://www.coursera.org/learn/international-criminal-law",
+      "fieldIds": ["law", "politics", "international-relations"],
+      "fields": ["Law", "Political Science", "International Relations"],
+      "skills": ["Legal reasoning", "International law"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "design-thinking",
+      "name": "Design Thinking for Innovation",
+      "provider": "Coursera",
+      "institution": "University of Virginia",
+      "url": "https://www.coursera.org/learn/uva-darden-designbiz",
+      "fieldIds": ["design", "architecture", "business", "mechanical"],
+      "fields": [
+        "Design",
+        "Architecture",
+        "Business",
+        "Mechanical Engineering"
+      ],
+      "skills": ["Design research", "Problem framing"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "academic-writing",
+      "name": "English Composition I",
+      "provider": "Coursera",
+      "institution": "Duke University",
+      "url": "https://www.coursera.org/learn/english-composition",
+      "fieldIds": ["media", "education", "law", "international-relations"],
+      "fields": [
+        "Media and Communication",
+        "Education",
+        "Law",
+        "International Relations"
+      ],
+      "skills": ["Writing", "Evidence-based arguments"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "learning-science",
+      "name": "Learning How to Learn: Powerful mental tools to help you master tough subjects",
+      "provider": "Coursera",
+      "institution": "Deep Teaching Solutions",
+      "url": "https://www.coursera.org/learn/learning-how-to-learn",
+      "fieldIds": ["education", "psychology"],
+      "fields": ["Education", "Psychology"],
+      "skills": ["Learning strategies", "Self-directed study"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "climate",
+      "name": "Global Warming I: The Science and Modeling of Climate Change",
+      "provider": "Coursera",
+      "institution": "University of Chicago",
+      "url": "https://www.coursera.org/learn/global-warming",
+      "fieldIds": ["environment", "physics", "chemistry"],
+      "fields": ["Environmental Science", "Physics", "Chemistry"],
+      "skills": ["Climate science", "Modeling"],
+      "level": null,
+      "duration": null,
+      "format": "Self-paced online",
+      "auditing": "Provider access and audit options vary; check the official page",
+      "certificate": "Certificate terms and fees must be confirmed with the provider",
+      "costType": "Price / access subject to provider confirmation",
+      "checkedOn": "2026-11-11"
     }
   ],
   "skills": [
@@ -707,6 +1079,82 @@
       "tags": ["Undergraduate research", "Laboratories"],
       "checkedOn": "2026-11-11",
       "note": "Facilities describe institutional capabilities. Access depends on a course, supervisor, training or project; it is not guaranteed to every undergraduate."
+    },
+    {
+      "id": "monash",
+      "name": "Monash University",
+      "region": "Oceania",
+      "fields": [
+        "Engineering",
+        "Materials Science and Engineering",
+        "Computer Science"
+      ],
+      "research": "The Makerspace Network includes design and fabrication studios; SAMPLE provides analytical and pilot laboratory spaces.",
+      "experience": "Undergraduate design work and engineering student teams use dedicated making spaces. Research facilities span materials and other engineering fields.",
+      "partnership": "No specific dual-degree partnership is asserted in this profile. Consult current faculty and international-office information.",
+      "note": "Student membership, supervision, inductions and local access rules apply. A listed facility does not guarantee access.",
+      "sources": [
+        [
+          "Makerspace studios",
+          "https://www.monash.edu/engineering/makerspace/workspaces/design-and-build-studios"
+        ],
+        [
+          "SAMPLE",
+          "https://www.monash.edu/engineering/makerspace/workspaces/sample"
+        ],
+        [
+          "Engineering facilities",
+          "https://www.monash.edu/engineering/our-research/facilities"
+        ]
+      ],
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "uct",
+      "name": "University of Cape Town",
+      "region": "Africa",
+      "fields": [
+        "Mechanical Engineering",
+        "Civil Engineering",
+        "Electrical Engineering"
+      ],
+      "research": "Mechanical-engineering research includes impact, fatigue, fluid systems and related areas; BISRU lists equipment supporting impact research.",
+      "experience": "BISRU offers final-year research projects through Mechanical Engineering. Student projects combine research questions with supervised laboratory work.",
+      "partnership": "No specific dual-degree partnership is asserted in this profile. Consult current faculty and international-office information.",
+      "note": "Student membership, supervision, inductions and local access rules apply. A listed facility does not guarantee access.",
+      "sources": [
+        [
+          "BISRU undergraduate research",
+          "https://ebe.uct.ac.za/bisru/prospective-students/undergraduate"
+        ],
+        [
+          "Mechanical Engineering",
+          "https://ebe.uct.ac.za/departments-departmental-overview/department-mechanical-engineering"
+        ]
+      ],
+      "checkedOn": "2026-11-11"
+    },
+    {
+      "id": "usp",
+      "name": "University of São Paulo",
+      "region": "South America",
+      "fields": ["Biology", "Biotechnology", "Mathematics", "Computer Science"],
+      "research": "Biosciences research spans multiple departments and laboratory groups. Scientific-initiation programmes introduce students to supervised research methods.",
+      "experience": "Undergraduates can explore scientific initiation and present research at SIICUSP. Research mobility in Biosciences is handled with host laboratories and the international office.",
+      "partnership": "No specific dual-degree partnership is asserted in this profile. Consult current faculty and international-office information.",
+      "note": "Student membership, supervision, inductions and local access rules apply. A listed facility does not guarantee access.",
+      "sources": [
+        [
+          "Biomedical scientific initiation",
+          "https://ww3.icb.usp.br/ing/scientific-initiation/"
+        ],
+        [
+          "Mathematics scientific initiation",
+          "https://www.ime.usp.br/en/research-innovation/scientific-initiation/"
+        ],
+        ["Biosciences research", "https://ccnint.ib.usp.br/incoming/research"]
+      ],
+      "checkedOn": "2026-11-11"
     }
   ],
   "careers": [

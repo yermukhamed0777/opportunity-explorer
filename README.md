@@ -10,12 +10,14 @@ A place to explore education and career possibilities, build useful skills and k
 
 - Research programmes, scholarships, hackathons and olympiads, with filters, comparisons and deadline reminders.
 - **Search for Universities**: laboratories, undergraduate research, prototyping and distinctive degree partnerships. No score thresholds or admission predictions.
-- **Skills to Develop**: six career paths with technical and transferable skills, tools, projects and verified course links.
+- **Skills for Your Major or Career**: 33 field maps with evidence-based progress, tools, projects and official course links.
 - **Internships and Jobs**: official career sources and individual postings. A source directory is clearly distinguished from a vacancy; missing deadlines are not guessed.
-- An optional account workspace with a saved application tracker, profile and private activities. Activities support notes, dates, categories, priority, progress, filtering and sorting.
+- A private account workspace with a saved application tracker, profile and private activities. Activities support notes, dates, categories, priority, progress, filtering and sorting.
 - A source-grounded assistant for discovery and development plans. Search and AI planning require a confirmed account.
 
-The initial expanded collection contains 23 opportunities, 9 university profiles, 6 skill paths, 11 courses and 9 career sources/postings. Each retains its source and review date. Prices, openings, facilities access and programme conditions can change.
+The initial expanded collection contains 33 programme records, 12 university profiles, 33 field maps, 28 courses, 10 illustrative career pathways and 9 career sources/postings. Some records are directories or closed-cycle preparation watchlists. Each retains its source and review date. Prices, openings, facilities access and programme conditions can change.
+
+See [development workspace architecture and verification](docs/development-workspace.md) for onboarding, profiles, private CV/portfolio documents, reviewed extraction, learning progress, editable time-bounded plans, comparisons and privacy controls.
 
 ## Run locally
 
@@ -57,7 +59,7 @@ Set environment variables in your hosting dashboard or an untracked local file. 
 
 ## Supabase
 
-Create a project, then apply the migrations in order. Run the idempotent `supabase/seed.sql` after reviewing it. Resources require login, while `profiles`, `trackers` and `activities` are restricted to their owners using `auth.uid()` in every policy. No service-role key is used in the browser or required by the application.
+Create a project, then apply the migrations in order. Run the idempotent `supabase/seed.sql` after reviewing it. Resources require login, while `profiles`, `trackers` and `activities` are restricted to their owners using `auth.uid()` in every policy. No server secret is used in the browser. A server-only `SUPABASE_SECRET_KEY` is required solely for the optional account-deletion capability.
 
 The account client supports email/password registration, login, logout, session persistence and reset-password links. Before opening registration publicly, configure these owner settings:
 
@@ -75,6 +77,7 @@ Do not disable email confirmation as a workaround for delivery failures. The UI 
 | `SUPABASE_PUBLISHABLE_KEY` | Public configuration | Browser-safe key; RLS enforces ownership                      |
 | `BLOB_READ_WRITE_TOKEN`    | Server secret        | Private feed and source-review snapshots                      |
 | `CRON_SECRET`              | Server secret        | Scheduled refresh authorization                               |
+| `SUPABASE_SECRET_KEY`      | Server secret        | Enables deletion of the signed-in account only                |
 | `AI_GATEWAY_MODEL`         | Server configuration | Exact `provider/model` ID from the gateway catalog            |
 | `AI_GATEWAY_API_KEY`       | Server secret        | Gateway authentication when deployment OIDC is not configured |
 

@@ -9,7 +9,7 @@ export function safeNext(value, origin) {
     if (opportunity && /^[a-z0-9-]{1,120}$/.test(opportunity))
       safe.searchParams.set('opportunity', opportunity);
     if (
-      /^#(explore|latest|saved|deadlines|universities|skills|careers|activities|assistant|sources)$/.test(
+      /^#(explore|latest|saved|deadlines|universities|skills|careers|activities|assistant|sources|dashboard|onboarding|profile|documents|courses|plan|pathways|finder|privacy)$/.test(
         url.hash,
       )
     )

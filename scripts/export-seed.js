@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 const resources = JSON.parse(readFileSync('data/resources.json'));
 const catalog = JSON.parse(readFileSync('data/opportunities.json'));
+const development = JSON.parse(readFileSync('data/development.json'));
 const quote = (s) => "'" + s.replaceAll("'", "''") + "'";
 const rows = [];
 for (const [kind, key] of [
@@ -24,6 +25,21 @@ for (const item of catalog.opportunities)
         ? 'expired'
         : 'active',
   ]);
+for (const [prefix, kind, items] of [
+  ['map', 'skill', development.skillMaps],
+  ['pathway', 'career', development.pathways],
+  ['programme', 'opportunity', development.opportunities],
+])
+  for (const item of items)
+    rows.push([
+      prefix + ':' + item.id,
+      kind,
+      item,
+      item.checkedOn,
+      item.closed || (item.finalDeadline && item.finalDeadline < today)
+        ? 'expired'
+        : 'active',
+    ]);
 const sql =
   '-- Source-backed public records only. No users, credentials or invented examples.\ninsert into public.resources(id,kind,payload,checked_on,status) values\n' +
   rows

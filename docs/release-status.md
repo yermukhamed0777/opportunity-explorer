@@ -1,13 +1,14 @@
-# Release status — auth and UI update, 11 November 2026
+# Release verification
 
-The original ProspectoAI release was merged as `f9a0a12283f9aa3cbb08057cf0b2a7c3ead1dfd0` and deployed to Production. The production URL opened successfully. No rollback was performed.
+Version 4.0 adds the development workspace without removing original tracker or account data. See [architecture and test boundaries](development-workspace.md) and [auth/domain configuration](auth-routing-and-domains.md).
 
-This update adds explicit login, confirmation and password-reset routes, validates users before loading the workspace, protects the data APIs, removes catalog files from static hosting, and restricts Supabase resource reads to signed-in users. It adds clearer confirmation/error messages, confirmation resend, higher-contrast details, collapsible top filters, urgency badges and a mobile navigation drawer.
+- Local build and 40 automated tests pass, including real PDF/DOCX text extraction and DOM workflows using an in-memory adapter.
+- Transaction-only connected-database tests pass for two-user isolation, foreign document/plan rejection, anonymous grants, private bucket policies and weekly plan budgets. No test users remain.
+- Production dependencies have no npm audit findings at the time of review.
+- Source data and idempotent Supabase seed contain 131 catalog records with source/review metadata. They are not 131 currently open opportunities.
+- Hosted authentication requires confirmation. Custom SMTP, a new canonical custom domain, server-side account deletion credentials and owner inbox/password-change testing remain owner actions.
+- Live model generation, private Storage network operations and the full confirmation/recovery sequence must be marked passed only after an owner-controlled login is used. Configuration flags and local tests do not establish these outcomes.
 
-The production Supabase URL and publishable key match the connected project. The existing account is confirmed; recent auth logs show invalid credentials and email rate limiting. The new resource policy is applied and verified with all 58 resource records retained. All 29 tests, build, formatting, whitespace checks and GitHub CI pass. Browser preview confirmed that direct university navigation goes to login before data loads; protected API calls return 401 and former public catalog files return 404.
+Release procedure: review diff and credentials → save reviewed source through GitHub → pass CI → merge main → deploy that exact merged source with latest environment → compare deployment metadata and source hashes → verify stable production routes and anonymous API denial → complete owner-controlled signed-in checks.
 
-Live auth email delivery, password update, signed-in browser navigation, saved activities and model generation still need a successful owner-controlled session and inbox. The hosted Site URL was verified and exact production/preview callback and reset paths were saved in Supabase. Custom SMTP is not configured; default email templates/delivery remain in use. Automated callback and access-control checks are separate evidence and do not prove the email flow.
-
-A custom domain has not been purchased or activated. Domain attachment was rejected by automated review because ownership was not established. Exact current DNS recommendations, the staged auth allowlist and owner steps are in `auth-routing-and-domains.md`.
-
-The first scheduled source review remains pending. Previous automated policy-isolation/quota checks used a transaction that was rolled back; no persistent synthetic login fixture was created.
+Deployment identifiers belong to the Vercel deployment metadata; use its `githubCommitSha` to identify the exact source revision. Never restore an older Opportunity Explorer deployment to publish this release.
