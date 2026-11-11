@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { authMessage, RECOVERY_PATH } from './auth-flow.js';
 const R = window.PROSPECTO_RESOURCES;
 const $ = (s) => document.querySelector(s);
 const E = (value) =>
@@ -27,8 +27,7 @@ let db,
   profile = {},
   activityStatus = '',
   activityKind = '',
-  activitySort = 'deadline',
-  recoveringPassword = false;
+  activitySort = 'deadline';
 const messages = [];
 let careerExperience = '',
   careerArrangement = '',
@@ -165,7 +164,7 @@ function render(view) {
 }
 window.ProspectoPlatform = {
   render,
-  canEditTracker: () => !user || accountReady,
+  canEditTracker: () => !!user && accountReady,
 };
 function setView(v) {
   activeSearch = '';
@@ -179,9 +178,10 @@ function accountUi(message = '') {
   const panel = $('#account-content');
   panel.innerHTML = user
     ? `<h2 id="account-title">Your private workspace</h2><p>Signed in as <strong>${E(user.email)}</strong>.</p><p>Tracker and activities sync to your account. Guest notes stay separate until you import them. Chat text is sent to the model provider only when you use AI planning; it is not saved as chat history by ProspectoAI.</p><form id="profile-form"><h3>Your direction</h3><label>Name<input name="display_name" maxlength="80" value="${E(profile.display_name || '')}"></label><label>Education level<input name="education_level" maxlength="80" value="${E(profile.education_level || '')}"></label><label>Major / career<input name="major" maxlength="120" value="${E(profile.major || '')}"></label><label>Goals<textarea name="career_goal" maxlength="500">${E(profile.career_goal || '')}</textarea></label><label>Existing skills<textarea name="skills" maxlength="1000">${E(profile.skills || '')}</textarea></label><label>Preferred location<input name="preferred_location" maxlength="120" value="${E(profile.preferred_location || '')}"></label><label>Hours per week<input name="hours_per_week" type="number" min="1" max="80" value="${E(profile.hours_per_week || '')}"></label><label>Budget<input name="budget" maxlength="120" value="${E(profile.budget || '')}"></label><label>Work / study preference<select name="arrangement">${options(['Remote', 'Hybrid', 'On-site', 'Flexible'], profile.arrangement || '', 'Not specified')}</select></label><button class="secondary">Save profile</button></form><button id="import-guest" class="secondary">Import this browser’s guest tracker</button><button id="sign-out" class="primary">Sign out</button><p id="account-status" role="status">${E(message)}</p>`
-    : `<h2 id="account-title">Keep your next steps.</h2><p>Sign in to sync your tracker, activities and notes across devices.</p><form id="auth-form"><label>Email<input id="auth-email" name="email" type="email" autocomplete="email" required maxlength="254"></label><label>Password<input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="10" maxlength="128"></label><div class="auth-actions"><button class="primary" name="action" value="login">Sign in</button><button class="secondary" name="action" value="signup">Create account</button></div></form><button class="text-button" id="forgot-password">Reset password by email</button><p class="resource-note">New accounts use email confirmation. Follow the message from Supabase before signing in. Guest browsing remains available.</p><p id="account-status" role="status">${E(message)}</p>`;
+    : '<p>Redirecting to sign in…</p>';
 }
 $('#account-button').addEventListener('click', () => {
+  if (!user) return location.assign('/login');
   accountUi();
   $('#account-dialog').showModal();
 });
@@ -189,36 +189,28 @@ $('#account-dialog .account-close').addEventListener('click', () =>
   $('#account-dialog').close(),
 );
 async function initialize() {
-  try {
-    const response = await fetch('/api/config');
-    if (!response.ok) throw Error('Account service unavailable.');
-    config = await response.json();
-    if (!config.supabaseUrl || !config.supabaseKey)
-      throw Error('Account service is not configured.');
-    db = createClient(config.supabaseUrl, config.supabaseKey);
-    db.auth.onAuthStateChange((event, session) => {
-      if (event === 'PASSWORD_RECOVERY') {
-        recoveringPassword = true;
-        setTimeout(() => recoveryForm(), 0);
-        return;
-      }
-      if (event === 'TOKEN_REFRESHED') return;
-      setTimeout(() => loadAccount(session?.user || null), 0);
-    });
-    const {
-      data: { session },
-      error,
-    } = await db.auth.getSession();
-    if (error) throw error;
-    await loadAccount(session?.user || null);
-  } catch {
-    $('#account-button').textContent = 'Accounts temporarily unavailable';
-  }
+  config = window.ProspectoAuth.config;
+  db = window.ProspectoAuth.client;
+  db.auth.onAuthStateChange((event, session) => {
+    if (event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') return;
+    if (!session) return location.replace('/login');
+    setTimeout(() => loadAccount(session.user), 0);
+  });
+  await loadAccount(window.ProspectoAuth.user);
   const hash = location.hash.slice(1);
   if (
-    ['skills', 'careers', 'universities', 'activities', 'assistant'].includes(
-      hash,
-    )
+    [
+      'explore',
+      'latest',
+      'saved',
+      'deadlines',
+      'skills',
+      'careers',
+      'universities',
+      'activities',
+      'assistant',
+      'sources',
+    ].includes(hash)
   )
     setView(hash);
 }
@@ -275,7 +267,7 @@ async function loadAccount(nextUser) {
   activities = tasks.data || [];
   if (['activities', 'assistant'].includes(resourcesView))
     render(resourcesView);
-  if ($('#account-dialog').open && !recoveringPassword)
+  if ($('#account-dialog').open)
     accountUi('Signed in. Your private workspace is ready.');
 }
 function queueTracker(snapshot) {
@@ -401,7 +393,7 @@ function renderAssistant() {
       'Meet your next possibility.',
       'Tell ProspectoAI what you want to learn or work on. Get relevant options and practical next steps from the researched collection.',
     ) +
-    `<div class="assistant-layout"><aside class="assistant-profile"><h2>Your direction</h2><label>Stage<select id="assistant-stage">${options(['High school junior', 'Other high school', 'Pre-university gap year', 'University student', 'Master’s applicant'], '', 'Any stage')}</select></label><label>Field<select id="assistant-field">${options(fieldOptions, '', 'Any field')}</select></label><label>Existing skills<input id="assistant-skills" maxlength="300" value="${E(profile.skills || '')}"></label><label>Hours per week<input id="assistant-hours" type="number" min="1" max="80" value="${E(profile.hours_per_week || '')}"></label><label>Budget<input id="assistant-budget" maxlength="120" value="${E(profile.budget || '')}"></label><label>Preferred location<input id="assistant-location" maxlength="120" value="${E(profile.preferred_location || '')}"></label><label>Preference<select id="assistant-arrangement">${options(['Remote', 'Hybrid', 'On-site', 'Flexible'], profile.arrangement || '', 'Any arrangement')}</select></label><label>Your goal<input id="assistant-goal" maxlength="500" value="${E(profile.career_goal || '')}"></label><p>Optional filters narrow the catalog. Your message and chosen filters are sent for AI generation after you sign in.</p><p>10 AI requests per account per day, subject to the site’s daily allowance. If generation is unavailable, clearly labelled catalog search remains available.</p><button class="text-button" id="clear-chat">Clear this conversation</button></aside><div class="assistant-chat"><div id="chat-messages" class="chat-messages" aria-live="polite"></div><div class="prompt-suggestions"><button data-prompt="Find research opportunities for a high-school student interested in physics">High-school research</button><button data-prompt="Help me plan skills and internships in materials and semiconductors">Materials & semiconductors</button><button data-prompt="Find universities with laboratory and research opportunities">University research</button></div><form id="chat-form"><label for="chat-input">What would you like to explore?</label><textarea id="chat-input" maxlength="1500" required rows="3" placeholder="I’m a first-year engineering student. What could I prepare for next summer?"></textarea><button class="primary" id="chat-send">Find options & make a plan →</button></form><p class="resource-note">Answers can be wrong. Verify sources before acting. Chats are kept in this tab only and are not submitted as applications. ${user ? 'AI planning is available after account verification.' : 'Sign in for AI planning; guest mode uses catalog search.'}</p></div></div>`;
+    `<div class="assistant-layout"><aside class="assistant-profile"><h2>Your direction</h2><label>Stage<select id="assistant-stage">${options(['High school junior', 'Other high school', 'Pre-university gap year', 'University student', 'Master’s applicant'], '', 'Any stage')}</select></label><label>Field<select id="assistant-field">${options(fieldOptions, '', 'Any field')}</select></label><label>Existing skills<input id="assistant-skills" maxlength="300" value="${E(profile.skills || '')}"></label><label>Hours per week<input id="assistant-hours" type="number" min="1" max="80" value="${E(profile.hours_per_week || '')}"></label><label>Budget<input id="assistant-budget" maxlength="120" value="${E(profile.budget || '')}"></label><label>Preferred location<input id="assistant-location" maxlength="120" value="${E(profile.preferred_location || '')}"></label><label>Preference<select id="assistant-arrangement">${options(['Remote', 'Hybrid', 'On-site', 'Flexible'], profile.arrangement || '', 'Any arrangement')}</select></label><label>Your goal<input id="assistant-goal" maxlength="500" value="${E(profile.career_goal || '')}"></label><p>Optional filters narrow the catalog. Your message and chosen filters are sent for AI generation after you sign in.</p><p>10 AI requests per account per day, subject to the site’s daily allowance. If generation is unavailable, clearly labelled catalog search remains available.</p><button class="text-button" id="clear-chat">Clear this conversation</button></aside><div class="assistant-chat"><div id="chat-messages" class="chat-messages" aria-live="polite"></div><div class="prompt-suggestions"><button data-prompt="Find research opportunities for a high-school student interested in physics">High-school research</button><button data-prompt="Help me plan skills and internships in materials and semiconductors">Materials & semiconductors</button><button data-prompt="Find universities with laboratory and research opportunities">University research</button></div><form id="chat-form"><label for="chat-input">What would you like to explore?</label><textarea id="chat-input" maxlength="1500" required rows="3" placeholder="I’m a first-year engineering student. What could I prepare for next summer?"></textarea><button class="primary" id="chat-send">Find options & make a plan →</button></form><p class="resource-note">Answers can be wrong. Verify sources before acting. Chats are kept in this tab only and are not submitted as applications. ${user ? 'AI planning is available after account verification.' : 'AI planning uses the researched collection. Verify every provider source.'}</p></div></div>`;
   renderMessages();
 }
 function renderMessages() {
@@ -559,19 +551,7 @@ document.addEventListener('click', async (e) => {
   if (e.target.id === 'activities-login') {
     $('#account-button').click();
   }
-  if (e.target.id === 'forgot-password') {
-    const email = $('#auth-email').value.trim();
-    if (!email) {
-      $('#account-status').textContent = 'Enter your email first.';
-      return;
-    }
-    const { error } = await db.auth.resetPasswordForEmail(email, {
-      redirectTo: location.origin + '/#recovery',
-    });
-    $('#account-status').textContent = error
-      ? error.message
-      : 'If the account exists, check your email for a secure password reset link.';
-  }
+  if (e.target.id === 'forgot-password') location.assign(RECOVERY_PATH);
   if (e.target.id === 'clear-chat') {
     messages.length = 0;
     renderMessages();
@@ -601,7 +581,7 @@ document.addEventListener('click', async (e) => {
       return;
     }
     await loadAccount(null);
-    accountUi('Signed out. Guest mode restored.');
+    location.replace('/login');
   }
   if (e.target.id === 'import-guest' && user) {
     try {
@@ -666,26 +646,7 @@ document.addEventListener('click', async (e) => {
     else renderActivities();
   }
 });
-function recoveryForm() {
-  $('#account-content').innerHTML =
-    '<h2 id="account-title">Set a new password</h2><form id="recovery-form"><label>New password<input id="new-password" type="password" autocomplete="new-password" minlength="10" maxlength="128" required></label><button class="primary">Save new password</button></form><p id="account-status" role="status"></p>';
-  $('#account-dialog').showModal();
-}
 document.addEventListener('submit', async (e) => {
-  if (e.target.id === 'recovery-form') {
-    e.preventDefault();
-    const { error } = await db.auth.updateUser({
-      password: $('#new-password').value,
-    });
-    $('#account-status').textContent = error
-      ? error.message
-      : 'Password updated. You can now sign in with it.';
-    if (!error) {
-      recoveringPassword = false;
-      e.target.reset();
-    }
-    return;
-  }
   if (e.target.id === 'profile-form') {
     e.preventDefault();
     if (!user || !accountReady) {
@@ -707,41 +668,6 @@ document.addEventListener('submit', async (e) => {
     return;
   }
 
-  if (e.target.id === 'auth-form') {
-    e.preventDefault();
-    const status = $('#account-status');
-    if (!db) {
-      status.textContent = 'Account service is temporarily unavailable.';
-      return;
-    }
-    const email = $('#auth-email').value.trim(),
-      password = $('#auth-password').value;
-    const signup = e.submitter?.value === 'signup';
-    e.target.querySelectorAll('button').forEach((b) => (b.disabled = true));
-    status.textContent = signup ? 'Creating your account…' : 'Signing in…';
-    try {
-      const result = signup
-        ? await db.auth.signUp({
-            email,
-            password,
-            options: { emailRedirectTo: location.origin + '/' },
-          })
-        : await db.auth.signInWithPassword({ email, password });
-      if (result.error) throw result.error;
-      if (result.data.session) {
-        await loadAccount(result.data.user);
-        accountUi('Signed in. Your private workspace is ready.');
-      } else
-        status.textContent =
-          'Check your email to confirm the account, then sign in. If delivery is unavailable, the site owner needs to configure Supabase email delivery.';
-    } catch (err) {
-      status.textContent = err.message;
-    } finally {
-      document
-        .querySelectorAll('#auth-form button')
-        .forEach((b) => (b.disabled = false));
-    }
-  }
   if (e.target.id === 'activity-form') {
     e.preventDefault();
     const form = e.target;
@@ -782,7 +708,7 @@ document.addEventListener('submit', async (e) => {
         arrangement: $('#assistant-arrangement').value,
         goal: $('#assistant-goal').value,
       };
-      const response = await fetch('/api/chat', {
+      const response = await window.ProspectoAuth.fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -828,7 +754,7 @@ document.addEventListener('prospecto-renewal-view', async () => {
   const target = $('#renewal-summary');
   if (!target) return;
   try {
-    const response = await fetch('/api/renewal');
+    const response = await window.ProspectoAuth.fetch('/api/renewal');
     const report = await response.json();
     if (!response.ok) throw Error(report.error);
     if (!target.isConnected) return;
@@ -848,4 +774,59 @@ document.addEventListener('prospecto-renewal-view', async () => {
       target.innerHTML =
         '<h2>Weekly source review</h2><p>The review report is unavailable. Existing listings and their original verification dates are retained.</p>';
   }
+});
+
+// A small-screen drawer keeps the full navigation usable without taking list width.
+const navigation = $('#workspace-navigation');
+const navToggle = $('#nav-toggle');
+function closeNavigation() {
+  document.body.classList.remove('navigation-open');
+  $('#nav-backdrop').hidden = true;
+  navToggle.setAttribute('aria-expanded', 'false');
+  $('.main-shell').inert = false;
+  navigation.removeAttribute('role');
+  navigation.removeAttribute('aria-modal');
+}
+navToggle.addEventListener('click', () => {
+  document.body.classList.add('navigation-open');
+  $('#nav-backdrop').hidden = false;
+  navToggle.setAttribute('aria-expanded', 'true');
+  $('.main-shell').inert = true;
+  navigation.setAttribute('role', 'dialog');
+  navigation.setAttribute('aria-modal', 'true');
+  navigation.setAttribute('aria-label', 'Workspace navigation');
+  $('#nav-close').focus();
+});
+for (const id of ['nav-close', 'nav-backdrop'])
+  $('#' + id).addEventListener('click', () => {
+    closeNavigation();
+    navToggle.focus();
+  });
+navigation.addEventListener('click', (event) => {
+  if (event.target.closest('button[data-view]')) closeNavigation();
+});
+document.addEventListener('keydown', (event) => {
+  if (!document.body.classList.contains('navigation-open')) return;
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    closeNavigation();
+    navToggle.focus();
+  }
+  if (event.key === 'Tab') {
+    const items = [...navigation.querySelectorAll('a,button')].filter(
+      (el) => el.getClientRects().length,
+    );
+    const first = items[0],
+      last = items.at(-1);
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) closeNavigation();
 });

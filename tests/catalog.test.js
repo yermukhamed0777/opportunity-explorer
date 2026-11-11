@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import catalogTools from '../lib/catalog.cjs';
-const catalog = JSON.parse(readFileSync('dist/opportunities.json', 'utf8'));
+const catalog = JSON.parse(readFileSync('data/opportunities.json', 'utf8'));
 const copy = () => structuredClone(catalog);
 
 test('the full catalog validates without changing source data', () => {

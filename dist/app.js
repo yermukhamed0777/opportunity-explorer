@@ -385,7 +385,7 @@
     return `<div class="fact"><div class="fact-label">${icon(i)}${label}</div><div class="fact-value">${esc(value)}</div>${note ? `<p class="fact-note">${esc(note)}</p>` : ''}</div>`;
   }
   function card(o) {
-    return `<article class="opp-card ${o.type.toLowerCase().replaceAll(' ', '-')}" data-id="${o.id}"><header class="card-heading"><div class="org-icon" aria-hidden="true">${esc(o.short)}</div><div class="card-title"><span class="type-tag">${esc(o.type)} · ${esc(o.cycle)}</span><h2><button class="title-button" data-detail="${o.id}">${esc(o.name)}</button></h2><div class="org-name">${esc(o.org)}</div></div><button class="bookmark ${saved.has(o.id) ? 'saved' : ''}" data-save="${o.id}" aria-label="${saved.has(o.id) ? 'Remove' : 'Save'} ${esc(o.name)}${saved.has(o.id) ? ' from shortlist' : ' to shortlist'}" aria-pressed="${saved.has(o.id)}">${icon('bookmark')}</button></header><p class="card-description">${esc(o.description)}</p><div class="status-row">${status(o)}</div><div class="eligibility-block"><div class="fact-label">${icon('people')}Who can apply</div><p>${esc(o.eligibility)}</p></div><div class="card-facts">${fact('Next deadline', o.deadline, 'calendar', o.deadlineDetail)}${fact(o.type === 'Scholarship' ? 'Funding & costs' : 'Participation cost', o.cost, 'coin', o.costNote)}${fact('Location & format', o.location, 'pin', o.formats.join(' / '))}${fact('Time & team', o.effort, 'people', o.team)}</div><div class="card-caution"><strong>Worth checking</strong><p>${esc(o.caution)}</p></div>${view === 'saved' ? trackerPanel(o) : ''}<div class="checked-stamp">Reviewed ${esc(dateLabel(o.checkedOn || window.CHECKED_ON))}</div><div class="card-bottom"><label class="check-label compare-check"><input type="checkbox" data-compare="${o.id}" ${compare.has(o.id) ? 'checked' : ''} aria-label="Compare ${esc(o.name)}">Compare</label><div class="card-links"><a href="${esc(safeLink(o.sources[0][1]))}" target="_blank" rel="noopener noreferrer">Provider source ↗</a><button class="details-btn" data-detail="${o.id}">Full details & sources →</button></div></div></article>`;
+    return `<article class="opp-card ${o.type.toLowerCase().replaceAll(' ', '-')}" data-id="${o.id}"><header class="card-heading"><div class="org-icon" aria-hidden="true">${esc(o.short)}</div><div class="card-title"><span class="type-tag">${esc(o.type)} · ${esc(o.cycle)}</span><h2><button class="title-button" data-detail="${o.id}">${esc(o.name)}</button></h2><div class="org-name">${esc(o.org)}</div></div><button class="bookmark ${saved.has(o.id) ? 'saved' : ''}" data-save="${o.id}" aria-label="${saved.has(o.id) ? 'Remove' : 'Save'} ${esc(o.name)}${saved.has(o.id) ? ' from shortlist' : ' to shortlist'}" aria-pressed="${saved.has(o.id)}">${icon('bookmark')}</button></header><p class="card-description">${esc(o.description)}</p><div class="status-row">${status(o)}</div>${deadlineBadge(o)}<div class="eligibility-block"><div class="fact-label">${icon('people')}Who can apply</div><p>${esc(o.eligibility)}</p></div><div class="card-facts">${fact('Next deadline', o.deadline, 'calendar', o.deadlineDetail)}${fact(o.type === 'Scholarship' ? 'Funding & costs' : 'Participation cost', o.cost, 'coin', o.costNote)}${fact('Location & format', o.location, 'pin', o.formats.join(' / '))}${fact('Time & team', o.effort, 'people', o.team)}</div><div class="card-caution"><strong>Worth checking</strong><p>${esc(o.caution)}</p></div>${view === 'saved' ? trackerPanel(o) : ''}<div class="checked-stamp">Reviewed ${esc(dateLabel(o.checkedOn || window.CHECKED_ON))}</div><div class="card-bottom"><label class="check-label compare-check"><input type="checkbox" data-compare="${o.id}" ${compare.has(o.id) ? 'checked' : ''} aria-label="Compare ${esc(o.name)}">Compare</label><div class="card-links"><a href="${esc(safeLink(o.sources[0][1]))}" target="_blank" rel="noopener noreferrer">Provider source ↗</a><button class="details-btn" data-detail="${o.id}">Full details & sources →</button></div></div></article>`;
   }
   function deadlineItem(o) {
     return `<article class="deadline-item"><div class="deadline-date">${esc(o.deadline)}</div><div><h2><button class="title-button" data-detail="${o.id}">${esc(o.name)}</button></h2><div class="status-row">${status(o)}</div><p>${esc(o.deadlineDetail)}</p></div><button class="details-btn" data-detail="${o.id}">Details →</button></article>`;
@@ -453,6 +453,17 @@
       .join(' · ');
     $('#compare-btn').disabled = compare.size < 2;
     document.body.style.paddingBottom = compare.size ? '100px' : '';
+  }
+  function deadlineBadge(o) {
+    if (!o.deadlineConfirmed || !o.finalDeadline) return '';
+    const days = Math.ceil(
+      (Date.parse(o.finalDeadline + 'T00:00:00Z') -
+        Date.parse(today + 'T00:00:00Z')) /
+        86400000,
+    );
+    return days >= 0 && days <= 14
+      ? `<span class="deadline-badge ${days <= 7 ? 'urgent' : 'soon'}">${days === 0 ? 'Due today' : days + ' days left'} · ${esc(dateLabel(o.finalDeadline))}</span>`
+      : '';
   }
   function render() {
     const platform = [
@@ -777,7 +788,7 @@
   }
   async function loadFeed() {
     try {
-      const response = await fetch('/api/discover', {
+      const response = await window.ProspectoAuth.fetch('/api/discover', {
         headers: { Accept: 'application/json' },
         signal: AbortSignal.timeout(25000),
       });
@@ -788,15 +799,7 @@
       feed = json;
       feedState = 'ready';
     } catch {
-      try {
-        const response = await fetch('/feed-snapshot.json');
-        if (!response.ok) throw new Error('No fallback');
-        feed = await response.json();
-        feedFallback = true;
-        feedState = 'ready';
-      } catch {
-        feedState = 'error';
-      }
+      feedState = 'error';
     }
     if (view === 'latest' || view === 'sources') render();
     else

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#173f34" />
-    <title>ProspectoAI — Scholarships, Research & Competitions</title>
+    <title>ProspectoAI — Scholarships, Research &amp; Competitions</title>
     <meta
       name="description"
       content="Find and compare scholarships, research programs, hackathons and olympiads. Clear eligibility, funding, deadlines and automatically collected source updates."
@@ -19,16 +19,28 @@
     <link rel="icon" type="image/svg+xml" href="/assets/mark.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta property="og:site_name" content="ProspectoAI" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="platform.css" />
-    <script src="data.js" defer></script>
-    <script src="resource-data.js" defer></script>
-    <script src="app.js" defer></script>
-    <script src="platform.js" defer></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/platform.css" />
+    <script src="/bootstrap.js" defer=""></script>
   </head>
-  <body>
+  <body class="auth-pending">
+    <p id="boot-status" role="status">Checking your session…</p>
+    <noscript
+      ><p>
+        JavaScript is needed. <a href="/login">Sign in to ProspectoAI</a>.
+      </p></noscript
+    >
+    <button
+      id="nav-backdrop"
+      class="nav-backdrop"
+      aria-label="Close navigation"
+      hidden=""
+    ></button>
     <a class="skip" href="#results">Skip to opportunities</a>
-    <aside class="sidebar">
+    <aside class="sidebar" id="workspace-navigation">
+      <button id="nav-close" class="nav-close" aria-label="Close navigation">
+        ×
+      </button>
       <a href="#" class="brand" aria-label="ProspectoAI home"
         ><img
           src="/assets/logo-dark.svg"
@@ -39,7 +51,7 @@
       <div class="workspace-label">FIND YOUR NEXT STEP</div>
       <nav class="main-nav" aria-label="Workspace">
         <button data-view="explore" class="nav-item active">
-          <i data-icon="compass"></i><span>Explore & compare</span
+          <i data-icon="compass"></i><span>Explore &amp; compare</span
           ><span id="nav-total" class="nav-count">23</span>
         </button>
         <button data-view="latest" class="nav-item">
@@ -60,7 +72,7 @@
           <i data-icon="spark"></i><span>Skills to Develop</span>
         </button>
         <button data-view="careers" class="nav-item">
-          <i data-icon="compass"></i><span>Internships & jobs</span>
+          <i data-icon="compass"></i><span>Internships &amp; jobs</span>
         </button>
         <button data-view="activities" class="nav-item">
           <i data-icon="check"></i><span>My activities</span>
@@ -69,7 +81,7 @@
           <i data-icon="spark"></i><span>Ask ProspectoAI</span>
         </button>
         <button data-view="sources" class="nav-item">
-          <i data-icon="globe"></i><span>Sources & review queue</span>
+          <i data-icon="globe"></i><span>Sources &amp; review queue</span>
         </button>
       </nav>
       <div class="sidebar-note">
@@ -88,7 +100,7 @@
           <i data-icon="bookmark"></i
           ><span
             >Your shortlist stays private<small
-              >Guest mode · sign in to sync</small
+              >Checking your account…</small
             ></span
           >
         </div>
@@ -96,6 +108,14 @@
     </aside>
     <div class="main-shell">
       <header class="topbar">
+        <button
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-controls="workspace-navigation"
+          aria-expanded="false"
+        >
+          ☰ Menu
+        </button>
         <div class="breadcrumb">
           ProspectoAI <span>/</span
           ><strong id="breadcrumb-title">Explore</strong>
@@ -103,7 +123,7 @@
         <button id="account-button" class="account-button">
           Sign in / create account</button
         ><span class="public-pill"
-          ><span class="online-dot"></span>Open to everyone</span
+          ><span class="online-dot"></span>Private workspace</span
         >
       </header>
       <main>
@@ -155,7 +175,7 @@
             See automatic source updates <span>→</span>
           </button>
         </section>
-        <section id="platform-panel" hidden aria-live="polite"></section>
+        <section id="platform-panel" hidden="" aria-live="polite"></section>
         <div class="search-row">
           <div class="search-wrap">
             <i data-icon="search"></i
@@ -180,113 +200,140 @@
           ><button data-type="Research challenge">Research challenges</button>
         </div>
         <div class="explore-layout">
-          <aside class="filters" id="filters" aria-label="Filter opportunities">
-            <div class="filters-heading">
-              <h2>Refine your search</h2>
-              <button id="reset">Reset</button>
-            </div>
-            <div id="curated-filters">
-              <label class="filter-label" for="stage">Who is applying?</label
-              ><select id="stage">
-                <option value="">All student stages</option>
-                <option>High school junior</option>
-                <option>Other high school</option>
-                <option>Pre-university gap year</option>
-                <option>Undergraduate applicant</option>
-                <option>University student</option>
-                <option>Master’s applicant</option>
-              </select>
-              <p class="filter-help">
-                Check the full eligibility text: age, nationality,
-                qualifications and school rules may also apply.
-              </p>
-              <label class="filter-label" for="field">Field of interest</label
-              ><select id="field">
-                <option value="">All fields</option>
-              </select>
-              <label class="filter-label" for="location">Where?</label
-              ><select id="location">
-                <option value="">Anywhere</option>
-              </select>
-              <fieldset>
-                <legend>Format</legend>
+          <details class="filters" id="filters">
+            <summary>
+              Refine your search
+              <span>Stage, field, location &amp; deadlines</span>
+            </summary>
+            <div class="filter-body">
+              <div class="filters-heading">
+                <h2>Refine your search</h2>
+                <button id="reset">Reset</button>
+              </div>
+              <div id="curated-filters">
+                <div class="filter-group">
+                  <label class="filter-label" for="stage"
+                    >Who is applying?</label
+                  ><select id="stage">
+                    <option value="">All student stages</option>
+                    <option>High school junior</option>
+                    <option>Other high school</option>
+                    <option>Pre-university gap year</option>
+                    <option>Undergraduate applicant</option>
+                    <option>University student</option>
+                    <option>Master’s applicant</option>
+                  </select>
+                  <p class="filter-help">
+                    Check the full eligibility text: age, nationality,
+                    qualifications and school rules may also apply.
+                  </p>
+                </div>
+
+                <div class="filter-group">
+                  <label class="filter-label" for="field"
+                    >Field of interest</label
+                  ><select id="field">
+                    <option value="">All fields</option>
+                  </select>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label" for="location">Where?</label
+                  ><select id="location">
+                    <option value="">Anywhere</option>
+                  </select>
+                </div>
+                <fieldset>
+                  <legend>Format</legend>
+                  <label class="check-label"
+                    ><input
+                      type="checkbox"
+                      name="format"
+                      value="Online"
+                    />Online available</label
+                  ><label class="check-label"
+                    ><input type="checkbox" name="format" value="In person" />In
+                    person</label
+                  >
+                </fieldset>
+                <div class="filter-group">
+                  <label class="filter-label" for="cost"
+                    >Cost &amp; funding</label
+                  ><select id="cost">
+                    <option value="">Any cost or funding</option>
+                    <option value="Funded">Scholarships / funded study</option>
+                    <option value="Free">Free program / entry</option>
+                    <option value="Aid">Financial aid available</option>
+                    <option value="Paid">Paid participation</option>
+                    <option value="Unknown">Unverified / varies</option>
+                  </select>
+                  <p class="filter-help">
+                    A free place may still involve travel or application costs.
+                  </p>
+                </div>
+
+                <div class="filter-group">
+                  <label class="filter-label" for="access">Entry route</label
+                  ><select id="access">
+                    <option value="">All entry routes</option>
+                    <option>International</option>
+                    <option>Country selection</option>
+                    <option>Qualifying route</option>
+                    <option>Hong Kong schools</option>
+                    <option>Local requirements</option>
+                    <option>Institution nomination</option>
+                    <option>Offer-holder application</option>
+                  </select>
+                </div>
+                <fieldset class="date-fieldset">
+                  <legend>Deadline window</legend>
+                  <label for="date-from">From</label
+                  ><input type="date" id="date-from" /><label for="date-to"
+                    >Through</label
+                  ><input type="date" id="date-to" /><label class="check-label"
+                    ><input
+                      id="include-unknown"
+                      type="checkbox"
+                      checked=""
+                    />Include unknown dates</label
+                  >
+                </fieldset>
                 <label class="check-label"
-                  ><input type="checkbox" name="format" value="Online" />Online
-                  available</label
-                ><label class="check-label"
-                  ><input type="checkbox" name="format" value="In person" />In
-                  person</label
-                >
-              </fieldset>
-              <label class="filter-label" for="cost">Cost & funding</label
-              ><select id="cost">
-                <option value="">Any cost or funding</option>
-                <option value="Funded">Scholarships / funded study</option>
-                <option value="Free">Free program / entry</option>
-                <option value="Aid">Financial aid available</option>
-                <option value="Paid">Paid participation</option>
-                <option value="Unknown">Unverified / varies</option>
-              </select>
-              <p class="filter-help">
-                A free place may still involve travel or application costs.
-              </p>
-              <label class="filter-label" for="access">Entry route</label
-              ><select id="access">
-                <option value="">All entry routes</option>
-                <option>International</option>
-                <option>Country selection</option>
-                <option>Qualifying route</option>
-                <option>Hong Kong schools</option>
-                <option>Local requirements</option>
-                <option>Institution nomination</option>
-                <option>Offer-holder application</option>
-              </select>
-              <fieldset class="date-fieldset">
-                <legend>Deadline window</legend>
-                <label for="date-from">From</label
-                ><input type="date" id="date-from" /><label for="date-to"
-                  >Through</label
-                ><input type="date" id="date-to" /><label class="check-label"
-                  ><input id="include-unknown" type="checkbox" checked />Include
-                  unknown dates</label
-                >
-              </fieldset>
-              <label class="check-label"
-                ><input id="include-closed" type="checkbox" />Show closed
-                opportunities</label
-              ><label class="check-label confirmed-only"
-                ><input id="confirmed-only" type="checkbox" />Confirmed deadline
-                only</label
-              >
-            </div>
-            <div id="feed-filters" hidden>
-              <label class="filter-label" for="feed-source">Source</label
-              ><select id="feed-source">
-                <option value="">All sources</option>
-                <option value="studyqa">StudyQA / Стадика</option>
-                <option value="noborders">No Borders Abroad</option>
-                <option value="scholars4dev">Scholars4Dev</option>
-                <option value="opportunitydesk">Opportunity Desk</option>
-              </select>
-              <p class="filter-help">
-                These are automatically collected announcements. Use the source
-                and provider links to verify the actual requirements.
-              </p>
-              <div class="filter-source-links">
-                <a
-                  href="https://t.me/studyqa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >StudyQA on Telegram ↗</a
-                ><a
-                  href="https://t.me/noborders_abroad"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >No Borders Abroad ↗</a
+                  ><input id="include-closed" type="checkbox" />Show closed
+                  opportunities</label
+                ><label class="check-label confirmed-only"
+                  ><input id="confirmed-only" type="checkbox" />Confirmed
+                  deadline only</label
                 >
               </div>
+              <div id="feed-filters" hidden="">
+                <label class="filter-label" for="feed-source">Source</label
+                ><select id="feed-source">
+                  <option value="">All sources</option>
+                  <option value="studyqa">StudyQA / Стадика</option>
+                  <option value="noborders">No Borders Abroad</option>
+                  <option value="scholars4dev">Scholars4Dev</option>
+                  <option value="opportunitydesk">Opportunity Desk</option>
+                </select>
+                <p class="filter-help">
+                  These are automatically collected announcements. Use the
+                  source and provider links to verify the actual requirements.
+                </p>
+                <div class="filter-source-links">
+                  <a
+                    href="https://t.me/studyqa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >StudyQA on Telegram ↗</a
+                  ><a
+                    href="https://t.me/noborders_abroad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >No Borders Abroad ↗</a
+                  >
+                </div>
+              </div>
             </div>
-          </aside>
+          </details>
           <section id="results" class="results" tabindex="-1">
             <div class="results-toolbar">
               <div>
@@ -309,14 +356,14 @@
               id="tracker-tools"
               class="tracker-tools"
               aria-label="Your tracker tools"
-              hidden
+              hidden=""
             >
               <div class="tracker-heading">
                 <div>
                   <h2>Your application workspace</h2>
                   <p>
-                    Stored in this browser. Export a private backup to keep or
-                    move your notes.
+                    Saved to your private account. Export a backup to keep a
+                    copy.
                   </p>
                 </div>
                 <div class="backup-actions">
@@ -347,10 +394,10 @@
                 opportunities. Backups contain your notes: keep them private.
               </p>
             </section>
-            <div id="feed-notice" class="feed-notice" hidden></div>
+            <div id="feed-notice" class="feed-notice" hidden=""></div>
             <div id="active-filters"></div>
             <div id="card-grid" class="card-grid"></div>
-            <div id="empty" class="empty" hidden>
+            <div id="empty" class="empty" hidden="">
               <i data-icon="search"></i>
               <h2>No matching opportunities</h2>
               <p id="empty-text">Try a broader filter or another search.</p>
@@ -370,7 +417,7 @@
         </footer>
       </main>
     </div>
-    <div id="compare-tray" class="compare-tray" hidden>
+    <div id="compare-tray" class="compare-tray" hidden="">
       <div>
         <i data-icon="columns"></i><strong id="compare-count">1 selected</strong
         ><span id="compare-names"></span>
