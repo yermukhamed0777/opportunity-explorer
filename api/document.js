@@ -1,4 +1,5 @@
 import { Worker } from 'node:worker_threads';
+import '../lib/document-parser.js'; // Include the worker's parser dependencies in the serverless trace.
 import { requireUser } from '../lib/auth.js';
 export function processFile(bytes, name) {
   return new Promise((resolve, reject) => {

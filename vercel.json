@@ -7,12 +7,16 @@
   "functions": {
     "api/*.js": {
       "maxDuration": 60
+    },
+    "api/document.js": {
+      "maxDuration": 60,
+      "includeFiles": "lib/**"
     }
   },
   "crons": [
     {
       "path": "/api/refresh",
-      "schedule": "0 0 * * 1"
+      "schedule": "0 1 * * *"
     }
   ],
   "rewrites": [
@@ -38,6 +42,30 @@
     },
     {
       "source": "/search",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admissions",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/professional-pathways",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/research",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/funding",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/my-plan",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/system-health",
       "destination": "/index.html"
     }
   ],

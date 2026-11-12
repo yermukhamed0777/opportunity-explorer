@@ -21,3 +21,4 @@ jobs:
       - run: npm run check
       - run: git diff --exit-code -- dist/data.js
       - run: npm run format:check
+      - run: npm audit --omit=dev --audit-level=low

@@ -1,5 +1,9 @@
 # ProspectoAI
 
+ProspectoAI connects opportunity discovery, career skills, public professional pathways, university research and private development planning. The current release is version 5. See [release evidence and limits](docs/release-status.md) and [authentication/domain configuration](docs/auth-routing-and-domains.md).
+
+The expansion adds a white-lion assistant identity, grounded source retrieval, 280 official learning resources, 100 editorial projects, research ideas, evidence comparisons, private admissions folders, notifications, and administrator review/history. Content examples are labelled and uncertain external records remain staged.
+
 A place to explore education and career possibilities, build useful skills and keep track of the next step.
 
 [Open the website](https://opportunity-explorer-ruddy.vercel.app/)

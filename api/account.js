@@ -1,3 +1,4 @@
+import { removePrivateDocuments } from '../lib/account-cleanup.js';
 import { createClient } from '@supabase/supabase-js';
 import { publicAuthConfig, requireUser } from '../lib/auth.js';
 export default async function handler(req, res) {
@@ -35,19 +36,13 @@ export default async function handler(req, res) {
       auth: { persistSession: false, autoRefreshToken: false },
     });
     const bucket = admin.storage.from('profile-documents');
-    for (let batch = 0; batch < 100; batch++) {
-      const { data: files, error: listError } = await bucket.list(
-        auth.user.id,
-        { limit: 100 },
-      );
-      if (listError) throw listError;
-      if (!files?.length) break;
-      const { error: removeError } = await bucket.remove(
-        files.map((x) => auth.user.id + '/' + x.name),
-      );
-      if (removeError) throw removeError;
-      if (batch === 99) throw Error('File cleanup requires owner assistance.');
-    }
+    await removePrivateDocuments(bucket, auth.user.id);
+    const token = req.headers.authorization.match(/^Bearer (\S+)$/)[1];
+    const { error: signOutError } = await admin.auth.admin.signOut(
+      token,
+      'global',
+    );
+    if (signOutError) throw signOutError;
     const { error: deleteError } = await admin.auth.admin.deleteUser(
       auth.user.id,
     );

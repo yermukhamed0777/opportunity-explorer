@@ -8,6 +8,7 @@ import catalogHandler from '../api/catalog.js';
 import discoverHandler from '../api/discover.js';
 import renewalHandler from '../api/renewal.js';
 
+import adminHandler from '../api/admin.js';
 import documentHandler from '../api/document.js';
 import developmentHandler from '../api/development.js';
 import accountHandler from '../api/account.js';
@@ -29,6 +30,7 @@ export function createPreviewServer() {
       '/api/document': documentHandler,
       '/api/development': developmentHandler,
       '/api/account': accountHandler,
+      '/api/admin': adminHandler,
       '/api/chat': chatHandler,
       '/api/catalog': catalogHandler,
       '/api/discover': discoverHandler,
@@ -50,7 +52,10 @@ export function createPreviewServer() {
         let body = '';
         for await (const chunk of req) {
           body += chunk;
-          if (Buffer.byteLength(body) > 16000) {
+          if (
+            Buffer.byteLength(body) >
+            (pathname === '/api/admin' ? 100000 : 16000)
+          ) {
             res.writeHead(413);
             res.end();
             return;
@@ -87,7 +92,17 @@ export function createPreviewServer() {
         '.' +
           (authRoutes.includes(path)
             ? '/auth.html'
-            : ['/', '/dashboard', '/search'].includes(path)
+            : [
+                  '/',
+                  '/dashboard',
+                  '/search',
+                  '/admissions',
+                  '/professional-pathways',
+                  '/research',
+                  '/funding',
+                  '/my-plan',
+                  '/system-health',
+                ].includes(path)
               ? '/index.html'
               : path),
       );
