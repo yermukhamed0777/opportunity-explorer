@@ -207,6 +207,10 @@
     $$ = (s) => [...document.querySelectorAll(s)],
     catalog = window.EXPLORER_CATALOG,
     data = window.OPPORTUNITIES;
+  function updateCounter(selector, value) {
+    const counter = $(selector);
+    if (counter) counter.textContent = value;
+  }
   const today = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Shanghai',
     year: 'numeric',
@@ -540,13 +544,15 @@
     });
     const activeCount = Core.filter(data, { today }).length;
     $('#catalog-count').textContent = activeCount;
-    $('#nav-total').textContent = activeCount;
+    updateCounter('#nav-total', activeCount);
     $('#type-all-count').textContent = isFeed
       ? feed?.items?.length || 0
       : activeCount;
-    $('#saved-count').textContent = saved.size;
-    $('#feed-count').textContent =
-      feedState === 'loading' ? '…' : feed?.items?.length || 0;
+    updateCounter('#saved-count', saved.size);
+    updateCounter(
+      '#feed-count',
+      feedState === 'loading' ? '…' : feed?.items?.length || 0,
+    );
     const titles = {
       explore: [
         'Find opportunities.<br><em>Know what matters.</em>',
@@ -817,8 +823,10 @@
     }
     if (view === 'latest' || view === 'sources') render();
     else
-      $('#feed-count').textContent =
-        feedState === 'loading' ? '…' : feed?.items?.length || 0;
+      updateCounter(
+        '#feed-count',
+        feedState === 'loading' ? '…' : feed?.items?.length || 0,
+      );
   }
   document.addEventListener('click', (event) => {
     const detail = event.target.closest('[data-detail]'),
