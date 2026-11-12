@@ -1,0 +1,5 @@
+create function public.admin_system_snapshot() returns jsonb language plpgsql stable security definer set search_path='' as $$begin
+ if not public.is_content_admin() then raise exception 'Administrator access required.';end if;
+ return jsonb_build_object('migrations',(select jsonb_agg(jsonb_build_object('version',version,'name',name) order by version) from supabase_migrations.schema_migrations),'rls',(select jsonb_agg(jsonb_build_object('table',tablename,'enabled',rowsecurity)) from pg_catalog.pg_tables where schemaname='public'),'storage',(select jsonb_agg(jsonb_build_object('name',id,'private',not public,'limit',file_size_limit)) from storage.buckets),'storagePolicyCount',(select count(*) from pg_catalog.pg_policies where schemaname='storage' and tablename='objects' and policyname like 'Private document %'),'jobs',(select jsonb_agg(jsonb_build_object('name',jobname,'schedule',schedule,'active',active)) from cron.job),'pendingCandidates',(select count(*) from public.content_candidates where state='Review'));
+end $$;
+revoke all on function public.admin_system_snapshot() from public,anon;grant execute on function public.admin_system_snapshot() to authenticated;

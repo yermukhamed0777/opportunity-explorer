@@ -23,6 +23,18 @@ async function loadScript(src) {
   });
 }
 async function start() {
+  const routeViews = {
+    '/admissions': 'universities',
+    '/professional-pathways': 'professionals',
+    '/research': 'research',
+    '/funding': 'funding',
+    '/my-plan': 'plan',
+    '/system-health': 'admin',
+  };
+  if (routeViews[route.pathname] && !route.hash)
+    route.hash = '#' + routeViews[route.pathname];
+  if (routeViews[route.pathname] && !location.hash)
+    history.replaceState(null, '', route.pathname + route.search + route.hash);
   const kind = callbackKind(route);
   if (kind) {
     location.replace(
@@ -57,7 +69,16 @@ async function start() {
         Authorization: 'Bearer ' + session.access_token,
       },
     });
-    if (response.status === 401 || response.status === 403) {
+    if (
+      response.status === 401 ||
+      (response.status === 403 &&
+        (
+          await response
+            .clone()
+            .json()
+            .catch(() => ({}))
+        ).code === 'email_not_confirmed')
+    ) {
       login();
       throw Error('Sign in again.');
     }
@@ -66,12 +87,14 @@ async function start() {
   const response = await authorizedFetch('/api/catalog');
   if (!response.ok)
     throw Error('The collection could not load. Please reload.');
-  const { catalog, resources, development } = await response.json();
+  const { catalog, resources, development, intelligence } =
+    await response.json();
   window.EXPLORER_CATALOG = catalog;
   window.OPPORTUNITIES = catalog.opportunities;
   window.CHECKED_ON = catalog.updatedAt.slice(0, 10);
   window.PROSPECTO_RESOURCES = resources;
   window.PROSPECTO_DEVELOPMENT = development;
+  window.PROSPECTO_INTELLIGENCE = intelligence;
   window.ProspectoAuth = {
     client,
     config,
@@ -86,6 +109,7 @@ async function start() {
   });
   await loadScript('/app.js');
   await loadScript('/workspace.js');
+  await loadScript('/intelligence.js');
   await loadScript('/platform.js');
   document.body.classList.remove('auth-pending');
   status.hidden = true;

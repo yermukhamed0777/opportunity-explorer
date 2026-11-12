@@ -50,7 +50,13 @@ for (const map of development.skillMaps) {
     if (!r.courses.some((c) => c.id === id))
       throw Error('Unknown mapped course');
 }
-for (const name of ['platform', 'bootstrap', 'auth-page', 'workspace'])
+for (const name of [
+  'platform',
+  'bootstrap',
+  'auth-page',
+  'workspace',
+  'intelligence',
+])
   await build({
     entryPoints: ['src/' + name + '.js'],
     bundle: true,

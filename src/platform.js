@@ -412,7 +412,7 @@ function renderMessages() {
   if (!box) return;
   box.innerHTML = messages.length
     ? ''
-    : '<div class="chat-welcome"><img src="/assets/chameleon.svg" width="100" height="76" alt=""><strong>Start with your interests.</strong><p>Include your stage, subject, preferred location and available time. I’ll help you compare possibilities.</p></div>';
+    : '<div class="chat-welcome"><img src="/assets/white-lion.svg" width="100" height="76" alt=""><strong>Start with your interests.</strong><p>Include your stage, subject, preferred location and available time. I’ll help you compare possibilities.</p></div>';
   for (const m of messages) {
     const div = document.createElement('article');
     div.className = 'chat-message ' + m.role;

@@ -1,6 +1,6 @@
 {
   "name": "prospectoai",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -10,10 +10,12 @@
     "dev": "node scripts/dev-server.js",
     "build": "node scripts/build-catalog.cjs && node scripts/build-platform.js",
     "test": "node tests/check.cjs && node --test tests/*.test.js",
-    "check": "npm run build && npm test",
+    "check": "npm run build && npm run lint && npm run typecheck && npm test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "seed:export": "node scripts/export-seed.js"
+    "seed:export": "node scripts/export-seed.js",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.119.0",
@@ -29,8 +31,11 @@
   "description": "Research opportunities, career skills and universities, with a private workspace and AI planning.",
   "author": "Yermukhamed Tuktibay",
   "devDependencies": {
+    "eslint": "10.14.0",
+    "globals": "17.14.0",
     "happy-dom": "21.0.4",
-    "prettier": "3.9.10"
+    "prettier": "3.9.10",
+    "typescript": "7.0.2"
   },
   "overrides": {
     "zod": "4.6.6"

@@ -1,0 +1,563 @@
+{
+  "mse": [
+    [
+      "Alloy selection with published tensile data",
+      "How does the preferred alloy change when stiffness, strength and mass constraints change?",
+      "Normalize published property data, check units, compare three candidates, and show a sensitivity plot."
+    ],
+    [
+      "Semiconductor yield baseline",
+      "How much does a simple failure classifier improve over a majority baseline without leaking process information?",
+      "Audit missing values in UCI SECOM, split data before preprocessing, compare baseline and regularized models, and inspect false negatives."
+    ],
+    [
+      "Materials-data uncertainty audit",
+      "Which descriptor and missing-data decisions most affect a material-property prediction?",
+      "Use an openly licensed materials dataset, compare leakage-safe pipelines and grouped validation, and document uncertainty and reproducibility."
+    ]
+  ],
+  "mechanical": [
+    [
+      "Beam-model notebook",
+      "How does predicted beam deflection depend on geometry and boundary assumptions?",
+      "Derive a small-deflection model, verify dimensions, compare parameter sweeps and discuss applicability."
+    ],
+    [
+      "Parametric mechanism study",
+      "Which linkage geometry meets a motion requirement with fewer extreme joint angles?",
+      "Build a parameterized CAD or numerical model, sweep geometry and document constraints and assembly assumptions."
+    ],
+    [
+      "Thermal design tradeoff",
+      "How sensitive is a cooling concept to uncertain heat load and convection assumptions?",
+      "Build an energy-balance model, compare concepts and perform sensitivity analysis; do not build high-power hardware."
+    ]
+  ],
+  "electrical": [
+    [
+      "Circuit response simulation",
+      "How do component tolerances change an RC response?",
+      "Derive the ideal circuit, simulate tolerance cases and compare time constants with uncertainty."
+    ],
+    [
+      "Feedback controller comparison",
+      "Which controller meets a response target in a simulated plant?",
+      "Model a low-order plant, compare proportional and PID control, and report stability and saturation limits."
+    ],
+    [
+      "Sensor signal robustness",
+      "Which preprocessing method best preserves a known signal under simulated disturbances?",
+      "Generate synthetic ground truth, add defined disturbances, compare filtering and quantify distortion."
+    ]
+  ],
+  "civil": [
+    [
+      "Bridge load-path explainer",
+      "How do alternative idealized load paths change member forces?",
+      "Create free-body diagrams, solve a simplified truss and compare boundary assumptions."
+    ],
+    [
+      "Urban drainage sensitivity study",
+      "Which rainfall and permeability assumptions dominate a simplified runoff estimate?",
+      "Use public rainfall data and a transparent catchment model, compare scenarios and discuss calibration limits."
+    ],
+    [
+      "Infrastructure inspection prioritization",
+      "How can an explainable model organize an open infrastructure dataset without claiming safety certification?",
+      "Clean a public asset dataset, define transparent prioritization criteria and test ranking sensitivity."
+    ]
+  ],
+  "chemical-engineering": [
+    [
+      "Process mass-balance workbook",
+      "Where do material-balance inconsistencies arise in a fictional process?",
+      "Define stream compositions and boundaries, solve balances and test unit consistency."
+    ],
+    [
+      "Reactor-model comparison",
+      "When do ideal reactor assumptions produce materially different conversion estimates?",
+      "Implement published educational kinetic models, compare residence-time assumptions and assess numerical convergence."
+    ],
+    [
+      "Process heat-integration study",
+      "Which process streams create the largest theoretical energy-recovery opportunity?",
+      "Use a published teaching case, construct heat balances and compare recovery scenarios without industrial implementation."
+    ]
+  ],
+  "biomedical": [
+    [
+      "Open biosignal documentation audit",
+      "What must be documented before an open biosignal can be interpreted responsibly?",
+      "Review dataset consent and access terms, describe sampling and missingness, and produce a data dictionary."
+    ],
+    [
+      "Synthetic wearable-signal pipeline",
+      "How does motion-like noise affect a simulated physiological measurement?",
+      "Generate synthetic signals, compare cleaning methods and evaluate against known simulated truth."
+    ],
+    [
+      "Medical-device risk concept",
+      "Which assumptions create the largest uncertainty in a nonclinical device concept?",
+      "Translate a fictional need into design inputs, map foreseeable hazards and plan supervised verification; do not test on patients."
+    ]
+  ],
+  "cs": [
+    [
+      "Algorithm benchmark notebook",
+      "When does a theoretically faster algorithm become faster in a controlled experiment?",
+      "Implement two algorithms, verify outputs, vary input size and distinguish runtime from asymptotic complexity."
+    ],
+    [
+      "Accessible search index",
+      "How do indexing and ranking choices affect retrieval quality on a small public corpus?",
+      "Build a local index, create an evaluation set and compare deterministic ranking methods."
+    ],
+    [
+      "Distributed retry simulation",
+      "Which retry policy reduces failed requests without amplifying load in a simulated service?",
+      "Model partial failures, compare backoff strategies and measure latency and request amplification."
+    ]
+  ],
+  "ai": [
+    [
+      "Model evaluation card",
+      "Which errors are hidden by a single accuracy number?",
+      "Use an open classification dataset, compare baselines, inspect class-level errors and write a model card."
+    ],
+    [
+      "Grounded retrieval benchmark",
+      "Does retrieval improve factual support on a fixed collection of public documents?",
+      "Create a small cited corpus and held-out questions, compare retrieval settings and audit unsupported answers."
+    ],
+    [
+      "Monitoring under distribution shift",
+      "Which monitoring signals identify a simulated shift before performance degrades?",
+      "Introduce documented distribution changes, compare drift measures and quantify false alerts."
+    ]
+  ],
+  "data-science": [
+    [
+      "Public-data quality report",
+      "Which cleaning choices most change a descriptive conclusion?",
+      "Audit an open dataset, document missingness and units, and compare defensible cleaning alternatives."
+    ],
+    [
+      "Reproducible forecasting comparison",
+      "Does a simple forecast outperform a seasonal baseline under time-based evaluation?",
+      "Split chronologically, compare baselines and report prediction intervals and residual patterns."
+    ],
+    [
+      "Causal-claim audit",
+      "Which assumptions are necessary for a claimed policy effect?",
+      "Use public observational data, draw a causal diagram and compare estimates under alternative identification assumptions."
+    ]
+  ],
+  "cybersecurity": [
+    [
+      "Personal threat model",
+      "Which assets and trust boundaries matter in a fictional student web application?",
+      "Draw data flows, identify plausible threats and prioritize mitigations without scanning real systems."
+    ],
+    [
+      "Authorization test laboratory",
+      "Can two test users cross ownership boundaries in an isolated local app?",
+      "Build a local fixture service, write positive and negative authorization tests and document fixes."
+    ],
+    [
+      "Software supply-chain review",
+      "Which dependency and release controls reduce plausible compromise paths?",
+      "Audit an open project manifest, review provenance and advisories, and propose testable controls in a local copy."
+    ]
+  ],
+  "software": [
+    [
+      "Requirements-to-tests mini app",
+      "Can each user requirement be traced to an observable behavior?",
+      "Write acceptance criteria, implement a small local application and map tests to requirements."
+    ],
+    [
+      "Transactional task tracker",
+      "Which failures can leave inconsistent state in a small private tracker?",
+      "Model ownership and transactions, simulate failures and verify recovery and accessibility."
+    ],
+    [
+      "Performance and reliability case study",
+      "Which changes improve a measured bottleneck without breaking behavior?",
+      "Profile an open application locally, form a hypothesis, make one change and compare repeatable measurements."
+    ]
+  ],
+  "medicine": [
+    [
+      "Clinical evidence reading map",
+      "How does study design change confidence in a published clinical claim?",
+      "Compare openly available studies using a structured appraisal table; do not make treatment recommendations."
+    ],
+    [
+      "Synthetic clinical-data analysis",
+      "How do missingness and class imbalance affect an educational clinical-data model?",
+      "Use synthetic or approved de-identified data, analyze missingness and evaluate leakage-safe baselines."
+    ],
+    [
+      "Research protocol critique",
+      "Which ethical and methodological gaps would prevent a proposed study from answering its question?",
+      "Draft a non-executed protocol, identify confounding and consent issues, and seek qualified feedback."
+    ]
+  ],
+  "dentistry": [
+    [
+      "Dental-material evidence map",
+      "Which properties are actually measured in published restorative-material comparisons?",
+      "Create an evidence table from open literature and separate laboratory findings from clinical outcomes."
+    ],
+    [
+      "Oral-health information audit",
+      "How consistently do public education pages distinguish evidence from promotion?",
+      "Use a predefined rubric on public institutional pages and document limitations; do not advise individual care."
+    ],
+    [
+      "Dental-material data comparison",
+      "How sensitive is a material ranking to measurement method and sample variation?",
+      "Analyze openly published summary data, compare uncertainty and explain why it cannot establish patient suitability."
+    ]
+  ],
+  "nursing": [
+    [
+      "Patient-safety communication checklist",
+      "What information is lost in a fictional handover?",
+      "Compare fictional handovers with institutional educational guidance and create an annotated checklist."
+    ],
+    [
+      "Nursing research appraisal",
+      "How do sampling and measurement affect a nursing research conclusion?",
+      "Compare open studies using a documented appraisal framework, without collecting patient information."
+    ],
+    [
+      "Synthetic care-workflow simulation",
+      "Where do delays arise in a simplified care workflow?",
+      "Simulate fictional queues, test staffing assumptions and discuss why results are not operational recommendations."
+    ]
+  ],
+  "pharmacy": [
+    [
+      "Drug-information source comparison",
+      "How do official medicine-information sources describe the same evidence?",
+      "Compare public regulator and scientific information, track source dates and avoid personal medication advice."
+    ],
+    [
+      "Pharmacokinetic teaching model",
+      "How do model assumptions change a simulated concentration curve?",
+      "Use a published educational model, check units and explore parameter sensitivity; do not calculate personal doses."
+    ],
+    [
+      "Drug-safety signal critique",
+      "How can reporting bias distort interpretation of an open adverse-event dataset?",
+      "Review permitted public data and documentation, investigate denominators and write an explicit noncausal interpretation."
+    ]
+  ],
+  "veterinary": [
+    [
+      "Animal-welfare evidence review",
+      "How are welfare indicators defined and measured across published studies?",
+      "Compare open research and professional guidance in an evidence matrix; do not handle or experiment on animals."
+    ],
+    [
+      "One Health public-data map",
+      "Which human, animal and environmental indicators can be compared responsibly?",
+      "Combine compatible public aggregate datasets, document geographic mismatch and avoid causal claims."
+    ],
+    [
+      "Veterinary surveillance uncertainty",
+      "How do reporting delays affect an aggregate disease trend?",
+      "Use public surveillance summaries or synthetic data, model delays and communicate uncertainty without diagnostic advice."
+    ]
+  ],
+  "biology": [
+    [
+      "Biodiversity observation audit",
+      "How does sampling effort affect an apparent biodiversity pattern?",
+      "Use permitted public observation data, inspect spatial bias and compare standardized summaries."
+    ],
+    [
+      "Gene-expression teaching analysis",
+      "Which preprocessing choices alter a small published expression-data result?",
+      "Use a permitted educational dataset, document normalization and multiple-testing limits."
+    ],
+    [
+      "Ecological model comparison",
+      "Which mechanisms can explain the same population trend?",
+      "Fit competing simple models to public or synthetic time series and compare identifiability and uncertainty."
+    ]
+  ],
+  "biotechnology": [
+    [
+      "Biotechnology literature landscape",
+      "Which measurements support a proposed biotechnology application?",
+      "Map open papers by method and evidence type; do not reproduce wet-lab procedures."
+    ],
+    [
+      "Bioprocess simulation",
+      "How do growth assumptions change a simplified production forecast?",
+      "Implement a published educational model, compare parameter ranges and verify mass balance."
+    ],
+    [
+      "Reproducible omics workflow audit",
+      "Which analysis decisions are necessary to reproduce a public result?",
+      "Use approved open data, document a complete computational pipeline and analyze robustness without biological experimentation."
+    ]
+  ],
+  "chemistry": [
+    [
+      "Calibration and uncertainty workbook",
+      "How does calibration choice affect an estimated concentration in a teaching dataset?",
+      "Use published or synthetic absorbance data, compare fits, inspect residuals and propagate uncertainty."
+    ],
+    [
+      "Reaction-kinetics model comparison",
+      "Can two rate models explain the same published data?",
+      "Fit educational kinetic datasets, assess parameter uncertainty and avoid unsupervised chemical work."
+    ],
+    [
+      "Chemical-data reproducibility study",
+      "Which data curation decisions change a structure-property relationship?",
+      "Use public chemical identifiers and permitted property data, document matching and test model stability."
+    ]
+  ],
+  "physics": [
+    [
+      "Dimensional-model explainer",
+      "Which assumptions control a simple physical prediction?",
+      "Derive a model, verify units and compare numerical parameter sweeps with limiting cases."
+    ],
+    [
+      "Open detector-data analysis",
+      "How does an event-selection choice change a physics distribution?",
+      "Use an approved educational open-data sample, document selection and compare statistical uncertainty."
+    ],
+    [
+      "Inverse-problem sensitivity study",
+      "How uniquely can model parameters be recovered from noisy measurements?",
+      "Generate synthetic data, compare fitting methods and map degeneracy and uncertainty."
+    ]
+  ],
+  "mathematics": [
+    [
+      "Proof and counterexample notebook",
+      "Which assumptions make a theorem true?",
+      "Write a proof, test removed assumptions with counterexamples and distinguish computation from proof."
+    ],
+    [
+      "Numerical-method comparison",
+      "How do step size and conditioning affect a numerical solution?",
+      "Compare algorithms on a known problem, analyze convergence and report error against a reference."
+    ],
+    [
+      "Optimization under uncertainty",
+      "Which solution remains useful when inputs change?",
+      "Formulate an open or synthetic optimization problem, compare sensitivity and explain feasibility and robustness."
+    ]
+  ],
+  "environment": [
+    [
+      "Local climate-data explainer",
+      "Which trends remain after accounting for missing observations?",
+      "Use official public weather or climate records, document gaps and compare transparent summaries."
+    ],
+    [
+      "Life-cycle boundary comparison",
+      "How do system boundaries change an environmental comparison?",
+      "Use openly documented educational inventory data and compare boundaries, allocation and uncertainty."
+    ],
+    [
+      "Environmental policy-data study",
+      "Which conclusions are robust to geographic and temporal aggregation?",
+      "Combine compatible public datasets, test aggregation choices and avoid unsupported causal attribution."
+    ]
+  ],
+  "architecture": [
+    [
+      "Daylight concept study",
+      "How does orientation change a simplified daylighting concept?",
+      "Create diagrams or a simple model, compare assumptions and discuss comfort and local context."
+    ],
+    [
+      "Accessible-space audit prototype",
+      "Which spatial choices improve a fictional public-space journey?",
+      "Use public accessibility guidance, create a model and document design tradeoffs without claiming code certification."
+    ],
+    [
+      "Building-performance scenario model",
+      "Which design assumptions dominate an early energy estimate?",
+      "Compare envelope and occupancy scenarios in a teaching model, report sensitivity and avoid construction-ready claims."
+    ]
+  ],
+  "business": [
+    [
+      "Evidence-based market brief",
+      "What evidence supports a proposed customer problem?",
+      "Analyze public market and institutional data, distinguish assumptions and present a concise opportunity brief."
+    ],
+    [
+      "Operations bottleneck simulation",
+      "Which process change reduces delay in a fictional service?",
+      "Map a process, simulate demand and capacity and compare scenarios with uncertainty."
+    ],
+    [
+      "Strategy experiment design",
+      "How could a business hypothesis be tested ethically with minimal resources?",
+      "Create a non-executed experiment plan, define metrics and safeguards and compare alternative explanations."
+    ]
+  ],
+  "economics": [
+    [
+      "Economic indicator comparison",
+      "How do definitions change a cross-country comparison?",
+      "Use official aggregate indicators, compare metadata and show sensitivity to normalization."
+    ],
+    [
+      "Policy association study",
+      "How stable is an observed economic relationship across model choices?",
+      "Analyze public data, compare specifications and explain why association does not prove a policy effect."
+    ],
+    [
+      "Identification strategy critique",
+      "What would be required to estimate a causal policy effect?",
+      "Construct a causal diagram, examine an open study and test its assumptions using permitted aggregate data."
+    ]
+  ],
+  "finance": [
+    [
+      "Financial-statement reading memo",
+      "Which accounting choices affect a simple comparison?",
+      "Use public annual reports, reconcile definitions and explain limitations without investment advice."
+    ],
+    [
+      "Scenario-based valuation model",
+      "Which assumptions dominate a fictional valuation?",
+      "Build a transparent cash-flow model, vary scenarios and report ranges rather than a guaranteed price."
+    ],
+    [
+      "Risk-model robustness study",
+      "When does a risk estimate fail under changed conditions?",
+      "Use public historical or synthetic series, compare methods and document model and tail-risk limitations."
+    ]
+  ],
+  "law": [
+    [
+      "Legal-source hierarchy map",
+      "Which sources are authoritative for a defined educational legal question?",
+      "Choose one jurisdiction, organize official materials and distinguish binding rules from commentary."
+    ],
+    [
+      "Case-comparison memorandum",
+      "How do factual differences affect reasoning in selected public judgments?",
+      "Use official judgments, compare issues and reasoning and label the work as education, not legal advice."
+    ],
+    [
+      "Regulatory-change tracker prototype",
+      "How can a public rule change be detected and reviewed without misrepresenting legal effect?",
+      "Build a local tracker of official notices, version changes and require human interpretation before publication."
+    ]
+  ],
+  "psychology": [
+    [
+      "Psychology claim appraisal",
+      "Which design features support a popular psychology claim?",
+      "Compare open studies, inspect measures and sampling and separate association from causation."
+    ],
+    [
+      "Open behavioral-data replication",
+      "Which analysis choices affect a published behavioral result?",
+      "Use approved de-identified open data, reproduce a figure and report analytical flexibility."
+    ],
+    [
+      "Measurement validity review",
+      "Does a public research measure capture its claimed construct?",
+      "Review reliability and validity evidence and design a non-executed validation study; do not diagnose people."
+    ]
+  ],
+  "education": [
+    [
+      "Learning-resource accessibility review",
+      "Which design choices make a learning resource easier to use?",
+      "Apply public accessibility guidance to an open educational resource and document improvements."
+    ],
+    [
+      "Assessment-alignment prototype",
+      "Do tasks measure the learning outcomes they claim to assess?",
+      "Create a fictional lesson and rubric, align activities and explain fairness and accessibility limits."
+    ],
+    [
+      "Learning intervention protocol",
+      "How could an instructional hypothesis be evaluated responsibly?",
+      "Design a non-executed study, plan safeguards and measurement, and require institutional approval before involving learners."
+    ]
+  ],
+  "design": [
+    [
+      "Interface contrast and hierarchy audit",
+      "Which visual decisions most improve a small interface’s readability?",
+      "Audit an open interface, propose changes and document contrast and keyboard behavior."
+    ],
+    [
+      "Accessible prototype iteration",
+      "How does a design change affect a fictional user journey?",
+      "Build a prototype, evaluate against public accessibility criteria and document limitations without collecting private user data."
+    ],
+    [
+      "Design-system evidence study",
+      "Which component rules improve consistency without reducing usability?",
+      "Build and compare a small component set, test keyboard paths and document tradeoffs and evaluation limits."
+    ]
+  ],
+  "media": [
+    [
+      "Source-verification explainer",
+      "Which claims in a public article can be traced to primary evidence?",
+      "Create an attribution map, classify uncertainty and write a transparent correction note."
+    ],
+    [
+      "Public-media framing comparison",
+      "How do different public sources frame the same event?",
+      "Define a small corpus and coding rubric, compare framing and acknowledge sampling and interpretation limits."
+    ],
+    [
+      "Reproducible misinformation-evaluation protocol",
+      "How can a claim-checking workflow be evaluated without publishing harmful falsehoods?",
+      "Use benign or already documented examples, define provenance rules and test agreement and error categories."
+    ]
+  ],
+  "politics": [
+    [
+      "Institutional comparison brief",
+      "How do two institutions allocate a defined responsibility?",
+      "Use official public documents, define comparable categories and separate description from judgment."
+    ],
+    [
+      "Public-policy options memo",
+      "Which tradeoffs distinguish responses to a clearly defined public problem?",
+      "Compare official evidence, map affected groups and state assumptions and implementation limits."
+    ],
+    [
+      "Policy measurement sensitivity study",
+      "How do indicator choices change a governance comparison?",
+      "Use public aggregate datasets, test weighting and missingness and avoid causal or prestige rankings."
+    ]
+  ],
+  "international-relations": [
+    [
+      "International-institution map",
+      "Which actors and rules shape a documented cooperation problem?",
+      "Use official agreements and institutional sources, map relationships and identify evidence gaps."
+    ],
+    [
+      "Trade and development brief",
+      "How do data definitions affect a cross-border economic narrative?",
+      "Use official aggregate trade data, compare partner and time definitions and discuss uncertainty."
+    ],
+    [
+      "Negotiation case analysis",
+      "Which publicly documented choices changed the scope of a negotiation?",
+      "Build a dated evidence timeline from official records, compare interpretations and avoid claiming hidden motivations."
+    ]
+  ]
+}

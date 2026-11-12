@@ -21,7 +21,7 @@ const D = JSON.parse(readFileSync('data/development.json')),
 test('all 33 fields have distinct skill maps, valid courses and named evidence categories', () => {
   assert.equal(D.majors.length, 33);
   assert.equal(new Set(D.majors.map((x) => x.id)).size, 33);
-  assert.equal(D.stages.length, 12);
+  assert.equal(D.stages.length, 14);
   assert(D.stages.includes('PhD or doctoral degree'));
   const skillIds = [];
   for (const m of D.skillMaps) {

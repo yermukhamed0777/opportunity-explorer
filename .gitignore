@@ -20,3 +20,5 @@ dist/bootstrap.js
 dist/auth-page.js
 
 dist/workspace.js
+
+dist/intelligence.js

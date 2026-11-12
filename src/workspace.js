@@ -54,7 +54,8 @@ let state = {},
   },
   courseSearch = '',
   selectedPlan = '',
-  planFilter = 'All';
+  planFilter = 'All',
+  orderUndo = null;
 const E = (x) =>
   String(x ?? '').replace(
     /[&<>"']/g,
@@ -88,7 +89,7 @@ const tag = (text, cls = '') =>
 const heading = (title, description) =>
   `<header class="platform-heading"><span class="eyebrow">YOUR DEVELOPMENT WORKSPACE</span><h1>${E(title)}</h1><p>${E(description)}</p></header>`;
 const empty = (text, action = '') =>
-  `<div class="work-empty"><img src="/assets/chameleon.svg" alt="" width="88" height="70"><p>${E(text)}</p>${action}</div>`;
+  `<div class="work-empty"><img src="/assets/white-lion.svg" alt="" width="88" height="70"><p>${E(text)}</p>${action}</div>`;
 const input = (label, name, value = '', type = 'text', attrs = '') =>
   `<label>${E(label)}<input name="${name}" type="${type}" value="${E(value)}" ${attrs}></label>`;
 const textarea = (label, name, value = '', max = 3000) =>
@@ -180,7 +181,10 @@ function modal(title, body, submit, onSubmit) {
     try {
       await onSubmit(new FormData(e.target), e.target);
       d.close();
-      await refresh();
+      await load(true);
+      await window.ProspectoWorkspace.render(
+        document.body.dataset.currentView || view,
+      );
     } catch (err) {
       d.querySelector('[role=alert]').textContent = err.message;
     } finally {
@@ -210,7 +214,7 @@ function preferenceForm(step) {
       p.field_ids,
     )}</fieldset><fieldset><legend>Goals · choose up to 8</legend>${checks(D.goals, 'goals', p.goals)}</fieldset>`;
   if (step === 2)
-    return `<img class="work-mascot" src="/assets/chameleon.svg" alt="" width="116" height="90"><h2>Bring your experience, at your pace.</h2><p>Add education, projects, employment, volunteering and other evidence manually in My development profile, or upload a PDF / DOCX in Documents. Extracted text is always reviewed before it becomes a profile record.</p><p>You can finish these steps first and add records later.</p>`;
+    return `<img class="work-mascot" src="/assets/white-lion.svg" alt="" width="116" height="90"><h2>Bring your experience, at your pace.</h2><p>Add education, projects, employment, volunteering and other evidence manually in My development profile, or upload a PDF / DOCX in Documents. Extracted text is always reviewed before it becomes a profile record.</p><p>You can finish these steps first and add records later.</p>`;
   return `<div class="work-form-grid">${input('Preferred opportunity locations', 'location', b.location, 'text', 'maxlength="200"')}${choose('Preferred format', 'format', ['Remote', 'Hybrid', 'On-site', 'Flexible'], b.format)}${input('Languages (optional)', 'languages', b.languages, 'text', 'maxlength="200"')}${input('Available hours per week', 'hours', b.hours || 5, 'number', 'min="0.5" max="80" step="0.5"')}${input('Budget / funding needs (optional)', 'budget', b.budget, 'text', 'maxlength="200"')}</div><label class="work-check"><input type="checkbox" name="allow_profile_ai" ${p.allow_profile_ai ? 'checked' : ''}>Allow the AI provider to use my selected profile preferences, skills, activities and plans when I ask for help. Only profile records individually permitted by me are included. Document files, private download links and unreviewed text are excluded.</label>`;
 }
 function onboarding() {
@@ -358,7 +362,22 @@ function skillMap() {
               const progress = state.user_skills.find(
                 (x) => x.skill_id === s.id,
               );
-              return `<article class="work-card">${tag(progress?.state || 'Not started')} ${tag(s.level)}<h3>${E(s.name)}</h3><p>${E(s.description)}</p><p><strong>Why:</strong> ${E(s.why)}</p><p><strong>Show evidence:</strong> ${E(s.evidence)}</p><p><strong>Try:</strong> ${E(s.project)}</p><p class="resource-note">Suggested starter effort: ${E(s.estimatedWeeks)} at your own pace; adjust your plan.</p>${progress?.evidence ? `<p>Your evidence: ${E(progress.evidence)}</p>` : ''}${button('skill', 'Update progress', s.id)} ${button('quick-plan', 'Add preparation task', s.name)}</article>`;
+              return `<article class="work-card">${tag(progress?.state || 'Not started')} ${tag(s.level)}<h3>${E(s.name)}</h3><p>${E(s.description)}</p><p><strong>Why:</strong> ${E(s.why)}</p><p><strong>Show evidence:</strong> ${E(s.evidence)}</p><p><strong>Try:</strong> ${E(s.project)}</p><p class="resource-note">Suggested starter effort: ${E(s.estimatedWeeks)} at your own pace; adjust your plan.</p><details><summary>Levels, prerequisites and assessment</summary><dl>${Object.entries(
+                s.interpretations || {},
+              )
+                .map(([k, v]) => `<dt>${E(k)}</dt><dd>${E(v)}</dd>`)
+                .join(
+                  '',
+                )}<dt>Prerequisites</dt><dd>${E(s.prerequisites)}</dd><dt>Assessment</dt><dd>${E(s.assessment)}</dd><dt>Related careers</dt><dd>${E((s.relatedCareers || []).join(' · '))}</dd><dt>Professional boundaries</dt><dd>${E(s.regulatoryAwareness)}</dd></dl><p>Reviewed ${E(s.checkedOn)} · editorial learning guidance.</p><div class="resource-links">${(
+                s.courseIds || []
+              )
+                .map((id) => {
+                  const c = R.courses.find((x) => x.id === id);
+                  return c ? link(c.url, c.name) : '';
+                })
+                .join(
+                  '',
+                )}</div></details>${progress?.evidence ? `<p>Your evidence: ${E(progress.evidence)}</p>` : ''}<button type="button" class="secondary" data-intel="link-skill" data-id="${E(s.id)}">Link a course, project or private evidence</button>${button('skill', 'Update progress', s.id)} ${button('quick-plan', 'Add preparation task', s.name)}</article>`;
             })
             .join('')}</div></section>`,
       )
@@ -381,7 +400,14 @@ function skillForm(id) {
     choose(
       'Progress',
       'state',
-      ['Learning', 'Developing', 'Demonstrated'],
+      [
+        'Not started',
+        'Exploring',
+        'Learning',
+        'Practising',
+        'Demonstrated',
+        'Verified by evidence',
+      ],
       p.state || 'Learning',
     ) +
       textarea('Notes', 'notes', p.notes, 2000) +
@@ -396,7 +422,10 @@ function skillForm(id) {
         : ''),
     'Save progress',
     async (fd) => {
-      if (fd.get('state') === 'Demonstrated' && !fd.get('evidence').trim())
+      if (
+        ['Demonstrated', 'Verified by evidence'].includes(fd.get('state')) &&
+        !fd.get('evidence').trim()
+      )
         throw Error('Add evidence to mark this skill as demonstrated.');
       await save('user_skills', {
         skill_id: id,
@@ -417,12 +446,12 @@ function courses() {
   return (
     heading(
       'Courses with a purpose.',
-      'A small curated collection from official providers. Link learning to evidence and a plan.',
+      'Official courses and open learning resources. Link learning to evidence and a plan.',
     ) +
     `<div class="work-notice">Pricing, regional access, auditing and certificates can change. Check university access for LinkedIn Learning. Unknown duration or level is shown explicitly.</div><label>Search course, field, or provider<input id="work-course-search" value="${E(courseSearch)}" type="search" maxlength="150"></label><p>${items.length} courses</p><div class="resource-grid">${items
       .map((c) => {
         const p = state.course_progress.find((x) => x.course_id === c.id);
-        return `<article class="work-card">${tag(p?.state || 'Not saved')}<h2>${E(c.name)}</h2><p>${E(c.provider)}${c.institution ? ' · ' + E(c.institution) : ''}</p><p>${E(c.skills.join(' · '))}</p><dl><dt>Level</dt><dd>${E(c.level || 'Not verified')}</dd><dt>Duration</dt><dd>${E(c.duration || 'Not verified')}</dd><dt>Format</dt><dd>${E(c.format || 'Provider online course')}</dd><dt>Access and cost</dt><dd>${E(c.auditing || c.costType)}</dd><dt>Certificate</dt><dd>${E(c.certificate || 'Confirm provider conditions and price')}</dd></dl><p class="resource-note">Checked ${c.checkedOn}. Completion does not guarantee professional qualification.</p><div class="resource-links">${link(c.url, 'Official course page')}</div><div class="work-actions">${button('course', 'Save / update learning', c.id)}${button('quick-plan', 'Add to plan', c.name)}</div>${p?.notes ? `<p>Your notes: ${E(p.notes)}</p>` : ''}</article>`;
+        return `<article class="work-card">${tag(p?.state || 'Not saved')}<h2>${E(c.name)}</h2><p>${E(c.provider)}${c.institution ? ' · ' + E(c.institution) : ''}</p><p>${E((c.skills || []).join(' · '))}</p><dl><dt>Level</dt><dd>${E(c.level || 'Not verified')}</dd><dt>Duration</dt><dd>${E(c.duration || 'Not verified')}</dd><dt>Format</dt><dd>${E(c.format || 'Provider online course')}</dd><dt>Access and cost</dt><dd>${E(c.auditing || c.costType)}</dd><dt>Certificate</dt><dd>${E(c.certificate || 'Confirm provider conditions and price')}</dd></dl><p class="resource-note">Checked ${c.checkedOn}. Completion does not guarantee professional qualification.</p><div class="resource-links">${link(c.url, 'Official course page')}</div><div class="work-actions">${button('course', 'Save / update learning', c.id)}${button('quick-plan', 'Add to plan', c.name)}</div>${p?.notes ? `<p>Your notes: ${E(p.notes)}</p>` : ''}</article>`;
       })
       .join('')}</div>`
   );
@@ -446,7 +475,16 @@ function courseForm(id) {
           .skills.map((x) => [x.id, x.name]),
         p.target_skill,
       ) +
-      textarea('Notes / learning evidence', 'notes', p.notes, 2000) +
+      textarea('Notes', 'notes', p.notes, 2000) +
+      textarea('My learning evidence / outcome', 'evidence', p.evidence, 2000) +
+      choose(
+        'Related portfolio project (optional)',
+        'project_id',
+        (window.PROSPECTO_INTELLIGENCE?.records || [])
+          .filter((r) => r.kind === 'project')
+          .map((r) => [r.id, r.name]),
+        p.project_id,
+      ) +
       (p.course_id
         ? button('delete-course', 'Delete this course progress', id)
         : ''),
@@ -457,6 +495,8 @@ function courseForm(id) {
         state: fd.get('state'),
         notes: fd.get('notes'),
         target_skill: fd.get('target_skill'),
+        project_id: fd.get('project_id') || null,
+        evidence: fd.get('evidence'),
         updated_at: new Date().toISOString(),
       }),
   );
@@ -600,12 +640,12 @@ function plans() {
       'My development plan.',
       'Set a goal and a weekly limit. Add milestones, courses, projects and applications; adjust them as your priorities change.',
     ) +
-    `<div class="work-actions">${button('new-plan', 'Create plan')}${button('ai-plan', 'Draft a plan with AI')}</div>` +
+    `<div class="work-actions">${orderUndo ? button('undo-order', 'Undo last reordering') : ''}${button('new-plan', 'Create plan')}${button('ai-plan', 'Draft a plan with AI')}</div>` +
     (p
       ? `<div class="work-card"><label>Plan<select id="work-plan">${select(
           state.plans.map((x) => [x.id, x.goal]),
           selectedPlan,
-        )}</select></label><h2>${E(p.goal)}</h2><p>${p.weekly_hours} hours maximum per week · ${E(p.notes)}</p><div class="work-actions">${button('edit-plan', 'Edit goal / limit', p.id)}${button('new-item', 'Add task / milestone', p.id)}${button('delete-plan', 'Delete plan', p.id)}</div><label>Show<select id="work-plan-filter">${select(['All', 'This week', 'This month', 'Deadlines', 'Planned', 'In progress', 'Completed', 'Saved for later'], planFilter)}</select></label></div>${items.length ? items.map((x, i) => `<article class="work-card">${tag(x.state)} ${tag(x.kind)}<h3>${E(x.title)}</h3><p>Week of ${E(x.week_start)} · ${x.weekly_hours} hours ${x.due_date ? ' · Due ' + E(x.due_date) : ''}</p>${x.target_skill ? `<p>Target skill: ${E(D.skillMaps.flatMap((m) => m.skills).find((s) => s.id === x.target_skill)?.name || x.target_skill)}</p>` : ''}<p class="work-pre">${E(x.notes)}</p>${x.dependencies ? `<p>Dependencies / prerequisites: ${E(x.dependencies)}</p>` : ''}<div class="work-actions">${button('edit-item', 'Edit / update status', x.id)}${button('item-up', 'Move earlier', x.id)}${button('item-down', 'Move later', x.id)}${x.due_date ? button('calendar', 'Calendar reminder', x.id) : ''}${button('delete-item', 'Delete', x.id)}</div></article>`).join('') : empty('No tasks in this view.', button('new-item', 'Add a task', p.id))}`
+        )}</select></label><h2>${E(p.goal)}</h2><p>${p.weekly_hours} hours maximum per week · ${E(p.notes)}</p><div class="work-actions">${button('edit-plan', 'Edit goal / limit', p.id)}${button('new-item', 'Add task / milestone', p.id)}${button('delete-plan', 'Delete plan', p.id)}</div><label>Show<select id="work-plan-filter">${select(['All', 'This week', 'This month', 'Deadlines', 'Planned', 'In progress', 'Completed', 'Saved for later'], planFilter)}</select></label></div>${items.length ? items.map((x, i) => `<article class="work-card" draggable="true" data-plan-item="${E(x.id)}">${tag(x.state)} ${tag(x.kind)}<h3>${E(x.title)}</h3><p>Week of ${E(x.week_start)} · ${x.weekly_hours} hours ${x.due_date ? ' · Due ' + E(x.due_date) : ''}</p>${x.target_skill ? `<p>Target skill: ${E(D.skillMaps.flatMap((m) => m.skills).find((s) => s.id === x.target_skill)?.name || x.target_skill)}</p>` : ''}<p class="work-pre">${E(x.notes)}</p>${x.dependencies ? `<p>Dependencies / prerequisites: ${E(x.dependencies)}</p>` : ''}<div class="work-actions">${button('edit-item', 'Edit / update status', x.id)}${button('item-up', 'Move earlier', x.id)}${button('item-down', 'Move later', x.id)}${x.due_date ? button('calendar', 'Calendar reminder', x.id) : ''}${button('delete-item', 'Delete', x.id)}</div></article>`).join('') : empty('No tasks in this view.', button('new-item', 'Add a task', p.id))}`
       : empty(
           'Start with a goal and a realistic weekly time limit.',
           button('new-plan', 'Create my first plan'),
@@ -820,6 +860,25 @@ function opportunities() {
       .map((m) => m.id),
   }));
   return [
+    ...(window.PROSPECTO_INTELLIGENCE?.records || [])
+      .filter(
+        (r) =>
+          ['opportunity', 'scholarship'].includes(r.kind) &&
+          !r.id.startsWith('programme-') &&
+          !r.id.startsWith('opportunity-') &&
+          r.status !== 'Archived',
+      )
+      .map((r) => ({
+        ...r,
+        org: r.organization,
+        educationLevels: r.stages || [],
+        type:
+          r.type || (r.kind === 'scholarship' ? 'Scholarship' : 'Programme'),
+        funding: typeof r.funding === 'object' ? r.funding.coverage : r.funding,
+        note: r.limitations,
+        closed: ['Closed', 'Previous cycle', 'Archived'].includes(r.status),
+        verification: r.status,
+      })),
     ...D.opportunities,
     ...legacy,
     ...R.careers.map((o) => ({
@@ -987,7 +1046,16 @@ async function render(next) {
     panel.innerHTML = `<div role="alert" class="work-card"><p>${E(err.message)}</p>${button('retry', 'Retry loading')}</div>`;
   }
 }
-window.ProspectoWorkspace = { views, render };
+window.ProspectoWorkspace = {
+  views,
+  render,
+  getState: async () => {
+    await load();
+    return state;
+  },
+  modal,
+  openTask: (title) => itemForm('', title),
+};
 async function action(name, id, element) {
   if (name === 'go') {
     window.ProspectoTracker.setView(id);
@@ -1100,6 +1168,15 @@ async function action(name, id, element) {
     }
     return;
   }
+  if (name === 'undo-order') {
+    if (orderUndo) {
+      await unwrap(db.from('plan_items').upsert(orderUndo));
+      orderUndo = null;
+      await refresh();
+      notify('Previous task order restored.');
+    }
+    return;
+  }
   if (name === 'item-up' || name === 'item-down') {
     const item = state.plan_items.find((x) => x.id === id),
       rows = state.plan_items
@@ -1118,6 +1195,7 @@ async function action(name, id, element) {
       );
       return;
     }
+    orderUndo = rows.map((x) => ({ ...x }));
     [rows[index], rows[index + (name === 'item-up' ? -1 : 1)]] = [other, item];
     await unwrap(
       db
@@ -1216,9 +1294,17 @@ async function action(name, id, element) {
   if (name === 'export') {
     await load(true);
     const other = await Promise.all(
-      ['profiles', 'activities', 'trackers'].map((t) =>
-        db.from(t).select('*').eq('user_id', uid),
-      ),
+      [
+        'profiles',
+        'activities',
+        'trackers',
+        'admissions_folders',
+        'admissions_items',
+        'folder_documents',
+        'saved_resources',
+        'evidence_links',
+        'notification_states',
+      ].map((t) => db.from(t).select('*').eq('user_id', uid)),
     );
     if (other.some((x) => x.error))
       throw Error('Export could not include all records. Please retry.');
@@ -1231,6 +1317,16 @@ async function action(name, id, element) {
           profile: other[0].data,
           activities: other[1].data,
           tracker: other[2].data,
+          ...Object.fromEntries(
+            [
+              'admissions_folders',
+              'admissions_items',
+              'folder_documents',
+              'saved_resources',
+              'evidence_links',
+              'notification_states',
+            ].map((name, i) => [name, other[i + 3].data]),
+          ),
         },
         null,
         2,
@@ -1382,5 +1478,54 @@ document.addEventListener('input', (e) => {
     document
       .querySelectorAll('[data-university-text]')
       .forEach((x) => (x.hidden = !x.dataset.universityText.includes(q)));
+  }
+});
+
+// Pointer ordering complements the visible keyboard buttons; it never changes a task's week.
+document.addEventListener('dragstart', (e) => {
+  const card = e.target.closest('[data-plan-item]');
+  if (card && e.dataTransfer) {
+    e.dataTransfer.setData('text/plain', card.dataset.planItem);
+    e.dataTransfer.effectAllowed = 'move';
+  }
+});
+document.addEventListener('dragover', (e) => {
+  if (e.target.closest('[data-plan-item]')) e.preventDefault();
+});
+document.addEventListener('drop', async (e) => {
+  const card = e.target.closest('[data-plan-item]');
+  if (!card || !e.dataTransfer) return;
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text/plain'),
+    a = state.plan_items.find((x) => x.id === id),
+    b = state.plan_items.find((x) => x.id === card.dataset.planItem);
+  if (!a || !b || a.id === b.id) return;
+  if (a.plan_id !== b.plan_id || a.week_start !== b.week_start) {
+    notify('Reorder within a week. Edit the task to change its week.');
+    return;
+  }
+  const rows = state.plan_items
+    .filter((x) => x.plan_id === a.plan_id && x.week_start === a.week_start)
+    .sort((x, y) => x.position - y.position);
+  orderUndo = rows.map((x) => ({ ...x }));
+  rows.splice(
+    rows.findIndex((x) => x.id === id),
+    1,
+  );
+  rows.splice(
+    rows.findIndex((x) => x.id === b.id),
+    0,
+    a,
+  );
+  try {
+    await unwrap(
+      db
+        .from('plan_items')
+        .upsert(rows.map((x, i) => ({ ...x, position: i * 10 }))),
+    );
+    await refresh();
+    notify('Task order updated. Undo is available above the plan.');
+  } catch (error) {
+    notify(error.message);
   }
 });

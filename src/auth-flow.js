@@ -3,13 +3,25 @@ export const CALLBACK_PATH = '/auth/callback';
 export function safeNext(value, origin) {
   try {
     const url = new URL(value || '/', origin);
-    if (url.origin !== origin || url.pathname !== '/') return '/';
+    const paths = {
+      '/admissions': 'universities',
+      '/professional-pathways': 'professionals',
+      '/research': 'research',
+      '/funding': 'funding',
+      '/my-plan': 'plan',
+      '/system-health': 'admin',
+      '/dashboard': 'dashboard',
+      '/search': 'finder',
+    };
+    if (url.origin !== origin || (!paths[url.pathname] && url.pathname !== '/'))
+      return '/';
+    if (paths[url.pathname] && !url.hash) url.hash = '#' + paths[url.pathname];
     const safe = new URL('/', origin);
     const opportunity = url.searchParams.get('opportunity');
     if (opportunity && /^[a-z0-9-]{1,120}$/.test(opportunity))
       safe.searchParams.set('opportunity', opportunity);
     if (
-      /^#(explore|latest|saved|deadlines|universities|skills|careers|activities|assistant|sources|dashboard|onboarding|profile|documents|courses|plan|pathways|finder|privacy)$/.test(
+      /^#(explore|latest|saved|deadlines|universities|skills|careers|activities|assistant|sources|dashboard|onboarding|profile|documents|courses|plan|pathways|finder|privacy|professionals|projects|research|cv-library|funding|admissions-folders|locations|comparison|whats-new|admin|saved-library)$/.test(
         url.hash,
       )
     )

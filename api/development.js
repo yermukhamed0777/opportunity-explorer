@@ -37,7 +37,19 @@ export default async function handler(req, res) {
           'The daily AI allowance has been reached or is temporarily unavailable. Manual plans remain available.',
       });
     const context = await developmentContext(auth.db, auth.user.id);
-    const catalog = searchResources(goal);
+    const { data: rows, error: catalogError } = await auth.db
+      .from('intelligence_records')
+      .select('id,kind,payload,status')
+      .eq('status', 'Published')
+      .range(0, 999);
+    if (catalogError) throw Error('The source collection could not load.');
+    const catalog = searchResources(goal, {
+      extra: (rows || []).map((r) => ({
+        ...r.payload,
+        id: r.id,
+        kind: r.kind,
+      })),
+    });
     const schema = z.object({
       items: z
         .array(
