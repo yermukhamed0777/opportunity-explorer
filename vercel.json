@@ -6,9 +6,6 @@
   "outputDirectory": "dist",
   "functions": {
     "api/*.js": {
-      "maxDuration": 60
-    },
-    "api/document.js": {
       "maxDuration": 60,
       "includeFiles": "lib/**"
     }
