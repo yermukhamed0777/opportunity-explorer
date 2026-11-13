@@ -43,3 +43,7 @@ See [auth/domain setup](auth-routing-and-domains.md) for exact current URLs and 
 ## Publication checklist
 
 Save all reviewed sources and migrations → pass GitHub CI → merge → insert only missing reviewed seed records and staged candidates → deploy the merged commit with current environment → compare source hashes → verify stable production routes and anonymous API denial → check runtime errors and scheduled jobs. Publish actual commit/deployment identifiers in the release report, not assumed values in this document.
+
+## Course addition — 13 November 2026
+
+Added MIT OpenCourseWare’s Physical Metallurgy (3.40J, Fall 2009), reviewed against the official course, syllabus and OCW access information. It is an archived graduate learning resource with published prerequisites, free materials and no OCW credit or certificate. The reviewed catalog now contains 281 courses and 561 total records.

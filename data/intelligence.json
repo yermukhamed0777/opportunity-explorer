@@ -7936,6 +7936,43 @@
       "kind": "course"
     },
     {
+      "name": "Physical Metallurgy",
+      "url": "https://ocw.mit.edu/courses/3-40j-physical-metallurgy-fall-2009/",
+      "provider": "MIT OpenCourseWare",
+      "institution": "Massachusetts Institute of Technology",
+      "fieldIds": ["mse"],
+      "level": "Graduate",
+      "skills": [
+        "Physical metallurgy",
+        "Alloy design",
+        "Microstructural engineering",
+        "Structure-property relationships",
+        "Thermodynamics of metals"
+      ],
+      "prerequisites": "MIT 3.012 Fundamentals of Material Science, 3.022 Microstructural Evolution in Materials, and 3.032 Mechanical Behavior of Materials, as listed in the archived syllabus.",
+      "duration": null,
+      "format": "Self-paced archived teaching materials (Fall 2009)",
+      "language": "English",
+      "certificate": "No OCW certificate or degree credit.",
+      "auditing": "Open lecture notes, assignments and exams; the listed textbook may have separate costs.",
+      "costType": "Free open materials",
+      "checkedOn": "2026-11-13",
+      "sources": [
+        [
+          "Official course materials",
+          "https://ocw.mit.edu/courses/3-40j-physical-metallurgy-fall-2009/"
+        ],
+        [
+          "Official syllabus",
+          "https://ocw.mit.edu/courses/3-40j-physical-metallurgy-fall-2009/pages/syllabus/"
+        ],
+        ["OCW access and certification", "https://ocw.mit.edu/about/"]
+      ],
+      "verification": "Title, graduate level, Fall 2009 teaching term, topics, available materials and prerequisites checked against MIT OCW on 2026-11-13. Archived materials remain available for independent study; this is not a current enrollment offering. Total self-study duration is not established.",
+      "id": "learn-47f024b71595e0778c20",
+      "kind": "course"
+    },
+    {
       "id": "university-cityu",
       "name": "City University of Hong Kong",
       "region": "Hong Kong",

@@ -29,8 +29,8 @@ test('expanded content validates, has no duplicate identifiers or sources masque
     assert(!seen.has(key), key);
     seen.add(key);
   }
-  assert.equal(intelligence.records.length, 560);
-  assert.equal(contentTotals(intelligence.records, now).courses, 280);
+  assert.equal(intelligence.records.length, 561);
+  assert.equal(contentTotals(intelligence.records, now).courses, 281);
   assert.equal(intelligence.reviewQueue.length, 18);
 });
 test('real calendar and explicit-offset validation rejects rollover dates and impossible offsets', () => {
