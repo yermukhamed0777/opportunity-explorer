@@ -741,7 +741,15 @@ document.addEventListener('submit', async (e) => {
         signal: AbortSignal.timeout(35000),
       });
       const data = await response.json();
-      if (!response.ok)
+      if (
+        !response.ok &&
+        !(
+          response.status === 503 &&
+          data.mode === 'catalog' &&
+          typeof data.text === 'string' &&
+          Array.isArray(data.references)
+        )
+      )
         throw Error(data.error || 'Assistant temporarily unavailable.');
       if (epoch !== accountEpoch) return;
       messages.push({ role: 'assistant', ...data });

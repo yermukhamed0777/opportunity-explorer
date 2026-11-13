@@ -7,7 +7,7 @@
     "node": "24.x"
   },
   "scripts": {
-    "dev": "node scripts/dev-server.js",
+    "dev": "node --env-file-if-exists=.env.local scripts/dev-server.js",
     "build": "node scripts/build-catalog.cjs && node scripts/build-platform.js",
     "test": "node tests/check.cjs && node --test tests/*.test.js",
     "check": "npm run build && npm run lint && npm run typecheck && npm test",

@@ -2,7 +2,7 @@
 
 ProspectoAI connects opportunity discovery, career skills, public professional pathways, university research and private development planning. The current release is version 5. See [release evidence and limits](docs/release-status.md) and [authentication/domain configuration](docs/auth-routing-and-domains.md).
 
-The expansion adds a white-lion assistant identity, grounded source retrieval, 280 official learning resources, 100 editorial projects, research ideas, evidence comparisons, private admissions folders, notifications, and administrator review/history. Content examples are labelled and uncertain external records remain staged.
+The expansion adds a white-lion assistant identity, grounded source retrieval, 281 official learning resources, 100 editorial projects, research ideas, evidence comparisons, private admissions folders, notifications, and administrator review/history. Content examples are labelled and uncertain external records remain staged.
 
 A place to explore education and career possibilities, build useful skills and keep track of the next step.
 
@@ -29,11 +29,13 @@ Requires Node.js 24 and npm.
 
 ```bash
 npm ci --ignore-scripts
-npm run build
+# Copy .env.example to .env.local and fill in the two Supabase settings.
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. Local auth routes and API handlers are available. A configured Supabase project and confirmed login are required to load the collection.
+Open `http://127.0.0.1:4173`. `npm run dev` automatically loads `.env.local` with Node’s native `--env-file-if-exists` option and builds missing browser bundles before starting. Existing shell variables take precedence over the file. If the file or either required setting is missing, the server still starts and the login page displays a setup diagnostic with sign-in and recovery forms disabled. A configured Supabase project and confirmed login are required to load the collection.
+
+Set `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` from the same Supabase project. Use a publishable key (or legacy anonymous key), never a secret/service-role key. Restart the server after editing `.env.local`. The file is ignored by Git, is outside the served `dist/` directory, and is never copied into browser bundles. `npm run build` remains available for an explicit rebuild.
 
 ```bash
 npm run check
@@ -42,7 +44,7 @@ npm audit
 npm run seed:export
 ```
 
-Set environment variables in your hosting dashboard or an untracked local file. A plain Node process does not automatically load `.env.local`; export the variables before starting it, or use Node's `--env-file` option. Never commit credentials.
+Set deployment environment variables in Vercel and local values in `.env.local`. The `dev` script loads this file; other plain Node commands need exported values or Node’s explicit `--env-file-if-exists=.env.local` option. Never commit credentials. The configuration endpoint exposes only validated public Supabase settings, a non-secret AI capability flag and, when running locally, setup diagnostics.
 
 ## Source and build
 
@@ -99,7 +101,7 @@ The quota RPC is an intentionally privileged, narrowly scoped function: it check
 
 ## Weekly renewal
 
-Vercel Cron runs Monday at 00:00 UTC / 08:00 Hong Kong. It collects attributed Telegram/RSS leads and checks the fixed provider source list with bounded HEAD requests. Failed checks retain previous records. Changed headers, stale provider facts and broken links enter a read-only review report. A separate Supabase pg_cron job marks known expired public opportunities without deleting saved user data.
+Vercel Cron triggers `/api/refresh` daily at 01:00 UTC / 09:00 China/Hong Kong time (`0 1 * * *` in `vercel.json`). Daily runs collect attributed Telegram/RSS leads and check expanded sources; Monday’s trigger also performs the full legacy source renewal with bounded HEAD requests. Failed checks retain previous records. Changed headers, stale provider facts and broken links enter a read-only review report. A separate Supabase pg_cron job marks known expired public opportunities without deleting saved user data.
 
 The process does not automatically rewrite university facilities, course prices or job eligibility from scraped text. Those facts enter the repository review workflow before publication. See [maintenance workflow](docs/maintenance.md).
 

@@ -1,4 +1,6 @@
 import { createServer } from 'node:http';
+import { existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,7 +14,31 @@ import adminHandler from '../api/admin.js';
 import documentHandler from '../api/document.js';
 import developmentHandler from '../api/development.js';
 import accountHandler from '../api/account.js';
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '../dist');
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = resolve(projectRoot, 'dist');
+const bundles = [
+  'bootstrap',
+  'auth-page',
+  'platform',
+  'workspace',
+  'intelligence',
+];
+
+export function ensureDevBuild(directory = projectRoot) {
+  if (
+    bundles.every((name) =>
+      existsSync(resolve(directory, 'dist', name + '.js')),
+    )
+  )
+    return false;
+  console.log('Building missing ProspectoAI bundles…');
+  for (const script of ['build-catalog.cjs', 'build-platform.js'])
+    execFileSync(process.execPath, [resolve(directory, 'scripts', script)], {
+      cwd: directory,
+      stdio: 'inherit',
+    });
+  return true;
+}
 const mime = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -135,8 +161,10 @@ if (
   process.argv[1] &&
   resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
+  ensureDevBuild();
   const port = Number(process.env.PORT || 4173);
-  createPreviewServer().listen(port, '127.0.0.1', () =>
-    console.log('ProspectoAI: http://127.0.0.1:' + port),
+  const server = createPreviewServer();
+  server.listen(port, '127.0.0.1', () =>
+    console.log('ProspectoAI: http://127.0.0.1:' + server.address().port),
   );
 }

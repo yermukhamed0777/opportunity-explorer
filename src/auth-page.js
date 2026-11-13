@@ -197,6 +197,20 @@ $('#resend-confirmation').addEventListener('click', async (e) => {
   }
 });
 initialize().catch((error) => {
+  const setup = ['auth_not_configured', 'auth_config_invalid'].includes(
+    error.code,
+  );
+  show(
+    null,
+    setup ? 'Account setup needed.' : 'Account service unavailable.',
+    'Sign-in is unavailable until the account service is ready.',
+  );
+  $('.auth-card')
+    .querySelectorAll('form button, form input')
+    .forEach((el) => {
+      el.disabled = true;
+    });
+  $('#auth-status').setAttribute('role', 'alert');
   status(authMessage(error));
   $('#auth-retry').hidden = false;
 });
