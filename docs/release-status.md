@@ -2,9 +2,17 @@
 
 The expansion connects Explore, Build Your Profile, Professional Pathways, Admissions and Universities, and My Plan. GitHub remains the source of truth; a release must deploy the exact merged commit. No rollback to Opportunity Explorer is part of this release.
 
-## Production continuation · 13 November 2026
+## Phase 1 technical fixes · 13 November 2026
 
-The expansion and corrective releases are merged in PRs #4–#7. Actual Vercel builds exposed overlapping function rules, which are fixed. Signed-in browser testing exposed tracker writes to removed navigation counters, which are fixed and covered by a combined-page regression test. All 63 current automated tests pass with build, ESLint, strict calendar-module checking and formatting; the production dependency audit has zero findings.
+Implementation base: merged main commit `8410c2ab936eee0be7ad062b76fdd3eb910cb647` (PRs #4–#9). Phase 1 implementation commit `c5f2fe02ab91e958c47865d43f020ab0ee4b519a` is saved in [PR #10](https://github.com/yermukhamed0777/opportunity-explorer/pull/10), on `codex/phase-1-critical-fixes`. [GitHub CI run 50](https://github.com/yermukhamed0777/opportunity-explorer/actions/runs/43357117038) passed for that implementation. Its release is merged only after passing CI; the exact final merge commit and deployment are recorded in the PR/release handoff and Vercel metadata rather than a self-referential commit hash here.
+
+Phase 1 makes local startup load optional `.env.local` settings and build missing bundles before listening; incomplete public account settings produce a safe setup banner with disabled forms. Configuration rejects privileged or unrecognized browser keys. Chat separates invalid input (400), known service outages (503) and unexpected server errors (500); 503 catalog fallbacks remain usable in the existing chat screen. Chat, public capability reporting and plan drafting share the same API-key-or-OIDC availability rule. Quota, consent, authentication, sanitized diagnostics and review-before-save protections remain intact. No layout or color-system changes are included.
+
+The current suite contains **76 tests**: the prior 63 plus configuration/secret-isolation, clean local startup, chat status/fallback and OIDC drafting regressions. Local Phase 1 validation passed build, lint, scoped strict type checking, all 76 tests and formatting; the complete dependency audit found zero vulnerabilities. Production verification covers the original routes, signed-out API denial, private catalog paths, exact deployed asset hashes and signed-in health. Vercel’s pre-existing `customer_verification_required` restriction remains an account setup limitation; these fixes do not claim successful AI generation.
+
+## Earlier production continuation · 13 November 2026
+
+The expansion and corrective releases are merged in PRs #4–#7. Actual Vercel builds exposed overlapping function rules, which are fixed. Signed-in browser testing exposed tracker writes to removed navigation counters, which are fixed and covered by a combined-page regression test. At that release, all 63 automated tests passed with build, ESLint, strict calendar-module checking and formatting; the production dependency audit has zero findings.
 
 Production checks passed for 13 routes, nine anonymous API denials, five inaccessible catalog paths, and all 17 built static asset hashes. Owner sign-in/session restoration, administrator health, private DOCX upload, real extraction, unselected review entries, AI consent defaults, expiring private download and approved test-file deletion were verified live. The test document and extracted text were removed; no fictional evidence was saved to the user's profile. Mobile 390px navigation, comparison, notifications, keyboard command search, Escape and focus restoration were checked. Database isolation suites passed in rollback-only transactions, and original user record counts remain intact.
 
@@ -34,7 +42,7 @@ Costs are sourced planning estimates only where established. Country guides iden
 
 ## Live boundaries requiring honest reporting
 
-Full signup → email confirmation → login → recovery → new password, actual model generation, private Storage network operations and account deletion need an owner-controlled signed-in session. Configuration flags and DOM tests cannot establish these outcomes. Production and Preview have AI credentials; the server-only Supabase deletion key remains absent. SMTP delivery is not verified.
+Owner sign-in/session restoration and private Storage upload/extraction/review/download/test-file deletion were verified live. Full signup → email confirmation → login → recovery → new password, actual model generation and account deletion still require owner-controlled validation. Configuration flags and DOM tests cannot establish these outcomes. Production and Preview have AI credentials; the server-only Supabase deletion key remains absent. SMTP delivery is not verified.
 
 Automatic review rejected persistent synthetic production login accounts and a broad untested RLS/session-policy rewrite. Neither is implemented through an alternative route. Existing ownership policies remain intact. The narrower atomic-evidence and revision-guard migration was applied and transaction-tested. Account cleanup now enumerates nested files and revokes refresh sessions before deletion, but existing access JWTs remain valid until expiry; signed download URLs remain usable for their short lifetime.
 
