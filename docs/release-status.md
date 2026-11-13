@@ -2,7 +2,17 @@
 
 The expansion connects Explore, Build Your Profile, Professional Pathways, Admissions and Universities, and My Plan. GitHub remains the source of truth; a release must deploy the exact merged commit. No rollback to Opportunity Explorer is part of this release.
 
-## Verified before deployment
+## Production continuation · 13 November 2026
+
+The expansion and corrective releases are merged in PRs #4–#7. Actual Vercel builds exposed overlapping function rules, which are fixed. Signed-in browser testing exposed tracker writes to removed navigation counters, which are fixed and covered by a combined-page regression test. All 63 current automated tests pass with build, ESLint, strict calendar-module checking and formatting; the production dependency audit has zero findings.
+
+Production checks passed for 13 routes, nine anonymous API denials, five inaccessible catalog paths, and all 17 built static asset hashes. Owner sign-in/session restoration, administrator health, private DOCX upload, real extraction, unselected review entries, AI consent defaults, expiring private download and approved test-file deletion were verified live. The test document and extracted text were removed; no fictional evidence was saved to the user's profile. Mobile 390px navigation, comparison, notifications, keyboard command search, Escape and focus restoration were checked. Database isolation suites passed in rollback-only transactions, and original user record counts remain intact.
+
+Safe AI diagnostics established `customer_verification_required` from the actual authenticated request. Gemini is a valid public model but ineligible under this team's settings. The selected replacement, `openai/gpt-4.1-nano`, is eligible; account-wide generation still requires owner verification. The bounded backup requires explicit team availability and does not bypass authentication, billing, regional restrictions or quota. Successful AI text generation and reviewed AI plan generation must be retested after owner verification. Full email confirmation/recovery, SMTP delivery and account deletion remain unverified; deletion still requires the server-only owner credential. The original Vercel URL remains active.
+
+The daily Vercel checker ran on 13 November; its latest report checked 120 sources and recorded 107 failed checks for review. Failures did not replace published facts. Both recent daily Supabase expiry runs succeeded. Source fingerprints are not independent factual verification.
+
+## Baseline evidence before the initial expansion deployment
 
 - Build, ESLint, formatting and 55 Node tests pass. Tests include real PDF/DOCX extraction, recovery callback handling, anonymous API denial, budget validation, content/date validation, failed-import retention and DOM workflows with an in-memory database adapter.
 - TypeScript checks the shared production calendar/timezone validation module (`lib/dates.js`) with strict JavaScript checking. The application remains JavaScript; this is not a claim that the entire legacy application has TypeScript coverage.

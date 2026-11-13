@@ -5,6 +5,7 @@ import {
   gatewayAccess,
   generateWithFallback,
   FALLBACK_MODEL,
+  SECONDARY_FALLBACK_MODEL,
 } from '../lib/ai-gateway.js';
 const model = 'google/gemini-3.1-flash-lite';
 const requestId = '7e913803-8d12-4bdc-8c6c-31cdb433dc6d';
@@ -146,6 +147,7 @@ test('fallback never bypasses credentials, billing, regional restrictions or an 
     [403, 'Denied', 'ineligible', 'available'],
     [503, 'Unavailable', 'unknown', 'available'],
     [503, 'Unavailable', 'eligible', 'unavailable'],
+    [503, 'Unavailable', 'eligible', 'unknown'],
   ]) {
     let calls = 0;
     await assert.rejects(
@@ -191,4 +193,34 @@ test('fallback stops after a second failure and never retries indefinitely', asy
     ),
   );
   assert.equal(calls, 2);
+});
+
+test('the team-selected primary can use a different explicitly permitted backup', async () => {
+  const attempts = [];
+  const result = await generateWithFallback(
+    { prompt: 'grounded test' },
+    {
+      env: { AI_GATEWAY_MODEL: FALLBACK_MODEL },
+      logger: { error() {}, info() {} },
+      generate: async (options) => {
+        attempts.push(options.model);
+        if (attempts.length === 1)
+          throw Object.assign(new Error('Unavailable'), { statusCode: 503 });
+        return { text: 'Result' };
+      },
+      access: async () => ({
+        requestAvailable: 'available',
+        models: [
+          { id: FALLBACK_MODEL, found: true, eligibility: 'eligible' },
+          {
+            id: SECONDARY_FALLBACK_MODEL,
+            found: true,
+            eligibility: 'eligible',
+          },
+        ],
+      }),
+    },
+  );
+  assert.deepEqual(attempts, [FALLBACK_MODEL, SECONDARY_FALLBACK_MODEL]);
+  assert.equal(result.usedFallback, true);
 });
