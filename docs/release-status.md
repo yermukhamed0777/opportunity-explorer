@@ -12,6 +12,8 @@ Safe AI diagnostics established `customer_verification_required` from the actual
 
 The daily Vercel checker ran on 13 November; its latest report checked 120 sources and recorded 107 failed checks for review. Failures did not replace published facts. Both recent daily Supabase expiry runs succeeded. Source fingerprints are not independent factual verification.
 
+The complete dependency audit also found a development-only minimatch advisory. Pinning the patched `11.0.8` release preserves the working ESLint configuration; all release checks pass. The full audit now reports zero findings, and GitHub CI audits development dependencies as well as production dependencies.
+
 ## Baseline evidence before the initial expansion deployment
 
 - Build, ESLint, formatting and 55 Node tests pass. Tests include real PDF/DOCX extraction, recovery callback handling, anonymous API denial, budget validation, content/date validation, failed-import retention and DOM workflows with an in-memory database adapter.
