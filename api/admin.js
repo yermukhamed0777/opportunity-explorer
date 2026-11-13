@@ -1,4 +1,5 @@
 import { requireUser } from '../lib/auth.js';
+import { gatewayAccess } from '../lib/ai-gateway.js';
 import {
   intelligence,
   approvedHosts,
@@ -57,6 +58,7 @@ export default async function handler(req, res) {
         snapshot: snapshot.data,
         report,
         reportError,
+        gatewayAccess: await gatewayAccess(),
         totals: contentTotals(
           records.data.map((r) => ({
             ...r.payload,
