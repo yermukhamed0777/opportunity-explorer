@@ -830,6 +830,7 @@ async function admin() {
       'Administration & System Health',
       'Administrator access is checked by the server and database. Statuses describe observed capability, not secret values.',
     ) +
+    `<section class="work-card"><h2>AI Gateway access</h2><p>Read-only team availability check. An eligible model still requires a successful generation test. No credentials or private content are shown.</p><pre class="work-extracted">${E(JSON.stringify(data.gatewayAccess || { status: 'Not checked' }, null, 2))}</pre></section>` +
     `<div class="intel-health">${Object.entries(data.health)
       .map(
         ([k, v]) =>
